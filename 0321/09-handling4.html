@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="lib/jquery-3.7.1.min.js"></script>
+    <style>
+        div {
+            background-color: aquamarine;
+        }
+    </style>
+</head>
+<body>
+    <section>
+        <h2>제목</h2>
+        <div>내용1</div>
+        <div>내용2</div>
+    </section>
+    <section>
+        <h2>제목</h2>
+        <div>내용1</div>
+        <div>내용2</div>
+    </section>
+
+    <h1 id="title"><strong>unwrap태그</strong></h1>
+
+    <p class="ct1">내용1</p>
+    <p class="ct1">내용2</p>
+    <p class="ct2">내용3</p>
+    <p class="ct2">내용4</p>
+
+    <script>
+        $(()=>{
+            $("h2").replaceWith("<h3>바뀐 메서드</h3>");
+            $("<p>Change</p>").replaceAll("div");
+            $("strong").unwrap();
+            $(".ct1").wrap("<div />");
+            $(".ct2").wrapAll("<div />");
+            $(".ct2").wrapInner("<h3 />");
+        })
+    </script>
+</body>
+</html>

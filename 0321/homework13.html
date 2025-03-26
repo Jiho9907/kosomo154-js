@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> 테이블 짝수 행 스타일 변경</title>
+    <script src="lib/jquery-3.7.1.min.js"></script>
+</head>
+<body>
+    <table id="dataTable">
+        <tr>
+            <td>row1</td>
+        </tr>
+        <tr>
+            <td>row2</td>
+        </tr>
+        <tr>
+            <td>row3</td>
+        </tr>
+        <tr>
+            <td>row4</td>
+        </tr>
+    </table>
+
+    <script>
+        $(()=>{
+            $("#dataTable tr:even").each(function(index){
+                $(this).css("background-color","gray");
+            })
+        })
+    </script>
+</body>
+</html>

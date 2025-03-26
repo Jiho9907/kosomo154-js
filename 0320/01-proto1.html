@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1 id="h1">안녕하세요</h1>
+    <p id="p1">반갑습니다</p>
+    <input type="text" name="txt1" id="txt1">
+
+    <script>
+        // 각각의 [[Prototype]]이 정의 되어있음
+        console.dir(document.getElementById("h1")); 
+        console.dir(document.getElementById("p1"));
+        console.dir(document.getElementById("txt1"));
+
+        // primitive 타입을 제외한 모든 요소의 최상위 부모 ▶ object
+    </script>
+</body>
+</html>

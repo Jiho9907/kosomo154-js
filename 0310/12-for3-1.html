@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <input type="text" id="in1">
+    <input type="text" id="in2">
+    <button id="btn">테이블 생성</button>
+    <div id="div1"></div>
+
+    <script>
+        document.getElementById("btn").addEventListener("click", function(){
+            var tr = document.getElementById("in1").value;
+            var td = document.getElementById("in2").value;
+            var table = `<table border="1">`;
+
+            for(let i=0; i<tr; i++){
+                table += '<tr>';
+                for(let j=0; j<td; j++){
+                    table += '<td>내용</td>';
+                }
+                table += `</tr>`;
+            }
+
+            document.getElementById("div1").innerHTML = table;
+        });
+    </script>
+</body>
+</html>

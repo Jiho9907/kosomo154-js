@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="number" name="num" id="num" placeholder="항의 수">
+    <button id="btn">피보나치 항 계산</button>
+    <div id="res"></div>
+    <script>
+        document.getElementById("btn").addEventListener("click", function(){
+            var n = document.getElementById("num").value;
+            var result = "";
+            var a = 0;
+            var b = 1;
+            // for 문을 활용하여 피보나치 수열의 항 구하기
+            // 피보나치 수열 : 0 1 1 2 3 5 8 13 21 34 ...
+
+            //n이 1일때 0
+            if(n>=1){
+                result += a;
+            }
+            //n이 2일때 0, 1
+            if(n>=2){
+                result += ',' + b;
+            }
+            //n이 3이상일때 0, 1, 1, 2, ...
+            //a값 b값은 한칸씩 쉬프트
+            for(let i = 2; i<n ; i++){
+                var c = a+b;
+                result += ',' + c;
+                a = b;
+                b = c;
+            }
+            alert("피보나치 수열 : " + result);
+        });
+    </script>
+</body>
+</html>

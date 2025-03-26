@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //1
+        var name = prompt('이름 입력');
+        alert(`내 이름은 ${name} 입니다`);
+
+        //2
+        var age = prompt('나이 입력');
+        console.log(`제 나이는 ${age} 입니다`);
+
+        //3
+        var hobby = prompt('취미 입력');
+        document.write(`제 취미는 ${hobby} 입니다`);
+
+        //4
+        var addr = prompt('주소 입력');
+        document.write(`<p>저는 ${addr}에 삽니다</p>`);
+
+        //5
+        var num = prompt('hn 넘버 입력');
+        document.write(`<h${num}>만나서 반갑습니다</h${num}>`);
+
+        //6
+        var name = prompt('강조태그 입력');
+        document.write(`<p><${name}>이 곳을 강조</${name}></p>`);
+ 
+        //7
+        var val=prompt('input 입력값 입력');
+        document.write(`<input type=”text” value=”${val}”>`);
+
+        //8
+        var col1 = prompt('배경색 입력');
+        document.write(`<div style=”width:300px;height:200px;background-color:${col};”></div>`);
+
+        //9
+        var width = prompt("가로 크기 입력");
+        var height = prompt("세로 크기 입력");
+        var col = prompt("배경색 입력")
+        document.write(`<div style=”width:${width}px;height:${height}px;background-color:${col};”></div>`);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <title>getBoundingClientRect() 예제</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: sans-serif;
+        }
+
+        /* 측정할 대상 요소 */
+        #testElement {
+            width: 300px;
+            height: 200px;
+            background: #ffeb3b;
+            border: 2px solid #f57f17;
+            margin: 100px auto;
+            padding: 20px;
+            position: relative;
+            text-align: center;
+            line-height: 1.5;
+        }
+
+        /* 결과 출력 박스 */
+        #output {
+            margin: 20px auto;
+            padding: 10px;
+            max-width: 350px;
+            background: #f0f0f0;
+            border: 1px solid #ccc;
+            white-space: pre;
+            font-family: monospace;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        button {
+            display: block;
+            margin: 20px auto;
+            padding: 8px 16px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>getBoundingClientRect() 테스트</h1>
+    <div id="testElement">
+        이 요소의 위치와 크기를<br>
+        <code>getBoundingClientRect()</code>로 측정합니다.
+    </div>
+    <button onclick="showRect()">측정하기</button>
+    <div id="output">
+        <!-- 결과가 이곳에 표시됩니다. -->
+    </div>
+    <script>
+        function showRect() {
+            var element = document.getElementById("testElement");
+            var rect = element.getBoundingClientRect();
+            // 소수점 두 자리까지 고정하여 각 값 출력
+            var result = "";
+            result += "left : " + rect.left.toFixed(2) + "px\n";
+            result += "top : " + rect.top.toFixed(2) + "px\n";
+            result += "right : " + rect.right.toFixed(2) + "px\n";
+            result += "bottom: " + rect.bottom.toFixed(2) + "px\n";
+            result += "width : " + rect.width.toFixed(2) + "px\n";
+            result += "height: " + rect.height.toFixed(2) + "px\n";
+            result += "x : " + rect.x.toFixed(2) + "px\n";
+            result += "y : " + rect.y.toFixed(2) + "px";
+            document.getElementById("output").textContent = result;
+            console.log("getBoundingClientRect():", rect);
+        }
+    </script>
+</body>
+
+</html>

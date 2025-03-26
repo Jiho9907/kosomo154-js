@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #div1 {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <div id="div1">이것은 본문입니다.</div>
+    <script>
+        document.getElementById("div1").addEventListener("click", function(e){
+            // target : 실제 이벤트가 일어나는 주체 대상
+            e.target.style.backgroundColor = "lightblue";
+            
+            // this는 e.target과 동일한 역할
+            // this.style.backgroundColor = "lightblue";
+        });
+    </script>
+</body>
+</html>

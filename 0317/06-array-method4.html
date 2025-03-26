@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 문자열에서 배열로 데이터를 나누는 매커니즘
+        const str1 = "aaa,bbb,ccc,ddd";
+        str1_1 = str1.split(',');
+        console.log(str1_1); //['aaa', 'bbb', 'ccc', 'ddd']
+
+        // 배열에서 데이터를 나누는 방법 -1
+        // slice : 배열의 특정 부분을 복사하여 새로운 배열을 반환
+        // 원형의 변화X
+        const arr2_1 = [1,2,3,4,5];
+        const arr2_2 = arr2_1.slice(2);
+        console.log(arr2_1); //[1, 2, 3, 4, 5]
+        console.log(arr2_2); //[3, 4, 5] 
+        const arr2_3 = arr2_1.slice(2,4);
+        console.log(arr2_3); //[3, 4]
+        const arr2_4 = arr2_1.slice(0,3);
+        console.log(arr2_4); // [1, 2, 3]
+        const arr2_5 = arr2_1.slice(-3);
+        console.log(arr2_5); // [3, 4, 5]
+
+        // 배열에서 데이터를 나누는 방법 -2
+        // splice : 배열의 특정 위치에서 요소를 제거하거나 추가
+        // 원형의 변화O(주소값 동일)
+        const arr3_1 = [1,2,3,4,5];
+        const arr3_3 = arr3_1;
+        const arr3_2 = arr3_1.splice(2);
+        console.log(arr3_1); // [1, 2]
+        console.log(arr3_2); // [3, 4, 5]
+        console.log(arr3_3); //[1, 2]
+
+        // 데이터 검색
+        const arr4_1 = [
+            {name : 'a1', price : 1000, category : "A"},
+            {name : 'b1', price : 3000, category : "B"},
+            {name : 'c1', price : 2000, category : "B"},
+            {name : 'd1', price : 1500, category : "A"},
+            {name : 'e1', price : 4000, category : "B"},
+        ];
+
+        // 조건 1) 단수형 search
+        const arr4_2 = arr4_1.find(function(item){
+            return item.name === "e1";
+        });
+        console.dir(arr4_2);
+
+        // 조건 2) 복수형 search ▶ 새로운 배열로 반환 가능
+        const arr4_3 = arr4_1.filter(function(item){
+            return item.price >= 3000;
+        });
+        console.dir(arr4_3);
+
+        // 조건 3) name이 e1인 애를 제거
+        const arr4_4 = arr4_1.filter(function(item){
+            return item.name !== "e1";
+        });
+        console.dir(arr4_4);
+    </script>
+</body>
+</html>

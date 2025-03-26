@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="number" name="num1" id="num1">
+    <input type="number" name="num2" id="num2">
+    <button id="btn">생성</button>
+    <table id="tbl" border="1"></table>
+
+    <script>
+        document.getElementById("btn").addEventListener("click", function(){
+            //행 열의 개수를 input태그에서 가져온다
+            var num1 = parseInt(document.getElementById("num1").value);
+            var num2 = parseInt(document.getElementById("num2").value);
+
+            //table 안쪽 내용 초기화
+            var tbl = document.getElementById("tbl");
+            tbl.textContent = "";
+
+            //table 태그 안에 넣을 컨텐츠 변수 선언
+            var content = "";
+
+            //순회해서 tr td생성
+            for (let i = 0; i < num1; i++) {
+                content += "<tr>";
+                for (let j = 0; j < num2; j++) {
+                    content += `<td>내용${i}-${j}</td>`;
+                }
+                content += "</tr>";
+            }
+            //table 태그에 content 넣어 테이블 완성
+            tbl.innerHTML = content;
+        });
+    </script>
+</body>
+</html>

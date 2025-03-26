@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> 커스텀 진행바(Progress Bar) </title>
+    <style>
+        body {
+            font-family: sans-serif;
+            text-align: center;
+            margin-top: 2em;
+        }
+        input[type="range"]{
+            width: 640px;
+        }
+    </style>
+</head>
+<body>
+    <video id="myVideo" width="640" height="360">
+        <source src="videos/sample1.mp4" type="video/mp4">
+    </video>
+    <br>
+    <input type="range" value="0" step="0.1" id="progressBar">
+
+    <script>
+        const video = document.getElementById("myVideo");
+        const progressBar = document.getElementById("progressBar");
+
+        video.addEventListener("loadedmetadata", ()=>{
+            progressBar.max = video.duration;
+        })
+        video.addEventListener("timeupdate", ()=>{
+            progressBar.value = video.currentTime;
+        })
+        progressBar.addEventListener("input", ()=>{
+            video.currentTime = progressBar.value;
+        })
+    </script>
+</body>
+</html>

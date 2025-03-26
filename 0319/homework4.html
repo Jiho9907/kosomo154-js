@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>키보드 입력 감지 및 Enter 키 처리</title>
+</head>
+<body>
+    <input id="myInput" type="text" placeholder="여기에 입력하세요...">
+
+    <script>
+        const myInput = document.getElementById("myInput");
+        myInput.addEventListener("keydown", (e)=>{
+            console.log(e.key);
+            console.log(e.code);
+            if(e.key === "Enter"){
+                console.log("Enter키가 눌렸습니다.")
+            }
+        });
+    </script>
+</body>
+</html>

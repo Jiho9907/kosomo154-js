@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 1. 변수 교환 트릭
+        let val1 = "aaa";
+        let val2 = "bbb";
+
+        [val1, val2] = [val2, val1];
+        console.log(`val1 = ${val1}, val2 = ${val2}`); //val1 = bbb, val2 = aaa
+
+        // 2. 변수 값 삽입 
+        // default value : 변수, 파라미터, 프로퍼티에 값이 할당되지 않을때 
+        //                 사전에 정의한 값이 할당되도록 하는 기능
+    
+        let [val3 = "ccc", val4 = "ddd"] = ["abc"];
+        console.log(`${val3} ${val4}`); //abc ddd
+
+        // 3. 변수 값 삽입 예제 2
+        function func1(){
+            return ["zzz", "yyy"];
+        }
+        let [val5 = "eee", val6 = "fff"] = func1();
+        console.log(`${val5} ${val6}`);
+    </script>
+</body>
+</html>

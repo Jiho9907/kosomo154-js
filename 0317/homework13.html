@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="gallery">
+        <img src="" alt="이미지1">
+        <img src="" alt="이미지2">
+        <img src="" alt="이미지3">
+        <img src="" alt="이미지4">
+        <img src="" alt="이미지5">
+    </div>
+
+    <script>
+        //  gallery 요소 선택
+        const gallery = document.getElementById("gallery");
+
+        //  배열을 사용해 네 번째 `<img>` 요소 선택
+        fourthImg = gallery.children[3];
+
+        //  `alt` 속성을 "Gallery Image"로 수정
+        fourthImg.setAttribute("alt", "Gallery Image");
+
+        console.log("네 번째 이미지는 새 alt:", fourthImg.getAttribute("alt"));
+    </script>
+</body>
+</html>

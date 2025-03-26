@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>무한 스크롤 콘텐츠 로딩 구현</title>
+    <style>
+        #content {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            font-family: sans-serif;
+        }
+
+        .post {
+            padding: 15px;
+            margin-bottom: 15px;
+            background-color: lightgray;
+            border: 1px solid black;
+        }
+
+        #loading {
+            text-align: center;
+            font-weight: bold;
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="content">
+        <div class="post">포스트 1</div>
+        <div class="post">포스트 2</div>
+        <div class="post">포스트 3</div>
+        <div class="post">포스트 4</div>
+        <div class="post">포스트 5</div>
+    </div>
+    <div id="loading">로딩 중...</div>
+
+    <script>
+        let content = document.getElementById("content")
+        let loading = false;
+        let postCount = 5;
+
+        function loadMoreContent() {
+            if(loading) retrun;
+            loading = true;
+            document.getElementById("loading").style.display = "block";
+            setTimeout(function(){
+            for(let i = 0 ; i <= 5 ; i++){
+                let post = document.createElement("div");
+                post.setAttribute("class", "post");
+                postCount++;
+                post.textContent = `포스트 ${postCount}`;
+                content.appendChild(post);
+            }
+            loading = false;
+            document.getElementById("loading").style.display = "none";
+        }, 1000)
+        }
+
+
+        window.addEventListener("scroll",() => {
+            var d = document.documentElement;
+            if (d.scrollTop + d.clientHeight >= d.scrollHeight - 50) {
+                loadMoreContent();
+            }
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!--
+    ■ 파라미터 : 함수의 입력값을 받기 위해 사용되는 변수
+    ■ 매개변수 : 함수가 호출될 때 파라미터에 전달되는 실제 값
+    ■ 아규먼트 : 매개변수와 동의어
+    ■ 인자 : 매개변수와 아규먼트의 의미와 동일
+    -->
+
+    <script>
+        class Person {
+            constructor(name, age){
+                this.name = name;
+                this.age = age;
+            }
+            getName(){
+                return this.name;
+            }
+            getAge(){
+                return this.age;
+            }
+        }
+        // 생성자 참조
+        //  ▶ 모든 객체지향 언어의 생성자는 상속 XXX
+        //  ▶ 상속이 되지 않은 생성자는 자식 클래스의 생성자에서 참조해야 함 
+        //  ▶ 자식 클래스의 생성자에서는 super(arg1,arg2); 방식으로 
+        //     부모 생성자 함수의 포맷에서 요구하는 인자에 맞춰서 데이터를 제공해야 함
+        //  ▶ 다만 부모 클래스의 생성자에서 요구하는 인자가 없거나 
+        //     생성자 선언을 하지 않았을 경우 super는 상황에 따라 생략 가능
+        class Employee extends Person {
+            constructor(name, age, dept){
+                super(name, age);
+                this.dept = dept;
+            }
+            getDept(){
+                return this.dept;
+            }
+        }
+        const emp1 = new Employee("John", 37, "Sales");
+        console.log(emp1.getName());
+        console.log(emp1.getAge());
+        console.log(emp1.getDept());
+        console.dir(emp1);
+    </script>
+</body>
+</html>

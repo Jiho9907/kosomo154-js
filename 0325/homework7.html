@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>동영상 종료시 메시지 표시 및 재생 리셋 버튼 구현</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            text-align: center;
+            margin-top: 2em;
+        }
+
+        #message {
+            margin-top: 1em;
+            font-size: 18px;
+            color: red;
+        }
+
+        button {
+            padding: 0.5em 1em;
+            font-size: 16px;
+        }
+    </style>
+</head>
+
+<body>
+    <video id="myVideo" width="640" height="360" controls>
+        <source src="videos/sample1.mp4" type="video/mp4">
+    </video>
+    <br>
+    <button id="btn" style="display: none;">처음부터 다시 재생</button>
+    <div id="message"></div>
+
+    <script>
+        const video = document.getElementById("myVideo");
+        const message = document.getElementById("message");
+        const btn = document.getElementById("btn");
+
+        video.addEventListener("ended", function(){
+            message.innerText = "재생 종료 되었습니다.";
+            btn.style.display = "inline-block";
+        })
+        btn.addEventListener("click", function(){
+            video.currentTime = 0;
+            video.play();
+            message.innerText = "";
+            btn.style.display = "none";
+        })
+    </script>
+</body>
+
+</html>

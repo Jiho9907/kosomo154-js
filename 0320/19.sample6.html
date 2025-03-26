@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ko">
+ 
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Document</title>
+</head>
+ 
+<body onscroll="changeColor()">
+ 
+    <!-- transition 속성을 추가하여 배경색과 글자색이 부드럽게 변경되도록 함 -->
+<div id="myElement" style="margin:500px;padding:50px;color:black;transition: background-color 1s, color 1s;">Hello
+
+        World!</div>
+ 
+    <script>
+
+        // 스크롤 시 색상을 변경하는 함수
+
+        function changeColor() {
+
+            // "myElement"라는 id를 가진 요소를 선택
+
+            var element = document.getElementById("myElement");
+
+            // 선택한 요소의 위치와 크기 정보를 가져옴
+
+            var position = element.getBoundingClientRect();
+
+            // 요소의 상단이 viewport의 절반보다 위에 있고, 요소의 하단이 viewport 내에 있으면
+
+            if (position.top < window.innerHeight / 2 && position.bottom >= 0) {
+
+                // 요소의 배경색을 파란색으로, 글자색을 흰색으로 변경
+
+                element.style.backgroundColor = "blue";
+
+                element.style.color = "white";
+
+            } else {
+
+                // 그 외의 경우에는 요소의 배경색을 노란색으로, 글자색을 검은색으로 변경
+
+                element.style.backgroundColor = "yellow";
+
+                element.style.color = "black";
+
+            }
+
+        }
+</script>
+ 
+</body>
+ 
+</html>
+ 

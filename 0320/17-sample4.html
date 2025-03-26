@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Scroll-to-Top 버튼 예제</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+        }
+
+        /* Scroll-to-Top 버튼 스타일 */
+        #toTopBtn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            padding: 10px 15px;
+            background: #007acc;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            display: none;
+            z-index: 1000;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Scroll-to-Top 버튼 예제</h1>
+    <p>
+        아래로 스크롤해보세요. 일정 이상 내려가면 "Top" 버튼이 나타납니다.
+        버튼을 클릭하면 페이지 상단으로 부드럽게 이동합니다.
+    </p>
+    <!-- 긴 콘텐츠를 위해 여러 문단 추가 -->
+    <div id="dummyContent">
+        <!-- 간단하게 반복되는 콘텐츠 -->
+        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Debitis unde, vitae laborum molestiae voluptatem nemo incidunt neque eos dolorum magni facere ullam dolorem praesentium maxime mollitia distinctio, blanditiis fugit perspiciatis?</p>
+        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Debitis unde, vitae laborum molestiae voluptatem nemo incidunt neque eos dolorum magni facere ullam dolorem praesentium maxime mollitia distinctio, blanditiis fugit perspiciatis?</p>
+        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Debitis unde, vitae laborum molestiae voluptatem nemo incidunt neque eos dolorum magni facere ullam dolorem praesentium maxime mollitia distinctio, blanditiis fugit perspiciatis?</p>
+        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Debitis unde, vitae laborum molestiae voluptatem nemo incidunt neque eos dolorum magni facere ullam dolorem praesentium maxime mollitia distinctio, blanditiis fugit perspiciatis?</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae aliquam accusantium veniam, quod minus perferendis magni blanditiis corrupti hic dignissimos. Amet, architecto dicta voluptates error aut corrupti molestias obcaecati natus.</p>
+
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla interdum massa in
+            lorem facilisis, nec
+            bibendum erat molestie.</p>
+        <p>Curabitur efficitur, sem vel vestibulum porta, purus nisi dignissim purus, vitae
+            bibendum velit lectus non
+            dui.</p>
+        <p>Praesent a libero euismod, porta odio eget, lobortis sapien.</p>
+        <p>Sed a nisl nec arcu aliquam consequat.</p>
+        <p>Morbi ut nisi sed felis varius vulputate.</p>
+        <!-- 원한다면 이 부분을 복사해서 페이지 길이를 늘리세요 -->
+    </div>
+    <button id="toTopBtn">Top</button>
+    <script>
+        var toTopBtn = document.getElementById("toTopBtn");
+        window.addEventListener("scroll", function () {
+            // 문서의 스크롤 위치 (document.documentElement.scrollTop) 확인
+            var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+            if (scrollTop > 200) {
+                toTopBtn.style.display = "block";
+            } else {
+                toTopBtn.style.display = "none";
+            }
+        });
+        toTopBtn.addEventListener("click", function () {
+            // 부드러운 스크롤 애니메이션을 사용하여 상단으로 이동
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+    </script>
+</body>
+
+</html>

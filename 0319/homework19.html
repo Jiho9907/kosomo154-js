@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>자식 요소 배열에서 일부와 나머지 추출하기</title>
+</head>
+<body>
+    <div id="parent">
+        <div>자식요소1</div>
+        <div>자식요소2</div>
+        <div>자식요소3</div>
+        <div>자식요소4</div>
+        <div>자식요소5</div>
+    </div>
+    <script>
+        const childrenArray = Array.from(document.getElementById("parent").children);
+        const [firstChild, secondChild, ...others] = childrenArray;
+        console.log(firstChild, secondChild, others);
+    </script>
+</body>
+</html>

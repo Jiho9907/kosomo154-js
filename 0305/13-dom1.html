@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" name="txt1" id="txt2" class="txt1">
+    <button id="btn">클릭</button>
+
+    <script>
+        document.getElementById("btn").addEventListener("click", function(){
+            // alert("버튼 눌러짐");
+            // var val1 = document.getElementsByName("txt1")[0].value;
+            // var val1 = document.getElementsByClassName("txt1")[0].value;
+            // var val1 = document.getElementsByTagName("txt1")[0].value;
+            // var val1 = document.getElementsById("txt2").value;
+            // var val1 = document.querySelector("#txt2").value;
+            // var val1 = document.querySelector(".txt1").value;
+            var val1 = document.querySelectorAll(".txt1")[0].value;
+            alert(val1);
+        });
+
+        var input = (3 > 2) ? "크다" : (3 == 2) ? "같다" : "작다";
+        alert(input);
+    </script>
+</body>
+</html>

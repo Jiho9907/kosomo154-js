@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="container">
+        <div id="middle">Middle</div>
+    </div>
+
+    <script>
+        // `container`와 `middle` 요소 선택 
+        const container = document.getElementById("container");
+        const middle = document.getElementById("middle");
+
+        // 새 요소 생성
+        const newElement = document.createElement("div");
+        newElement.textContent = "Before Middle";
+
+        // 텍스트를 추가하고 삽입
+        container.insertBefore(newElement, middle);
+
+        // 다음 요소가 올바른지 확인 
+        console.log(newElement.nextElementSibling.id);
+    </script>
+</body>
+</html>

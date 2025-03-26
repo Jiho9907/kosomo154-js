@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <li class="item">아이템1</li>
+    <li class="item">아이템2</li>
+    <li class="item">아이템3</li>
+    <li class="item">아이템4</li>
+    <li class="item">아이템5</li>
+    <script>
+        // 모든 .item 요소 선택 및 인덱스 부여
+        const items = document.querySelectorAll('.item'); 
+        items.forEach(function (item, index) {
+            item.setAttribute('data-index', index);
+            // 각 아이템에 인덱스 값을 보여주기 위해 텍스트를 추가
+            item.textContent += " (data-index: " + index + ")";
+        });
+    </script>
+</body>
+
+</html>

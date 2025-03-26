@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="header">
+        <p>안녕하세요</p>
+        <p>반갑습니다</p>
+    </div>
+
+    <script>
+         // header 요소 선택
+         const header = document.getElementById("header");
+         
+         // 제목 요소 생성
+         const newElement = document.createElement("h1");
+         newElement.textContent = "Welcome"
+
+         // 가장 앞에 삽입 
+         header.prepend(newElement);
+
+    </script>
+</body>
+</html>

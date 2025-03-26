@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ko">
+ 
+<head>
+    <meta charset="UTF-8">
+    <title>Window.location 데모</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+ 
+        h1 {
+            color: #333;
+        }
+ 
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+ 
+        li {
+            margin: 5px 0;
+            padding: 5px;
+            background: #e2e2e2;
+            border-radius: 4px;
+        }
+ 
+        button {
+            margin-top: 20px;
+            padding: 10px 15px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+ 
+<body>
+    <h1>현재 페이지 정보</h1>
+    <ul id="locationInfo"></ul>
+    <button id="navigateBtn">쿼리 파라미터 추가하여 이동하기</button>
+ 
+    <script>
+        // location 정보 출력 함수
+        const locationInfo = document.getElementById("locationInfo");
+ 
+        const addListItem = (title, value) => {
+            const li = document.createElement("li");
+            li.textContent = `${title}: ${value}`;
+            locationInfo.appendChild(li);
+        };
+ 
+        addListItem("Full URL (href)", window.location.href);
+        addListItem("Protocol", window.location.protocol);
+        addListItem("Host", window.location.host);
+        addListItem("Hostname", window.location.hostname);
+        addListItem("Port", window.location.port);
+        addListItem("Pathname", window.location.pathname);
+        addListItem("Search (쿼리 스트링)", window.location.search);
+        addListItem("Hash", window.location.hash);
+ 
+        // 버튼 클릭 시 URL에 쿼리 파라미터 추가 후 이동하는 예제
+        document.getElementById("navigateBtn").addEventListener("click", () => {
+            // 기존 URL에서 origin(프로토콜 + 호스트)과 pathname만 사용하여 새로운 URL 생성
+            const newUrl = window.location.origin + window.location.pathname + "?test=123";
+ 
+            // assign 메서드로 페이지 이동 (히스토리에 남습니다)
+            window.location.assign(newUrl);
+ 
+            // 만약 현재 페이지를 히스토리에 남기지 않고 이동하고 싶다면:
+            // window.location.replace(newUrl);
+        });
+    </script>
+</body>
+ 
+</html>

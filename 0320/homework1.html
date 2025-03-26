@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>요소의 크기 계산 (clientWidth vs. offsetWidth)</title>
+    <style>
+        div{
+            width: 300px;
+            height: 300px;
+            padding: 20px;
+            border: 5px solid #000;
+            margin: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div id="test-box"></div>
+    <button id="btn">크기 측정</button>
+    <script>
+        const testBox = document.getElementById("test-box");
+        document.getElementById("btn").addEventListener("click", ()=>{
+            testBox.innerHTML = "clientWidth: " + testBox.clientWidth + "px<br>" +
+            "offsetWidth: " + testBox.offsetWidth + "px";
+
+            console.log(`${testBox.clientWidth} ${testBox.offsetHeight}`);
+        })
+    </script>
+</body>
+</html>

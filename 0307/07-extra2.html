@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" name="txt1" id="txt1">
+ 
+    <script>
+        document.getElementById("txt1").addEventListener("click", function(e){
+            console.dir(e);
+            console.log(document.getElementById("txt1").value);
+        });
+        document.getElementById("txt1").addEventListener("keydown", function(f){
+            console.dir(f);
+            console.log(document.getElementById("txt1").value);
+        });
+    </script>
+</body>
+</html>

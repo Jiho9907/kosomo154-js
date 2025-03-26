@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>뷰포트 내에 요소가 완전히 보이는지 감지하는 함수 구현</title>
+
+    <style>
+        #test-element {
+            width: 200px;
+            height: 150px;
+            background-color: #c8e6c9;
+            border: 2px solid #388e3c;
+            margin: 50px auto;
+        }
+
+        #output {
+            margin-top: 20px;
+            font-family: monospace;
+        }
+
+    </style>
+</head>
+
+<body>
+    <h1>문제 4: 뷰포트 내에 요소가 완전히 보이는지 감지</h1>
+    <div id="test-element">
+        이 요소가 뷰포트 내에 완전하게 보이나요?
+    </div>
+    <button id="btn">뷰포트 감지</button>
+    <div id="output"></div>
+
+    <script>
+        function isFullyInViewport(element) {
+            var rec = element.getBoundingClientRect();
+            return (
+                rec.top >= 0 && 
+                rec.left >= 0 && 
+                rec.bottom <= document.documentElement.clientHeight && 
+                rec.right <= document.documentElement.clientWidth 
+            );
+
+        }
+
+        document.getElementById("btn").addEventListener("click", () => {
+            var element = document.getElementById("test-element");
+            var result = isFullyInViewport(element);
+            var outputText = "요소가 뷰포트 내에 완전히 존재함: " + result;
+            document.getElementById('output').textContent = outputText;
+            console.log("isFullyInViewport:", result);
+        })
+    </script>
+</body>
+
+</html>

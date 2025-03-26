@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>폼 요소의 입력값 추출하기</title>
+</head>
+<body>
+    <form id="myForm">
+        <input name="username" value="JohnDoe">
+        <input name="email" value="john@example.com">
+    </form>
+
+    <script>
+        const myForm = document.getElementById("myForm");
+        //input 속성값과 동일한 변수명 사용 필수
+        const { username, email } = myForm.elements;
+        console.log(username.value, email.value);
+    </script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>마우스 오버 시 이미지 변경하기</title>
+</head>
+<body>
+    <img id="myImage" src="image1.jpg" alt="이미지">
+
+    <script>
+        const myImage = document.getElementById("myImage");
+        myImage.addEventListener("mouseover", function(){
+            myImage.setAttribute("src", "image2.jpg");
+            myImage.setAttribute("alt", "다른이미지");
+        });
+        myImage.addEventListener("mouseout",function(){
+            myImage.setAttribute("src", "image1.jpg");
+            myImage.setAttribute("alt", "이미지");
+        });
+    </script>
+</body>
+</html>

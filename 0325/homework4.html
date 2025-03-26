@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>사용자 정의 볼륨 컨트롤(slider)과 음소거 버튼 구현</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            text-align: center;
+            margin-top: 2em;
+        }
+
+        input[type="range"] {
+            width: 300px;
+        }
+
+        button {
+            padding: 0.5em 1em;
+            margin-left: 1em;
+            font-size: 16px;
+        }
+    </style>
+</head>
+
+<body>
+    <video id="myVideo" width="640" height="360" controls>
+        <source src="videos/sample1.mp4" type="video/mp4">
+    </video>
+    <br>
+    <input type="range" min="0" max="1" step="0.01" value="1" id="volumeSlider">
+    <button id="muteToggle">Mute</button>
+
+    <script>
+        const video = document.getElementById("myVideo");
+        const volumeSlider = document.getElementById("volumeSlider");
+        const muteToggle = document.getElementById("muteToggle");
+
+        volumeSlider.addEventListener("input", function(){
+            video.volume = volumeSlider.value;
+            if(video.volume == 0){
+                video.muted = true;
+                muteToggle.innerText = "Unmute";
+            }else{
+                video.muted = false;
+                muteToggle.innerText = "Mute";
+            }
+        })
+        muteToggle.addEventListener("click",function(){
+            video.muted = !video.muted;
+            muteToggle.innerText = video.muted ? "Unmute" : "Mute";
+            if(video.muted){
+                volumeSlider.value = 0;
+            }else{
+                volumeSlider.value = video.volume;
+            }
+        })
+
+    </script>
+</body>
+
+</html>

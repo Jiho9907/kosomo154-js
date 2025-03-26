@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #div1{
+            display: inline-block;
+        }
+        span{
+            font-style: italic;
+            font-size: 10px;
+        }
+
+    </style>
+</head>
+<body>
+    <h1>할 일 목록</h1>
+    <input type="text" name="" id="inp1" placeholder="할 일 등록"><br>
+    <input type="date" name="" id="inp2"><br>
+    <button id="btn1">등록</button><br>
+
+    <button id="btn1">전체</button>
+    <button id="btn2">활성</button>
+    <button id="btn3">완료</button><br>
+
+    <div id="div1"></div>
+
+    <script>
+        const div1 = document.getElementById("div1");
+        const inp1 = document.getElementById("inp1");
+        const inp2 = document.getElementById("inp2");
+
+        // “등록” 버튼을 눌러 새로운 할 일을 목록에 추가
+        document.getElementById("btn1").addEventListener("click",function(){
+            // 새로운 div 생성
+            
+
+            if(inp1 === ""){
+                alert("입력값이 없습니다!");
+            }else{
+                //input생성하여 타입을 체크박스로 설정
+                const checkBox = document.createElement("input");
+                checkBox.setAttribute("type","checkbox");
+                div1.prepend(checkBox);
+
+                //리스트 생성
+                const list = document.createElement("span");
+                const span = document.createElement("span");
+
+                //inp1의 value값을 받아와 체크박스와 value값을 추가
+                list.textContent = inp1.value;
+                div1.append(list);
+
+                //inp2의 value값을 받아와 뒤에 추가
+                span.textContent = ` (마감 ${inp2.value})`;
+                div1.append(span);
+
+                // 수정 버튼 추가
+                const modify_btn = document.createElement("button");
+                modify_btn.textContent = "수정"
+                // 수정 버튼에 대한 이벤트 작성
+                modify_btn.addEventListener("click",function(){
+            
+                //input1 태그의 데이터로 span의 데이터를 갈아치운 후 input 태그를 초기화
+                span.previousElementSibling.textContent = 
+                    document.getElementById("inp1").value;
+                    document.getElementById("inp1").value = "";
+                    modify_btn.nextElementSibling
+                });
+
+                // 삭제 버튼 추가
+                const delete_btn = document.createElement("button");
+                delete_btn.textContent = "삭제"
+                delete_btn.addEventListener("click", function(){
+                    div1.remove();
+                });
+
+                div1.append(modify_btn);
+                div1.append(delete_btn);
+            }
+        });
+    </script>
+</body>
+</html>

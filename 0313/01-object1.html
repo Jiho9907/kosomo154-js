@@ -1,0 +1,36 @@
+<!-- 객체 
+    - 명사 형태로 정의 
+    - 속성(ex 리터럴) + 기능(ex 함수) 
+    * 자바스크립트는 객체지향, 순차지향의 2가지 특징을 가짐 -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let a = "abc";
+        let b = "1234";
+
+        //객체란? in javascript
+        const obj = {
+            //속성
+            val1 : "abc", 
+            val2 : 1234,
+            //기능
+            func1 : function(){ 
+                console.log("안녕하세요.");
+            }
+        };
+
+        let value = "val1";
+        //사용방법
+        console.log(obj.val1); //abc
+        console.log(obj[value1]); //abc
+        console.log(obj["val2"]); //1234(문자열로 접급)
+        obj.func1(); //안녕하세요
+    </script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>버튼 클릭 시 단락 텍스트 변경</title>
+    <script src="lib/jquery-3.7.1.min.js"></script>
+</head>
+<body>
+    <button id="changeTextBtn">Change Text</button>
+    <p class="output">초기 텍스트</p>
+
+    <script>
+        $(()=>{
+            $(document).ready();
+            $("#changeTextBtn").click(function(){
+                $(".output").text("Button clicked!");
+                console.log("클릭이벤트 발생!");
+            })
+        })
+    </script>
+</body>
+</html>

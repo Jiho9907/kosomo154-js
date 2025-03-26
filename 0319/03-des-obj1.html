@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 1. object spread 연산
+        //    → 삽입 연산
+        // const obj1_1 = {
+        //     a1 : 111,
+        //     b1 : "abc" 
+        // };
+        // console.log({...obj1_1, c1 : 345}); //{a1: 111, b1: 'abc', c1: 345}
+
+        // 2. 부분추출 1
+        //    ( 조건 ) 키 값과 변수명 일치
+        // const obj2_1 = {
+        //     a1 : 123,
+        //     b1 : "abc"
+        // };
+        // let {a1, b1} = obj2_1;
+        // console.log(`${a1} ${b1}`); //123 abc
+
+        // 3. 부분추출 2 
+        // const obj3_1 = {
+        //     a1 : 123,
+        //     b1 : "abc"
+        // };
+        // let {a1:c1, b1:d1} = obj3_1;
+        // console.log(`${c1} ${d1}`); //123 abc
+
+        // 4. 부분추출 3
+        // const obj4_1 = {
+        //     a1 : 123,
+        //     b1 : "abc"
+        // };
+        // let a1, b1;
+        // ({a1, b1} = obj4_1); //블럭코드라는 것을 인지시켜주기 위한 "()"
+        // console.log(`${a1} ${b1}`); //123 abc
+
+        // 5. 부분추출 4 ★★★가장 잘 사용
+        // const obj5_1 = {
+        //     a1 : 123,
+        //     b1 : "abc",
+        //     c1 : {
+        //         c1_1 : 10,
+        //         c1_2 : "z"
+        //     },
+        // };
+        // let{a1, b1, c1 : {c1_1}} = obj5_1;
+        // console.log(`${a1} ${b1} ${c1_1}`); //123 abc 10
+
+        // 6. 부분추출 5
+        // const obj6_1 = {
+        //     a1 : 123,
+        //     b1 : "abc",
+        //     c1 : {
+        //         c1_1 : 10,
+        //         c1_2 : "z"
+        //     },
+        // }
+        // let {a1, ...rest1} = obj6_1;
+        // console.log(a1); //123
+        // console.dir(rest1); //b1: "abc" c1: {c1_1: 10, c1_2: 'z'}
+
+        // 7. 요소 수정 1 ▶ 메모리의 주소값 변경을 위해 새로운 변수에 삽입해줘야 함
+        // const obj7_1 = {
+        //     a1 : 123,
+        //     b1 : "abc"
+        // }
+        // const obj7_2 = {...obj7_1, a1 : 987};
+        // console.log(obj7_1); //{a1: 123, b1: 'abc'}
+        // console.log(obj7_2); //{a1: 987, b1: 'abc'}
+
+        // 8. 요소 삭제 1
+        const obj8_1 = {
+            a1 : 123,
+            b1 : "abc",
+            c1 : 456
+        }
+        // (방법1) 빼는 방식
+        const {a1, ...rest1} = obj8_1;
+        console.dir(rest1); // b1: "abc" c1: 456
+        // (방법2) 재구조화 방식
+        let {b1, c1} = obj8_1;
+        const obj8_2 = {b1, c1}; 
+        console.dir(obj8_2); // b1: "abc" c1: 456
+        
+    </script>
+</body>
+</html>

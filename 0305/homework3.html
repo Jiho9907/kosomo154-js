@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="num1">
+    <input type="text" id="num2">
+    <button id="btn1">더하기</button>
+    <button id="btn2">빼기</button>
+    <button id="btn3">곱하기</button>
+    <button id="btn4">나누기</button>
+
+    <script>
+        document.getElementById("btn1").addEventListener("click", function(){
+            var val1 = parseInt(document.getElementById("num1").value);
+            var val2 =  parseInt(document.getElementById("num2").value);
+            var input = val1 + val2;
+            alert(input);
+        });
+        document.getElementById("btn2").addEventListener("click", function(){
+            var val1 = parseInt(document.getElementById("num1").value);
+            var val2 =  parseInt(document.getElementById("num2").value);
+            var input = val1 - val2;
+            alert(input);
+        });
+        document.getElementById("btn3").addEventListener("click", function(){
+            var val1 = parseInt(document.getElementById("num1").value);
+            var val2 =  parseInt(document.getElementById("num2").value);
+            var input = val1 * val2;
+            alert(input);
+        });
+        document.getElementById("btn4").addEventListener("click", function(){
+            var val1 = parseInt(document.getElementById("num1").value);
+            var val2 =  parseInt(document.getElementById("num2").value);
+            var input = val1 / val2;
+            alert(input);
+        });
+    </script>
+</body>
+</html>

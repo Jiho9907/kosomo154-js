@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>업그레이드 인크리멘탈 게임</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        #scoreDisplay {
+            font-size: 2em;
+            margin: 20px;
+        }
+
+        button {
+            font-size: 1.2em;
+            padding: 10px 20px;
+            margin: 5px;
+            cursor: pointer;
+        }
+
+        .upgrade-section {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .upgrade-button {
+            font-size: 1.1em;
+            padding: 8px 15px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>업그레이드 인크리멘탈 클릭커 게임</h1>
+    <div id="scoreDisplay">Score: 0</div>
+    <button id="clickBtn">Click Me!</button>
+    
+    <div class="upgrade-section">
+        <h2>업그레이드</h2>
+        <div>
+            <span>업그레이드 가격: <span id="upgradeCost">10</span> 점수</span>
+        </div>
+        <button id="upgradeBtn" class="upgrade-button">업그레이드 구매</button>
+    </div>
+
+    <div>
+        <button id="saveBtn">게임 저장</button>
+        <button id="loadBtn">게임 불러오기</button>
+    </div>
+
+    <script>
+        let score = 0; // 현재 점수
+        let clickValue = 1; // 클릭당 점수
+        let upgradeCost = 10; // 업그레이드 가격
+
+        // DOM 요소들 참조
+        const scoreDisplay = document.getElementById('scoreDisplay');
+        const clickBtn = document.getElementById('clickBtn');
+        const saveBtn = document.getElementById('saveBtn');
+        const loadBtn = document.getElementById('loadBtn');
+        const upgradeBtn = document.getElementById('upgradeBtn');
+        const upgradeCostDisplay = document.getElementById('upgradeCost');
+
+        // 점수 표시 업데이트 함수
+        function updateScoreDisplay() {
+            scoreDisplay.textContent = `Score: ${score}`;
+            upgradeCostDisplay.textContent = upgradeCost;
+        }
+
+        // 클릭 이벤트
+        clickBtn.addEventListener('click', () => {
+            score += clickValue;
+            updateScoreDisplay();
+        });
+
+        // 업그레이드 구매 이벤트
+        upgradeBtn.addEventListener('click', () => {
+            if (score >= upgradeCost) {
+                score -= upgradeCost;
+                clickValue++; // 클릭당 점수 증가
+                upgradeCost = Math.floor(upgradeCost * 1.5); // 업그레이드 가격 상승
+                updateScoreDisplay();
+                alert(`업그레이드 성공! 클릭당 점수가 ${clickValue}로 증가했습니다.`);
+            } else {
+                alert('점수가 부족합니다!');
+            }
+        });
+
+        // 저장 버튼 클릭: 현재 점수를 localStorage에 저장합니다.
+        saveBtn.addEventListener('click', () => {
+            localStorage.setItem('incrementalGameScore', score);
+            localStorage.setItem('incrementalGameClickValue', clickValue);
+            localStorage.setItem('incrementalGameUpgradeCost', upgradeCost);
+            alert('게임 저장 완료!');
+        });
+
+        // 불러오기 버튼 클릭: localStorage에서 저장된 점수를 불러옵니다.
+        loadBtn.addEventListener('click', () => {
+            const savedScore = localStorage.getItem('incrementalGameScore');
+            const savedClickValue = localStorage.getItem('incrementalGameClickValue');
+            const savedUpgradeCost = localStorage.getItem('incrementalGameUpgradeCost');
+            
+            if (savedScore !== null) {
+                score = parseInt(savedScore, 10) || 0;
+                clickValue = parseInt(savedClickValue, 10) || 1;
+                upgradeCost = parseInt(savedUpgradeCost, 10) || 10;
+                updateScoreDisplay();
+                alert(`저장된 게임을 불러왔습니다! 점수: ${score}, 클릭당 점수: ${clickValue}`);
+            } else {
+                alert('저장된 게임이 없습니다!');
+            }
+        });
+
+        // 페이지가 로드되었을 때 저장된 상태가 있으면 불러오기
+        window.onload = function() {
+            loadBtn.click();
+        }
+    </script>
+</body>
+</html>

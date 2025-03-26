@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coming Soon</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+            text-align: center;
+        }
+        .container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            font-size: 36px;
+            color: #333;
+        }
+        p {
+            font-size: 18px;
+            color: #777;
+        }
+        .countdown {
+            font-size: 36px;
+            color: #ff6347;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Coming Soon!</h1>
+        <p>우리의 새로운 사이트가 곧 오픈합니다.</p>
+        <p>오픈까지 남은 시간:</p>
+        <div class="countdown" id="countdown"></div>
+    </div>
+
+    <script>
+        // 커밍순 페이지의 오픈 날짜 설정 (예: 2025년 5월 1일)
+        const targetDate = new Date("2025-05-01T00:00:00").getTime();
+
+        // 카운트다운 함수
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const timeLeft = targetDate - now;
+
+            // 날짜, 시간, 분, 초 계산
+            const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+            // 남은 시간을 출력
+            document.getElementById("countdown").innerHTML = `${days}일 ${hours}시간 ${minutes}분 ${seconds}초`;
+
+            // 카운트다운이 끝났을 때 메시지 표시
+            if (timeLeft < 0) {
+                document.getElementById("countdown").innerHTML = "오픈되었습니다!";
+            }
+        }
+
+        // 1초마다 카운트다운 업데이트
+        setInterval(updateCountdown, 1000);
+    </script>
+
+</body>
+</html>

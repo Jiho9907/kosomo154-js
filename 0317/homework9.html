@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="list">
+        <p id="first">First Paragragh</p>
+    </div>
+
+    <script>
+        //  `list`와 `first` 요소 선택 
+        const list = document.getElementById("list");
+        const first = document.getElementById("first");
+
+        //  새로운 `<p>` 생성 후 텍스트 노드 추가 
+        const newElement = document.createElement("p");
+        newElement.textContent = "New Paragraph";
+
+        //  기존 요소 앞에 삽입
+        list.insertBefore(newElement, first);
+    </script>
+</body>
+</html>

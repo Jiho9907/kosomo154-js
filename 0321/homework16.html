@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>버튼 클릭 시 경고 메시지 및 텍스트 업데이트</title>
+    <script src="lib/jquery-3.7.1.min.js"></script>
+</head>
+<body>
+    <p class="alertText">초기 경고 내용</p>
+    <button id="alertBtn">Show Alert</button>
+
+    <script>
+        $(()=>{
+            $("#alertBtn").click(function(){
+                $(".alertText").text("Alert triggered!");
+                alert("Alert triggered!");
+            })
+        })
+    </script>
+</body>
+</html>

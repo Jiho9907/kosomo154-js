@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>페이드 아웃 효과 구현</title>
+    <script src="lib/jquery-3.7.1.min.js"></script>
+</head>
+<body>
+    <div class="fadeItem">Click me to fade out</div>
+
+    <script>
+        $(()=>{
+            $(".fadeItem").click(function(){
+                $(this).fadeOut(1000);
+                console.log("Fade out 효과 완료");
+            })
+        })
+    </script>
+</body>
+</html>

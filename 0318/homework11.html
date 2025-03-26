@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM 요소 복제하기</title>
+</head>
+<body>
+    <div id="sourceDiv">복제할 내용</div>
+    <div id="targetDiv"></div>
+    <button id="btn">실행</button>
+
+    <script>
+        const sourceDiv = document.getElementById("sourceDiv");
+        const targetDiv = document.getElementById("targetDiv");
+
+        document.getElementById("btn").addEventListener("click", function(){
+            const clone = sourceDiv.cloneNode(true);
+            targetDiv.parentElement.appendChild(clone);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 1. 복합 구조 분해
+        // const obj1_1 = {
+        //     size : {width : 100, height : 200},
+        //     item : ["prod1", "prod2"],
+        //     extra : true
+        // }
+
+        // {size : {width}, item : [item1]}
+        // let {size : {width}, item : [item1]} = obj1_1;
+        // const obj1_2 = {size : {width}, item : item1};
+        // console.dir(obj1_2);
+
+        // 2. 함수 파라미터 구조 분해 할당
+        // const obj2_1 = {
+        //     a1 : ["item1", "item2"],
+        //     b1 : {x : 100, y : 200},
+        //     c1 : "안녕하세요"
+        // }
+
+        // function func1({a1 : [item1, item2], b1 : {x, y}, c1}){
+        //     console.log(item1); //item1
+        //     console.log(item2); //item2
+        //     // console.log(b1); //{x: 100, y: 200}
+        //     console.log(x); //100
+        //     console.log(y); //200
+        //     console.log(c1); //안녕하세요
+        // };
+        // func1(obj2_1);
+
+        
+        const values = [
+            {id : 1, name : "선물1", amount : {apple :2, candy:3}},
+            {id : 2, name : "선물2", amount : {apple :3, candy:5}},
+            {id : 3, name : "선물3", amount : {apple :4, candy:1}},
+            {id : 4, name : "선물4", amount : {apple :9, candy:4}},
+            {id : 5, name : "선물5", amount : {apple :2, candy:3}},
+        ]
+
+        // 3. for문 구조 분해 할당 방식
+        // for(const {id, amount:{apple}} of values){
+        //     console.log(`id : ${id}, apple : ${apple}`);
+        // }
+        
+        // 4. forEach문 구조 분해 할당 방식
+        // values.forEach(function({id, amount : {apple}},index){
+        //     console.log(`id : ${id}, apple : ${apple}, index : ${index}`);
+        // });
+
+        // 5. map() 구조 분해 할당 방식 ★ 키와 값 쌍으로
+        const values2 = values.map(function({id, amount : {apple}}){
+            return {id, apple};
+        });
+        console.dir(values2);
+    </script>
+</body>
+</html> 

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="lo-save">저장</button>
+    <button id="lo-load">불러오기</button>
+    <button id="lo-delete">삭제하기</button>
+    <p id="result1"></p>
+    <hr>
+    <button id="se-save">저장</button>
+    <button id="se-load">불러오기</button>
+    <button id="se-delete">삭제하기</button>
+    <p id="result2"></p>
+    <script>
+        document.getElementById("lo-save").addEventListener("click",function(){
+            localStorage.setItem("mycat", "Tom");
+        });
+        document.getElementById("lo-load").addEventListener("click",function(){
+            var cat = localStorage.getItem("mycat");
+            document.getElementById("result1").textContent = `내 고먐미 이름은 ${cat}`;
+        });
+        document.getElementById("lo-delete").addEventListener("click",function(){
+            localStorage.removeItem("mycat");
+        });
+
+        document.getElementById("se-save").addEventListener("click",function(){
+            sessionStorage.setItem("mydog", "SuSu");
+        });
+        document.getElementById("se-load").addEventListener("click",function(){
+            var cat = sessionStorage.getItem("mydog");
+            document.getElementById("result2").textContent = `내 강쥐 이름은 ${cat}`;
+        });
+        document.getElementById("se-delete").addEventListener("click",function(){
+            sessionStorage.removeItem("mydog");
+        });
+    </script>
+</body>
+</html>

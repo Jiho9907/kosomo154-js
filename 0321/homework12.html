@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>버튼 클릭 시 목록 항목 추가 및 업데이트</title>
+    <script src="lib/jquery-3.7.1.min.js"></script>
+</head>
+<body>
+    <button id="addItemBtn">Add Item</button>
+    <ul id="listContainer"></ul>
+
+    <script>
+        let count = 0;
+        $(()=>{
+            $("#addItemBtn").click(function(){
+                count ++;
+                $("#listContainer").append("<li>새항목[" + count + "]</li>");
+                console.log(`항목 추가됨: 새항목 ${count}`);
+            })
+        })
+    </script>
+</body>
+</html>

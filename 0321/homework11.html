@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>마우스 엔터 및 리브 이벤트로 텍스트 변경</title>
+    <script src="lib/jquery-3.7.1.min.js"></script>
+</head>
+<body>
+    <div id="hoverArea">Hover over me!</div>
+
+    <script>
+        $(()=>{
+            $("#hoverArea").mouseenter(function(){
+                $(this).text("hover!");
+            })
+            $("#hoverArea").mouseout(function(){
+                $(this).text("hover out!");
+            })           
+        })
+    </script>
+</body>
+</html>

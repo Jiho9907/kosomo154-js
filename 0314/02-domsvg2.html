@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        svg {
+            border: 1px solid #ccc;
+            background-color: #f0f0f0;
+            margin: 20px auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>애니메이트 예제</h1>
+    <svg id="my-svg" width="500" height="200">
+        <circle id="my-circle" cx="50" cy="100" r="20" fill="navy" />
+    </svg>
+    <button id="exec">애니메이션 실행</button>
+    <button id="cancel">애니메이션 최소</button>
+
+    <script>
+        //준비물 : circle dom, svg width, x축 위치
+        const circle = document.getElementById("my-circle");
+        const svgWidth = 500;
+        let posX = 50;
+        // requestAnimationFrame을 저장할 변수
+        let animId;
+
+        //애니메이션에서 쓰일 이벤트의 상세 내용을 함수 형태로 정의
+        function animate(){
+            posX += 1;
+            if(posX > svgWidth){
+                posX = 50;
+            }
+            circle.setAttribute("cx", posX);
+
+            //다음 프레임 예약 및 ID 업데이트
+            animId = requestAnimationFrame(animate);
+        }
+
+        //애니메이션 이벤트를 실행시킬 버튼 정의
+        document.getElementById("exec").addEventListener("click", function(){
+            // animId = requestAnimationFrame(animate);
+            animate();
+        });
+        //애니메이션 이벤트를 취소시킬 버튼 정의
+            document.getElementById("cancel").addEventListener("click", function(){
+            cancelAnimationFrame(animId);
+        });
+    </script>
+</body>
+</html>

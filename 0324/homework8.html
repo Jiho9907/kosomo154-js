@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>자동 정지하는 주기적 메시지 출력</title>
+</head>
+<body>
+    <script>
+        let count = 0;
+
+        let inter = setInterval(function(){
+            console.log("Processing...");
+            count++;
+
+            if(count === 4){
+            clearInterval(inter);
+            console.log("Process completed.");
+        }
+        }, 1000);
+
+    </script>
+</body>
+</html>

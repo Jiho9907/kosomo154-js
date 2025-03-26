@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>할인 계산기</h1>
+    <input type="text" name="origin" id="origin" placeholder="원가격 입력">
+    <input type="text" name="discount" id="discount" placeholder="할인률 입력">
+    <button id="btn">계산</button>
+    <div id="result"></div>
+ 
+    <script>
+        document.getElementById("btn").addEventListener("click", function(){
+            var origin = parseInt(document.getElementById("origin").value);
+            var discount = parseInt(document.getElementById("discount").value);
+ 
+            var isInvalid = isNaN(origin) || isNaN(discount)
+            || discount < 0 || discount > 100;
+ 
+            // var str1 = "";
+ 
+            var discountAmount = origin * (discount / 100);
+            var finalPrice = origin - discountAmount;
+            var disMessage = (discount === 0) ?
+            "할인이 적용되지 않습니다!" : "할인이 적용되었습니다!";
+ 
+            document.getElementById("result").innerHTML =
+                    isInvalid ? "올바른 원가격과 할인률을 입력하세요" :
+                    `<p>원가격 ${origin.toLocaleString()}원</p>
+                    <p>할인률 ${discount}%</p>
+                    <p>할인 금액 ${discountAmount.toLocaleString()}원</p>
+                    <p>최종 가격 ${finalPrice.toLocaleString()}원</p>
+                    <p>${disMessage}</p>`;
+ 
+            // str1 ? "abc" : "def";
+        });
+    </script>
+</body>
+</html>

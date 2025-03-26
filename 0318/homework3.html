@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>리스트 항목 추가하기</title>
+</head>
+<body>
+    <ul id="myList">
+        <li>Item 1</li>
+        <li>Item 2</li>
+    </ul>
+    <button id="addItemBtn">항목 추가</button>
+
+    <script>
+        document.getElementById("addItemBtn").addEventListener("click", function(){
+            const list = document.createElement("li");
+            list.textContent = "New Item";
+
+            const myList = document.querySelector("#myList");
+            myList.appendChild(list);
+        });
+    </script>
+</body>
+</html>

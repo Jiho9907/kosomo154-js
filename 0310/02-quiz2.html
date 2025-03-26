@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>사칙연산 퀴즈</h1>
+    <p id="quiz"></p>
+    <input type="text" name="answer" id="answer">
+    <button id="btn">제출</button>
+    <p id="feedback"></p>
+    
+    <script>
+        //1부터 20 사이 무작위 두 숫자 생성
+        var num1 = Math.floor(Math.random()*20)+1;
+        var num2 = Math.floor(Math.random()*20)+1;
+
+        //사칙연산 기호 결정
+        var op1 = Math.floor(Math.random()*4)+1;
+        var op;
+        var correct;
+
+        //연산을 작성하는 조건문 생성
+        switch(op1){
+            case 1 :
+                op="+";
+                correct = num1 + num2;
+                break;
+            case 2 :
+                op="-";
+                correct = num1 - num2;
+                break;
+            case 3 :
+                op="*";
+                correct = num1 * num2;
+                break;
+            default :
+                op="/";
+                correct = parseInt(num1 / num2);
+                break;
+        }
+
+        //문제 출력
+        document.getElementById("quiz").textContent = `문제 : ${num1} ${op} ${num2} = ?`;
+
+        //문제에 대한 정답 판별
+        document.getElementById("btn").addEventListener("click", function(){
+            var userAnswer = parseInt(document.getElementById("answer").value);
+            var feedback = document.getElementById("feedback");
+
+            //사용자가 입력한 값과 정답을 비교
+            if(userAnswer === correct){
+                feedback.textContent = "정답입니다.";
+            }else{
+                feedback.textContent = `오답입니다. 정답은 ${correct}입니다.`;
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .hidden{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>fruit OR vegetable</h1>
+    <form>
+        <label for="menu">선택</label>
+        <select name="menu" id="menu">
+            <option value="all">ALL</option>
+            <option value="opt1">fruit</option>
+            <option value="opt2">vegetable</option>
+        </select>
+    </form>
+    
+    <div class="item" data-category="fruit">Apple</div>
+    <div class="item" data-category="vegetable">Carrot</div>
+    <div class="item" data-category="fruit">Banana</div>
+    <div class="item" data-category="vegetable">Lettuce</div>
+
+    <script>
+        let items = document.querySelectorAll(".item");
+        document.getElementById("menu").addEventListener("change", function(){
+            let current = this.value;
+
+        for(let i=0; i<items.length; i++){
+            if(current === "all"){
+                items[i].classList.remove("hidden");
+            }else if(current === "opt1" && items[i].dataset.category == "vegetable"){
+                items[i].classList.add("hidden");
+            }else if(current === "opt2" && items[i].dataset.category == "fruit"){
+                items[i].classList.add("hidden");
+            }else{
+                items[i].classList.remove("hidden");
+            }
+        }
+        
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="tooltip" title="title1">툴팁1</div>
+    <div class="tooltip" title="title2">툴팁2</div>
+    <div class="tooltip" title="title3">툴팁3</div>
+
+    <script>
+        let tooltips = document.querySelectorAll('.tooltip');
+        tooltips.forEach(function (t) {
+            t.removeAttribute('title');
+        });
+        console.log("tooltip에서 title attribute 삭제");
+    </script>
+</body>
+</html>

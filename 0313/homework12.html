@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .off {
+            display: inline-block;
+            background-color: coral;
+        }
+        .on {
+            display: inline-block;
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+    <div id="toggleDiv" data-state="off" class="off">상태: off</div>
+    <button id="btn">토글</button>
+    
+    <script>
+        let toggleDiv = document.getElementById("toggleDiv");
+        let btn = document.getElementById("btn");
+
+        btn.addEventListener("click",function(){
+            let current = toggleDiv.dataset.state;
+            let newState = (current == "off")? "on" : "off";
+
+            toggleDiv.dataset.state = newState;
+            toggleDiv.textContent = "상태: " + newState;
+
+            toggleDiv.classList.remove("on","off");
+            toggleDiv.classList.add(newState);
+        });
+    </script>
+</body>
+</html>

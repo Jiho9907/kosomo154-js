@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>인라인 편집 기능 구현</title>
+    <script src="lib/jquery-3.7.1.min.js"></script>
+</head>
+<body>
+    <ul>
+        <li class="editable">초기 텍스트1</li>
+        <li class="editable">초기 텍스트2</li>
+        <li class="editable">초기 텍스트3</li>
+    </ul>
+    <script>
+        $(()=>{
+            $(".editable").dblclick(function(){
+                let currentText = $(this).text();
+                let input = $("<input type='text' value=''" + currentText + "'/>'");
+                $(this).replaceWith(input);
+                input.focus();
+
+                input.blur(function(){
+                    var newText = $(this).val();
+                    var li = $("<li class='editable'>"+newText+"</li>");
+                    $(this).replaceWith(li);
+                })
+            })
+        })
+    </script>
+</body>
+</html>

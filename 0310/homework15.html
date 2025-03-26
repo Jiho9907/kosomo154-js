@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" name="num1" id="num1" placeholder="숫자열 입력(콤마로 구분)">
+    <button id="btn">홀수 짝수 카운트</button>
+    <div id="result"></div>
+     
+    <script>
+        // for 문을 사용하여 배열 내의 홀수와 짝수의 개수를 각각 카운트한 후, 
+        // alert("홀수: " + oddCount + "개, 짝수: " + evenCount + "개")로 결과를 출력
+        document.getElementById("btn").addEventListener("click", function(){
+            // 변수에 input 값 받아오기
+            var strNum = document.getElementById("num1").value.split(',');
+            console.log(strNum);
+            var oddCount = 0;
+            var evenCount = 0;
+            // 변수의 배열 각 문자를 숫자로 변경
+            for(let i = 0; i < strNum.length; i++){
+                var num = parseInt(strNum[i]);
+                //홀수이면 oddCount ++, 짝수이면 evenCount ++
+                if(num%2 !==0){
+                    oddCount ++;
+                }else{
+                    evenCount ++;
+                }
+            }
+            alert("홀수: " + oddCount + "개, 짝수: " + evenCount + "개");
+        });
+    </script>
+</body>
+</html>

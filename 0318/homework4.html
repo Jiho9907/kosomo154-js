@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>입력 값 실시간 반영하기</title>
+</head>
+<body>
+    <input type="text" id="textInput" placeholder="문자 입력">
+    <span id="displayText"></span>
+
+    <script>
+        const textInput = document.getElementById("textInput");
+        textInput.addEventListener("input",function(){
+            const displayText = document.getElementById("displayText");
+            displayText.textContent = textInput.value;
+        });
+    </script>
+</body>
+</html>

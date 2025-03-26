@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>스크롤 영역 크기 측정 (scrollWidth & scrollHeight)</title>
+    <style>
+        #scroll-container {
+            width: 300px;
+            height: 200px;
+            overflow: auto;
+            border: 1px solid black;
+        }
+
+        #inner-content {
+            width: 500px;
+            height: 400px;
+            background-color: bisque;
+        }
+    </style>
+</head>
+<body>
+    <div id="scroll-container">
+        <div id="inner-content">내부컨테이너가 큼</div>
+    </div>
+    <button id="btn">스크롤 크기 측정</button>
+    <div id="div1"></div>
+
+    <script>
+        const scrollCon = document.getElementById("scroll-container");
+        const div1 = document.getElementById("div1");
+
+        document.getElementById("btn").addEventListener("click", ()=>{
+            div1.innerHTML = "scrollWidth :" + scrollCon.scrollWidth + "px<br>"
+            + "scrollHeight :" + scrollCon.scrollHeight + "px<br>"
+            + "내부 컨텐츠가 컨테이너보다 클 경우 콘텐츠의 실제크기 반영";
+        })
+    </script>
+</body>
+</html>

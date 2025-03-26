@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 연산 결과에 다른 새로운 배열을 반환할 때 쓰는 함수 ★★★★★
+        const arr1_1 = [
+            {name : 'a1', price : 3000, category : "A"},
+            {name : 'b1', price : 2000, category : "B"},
+            {name : 'c1', price : 5000, category : "A"},
+            {name : 'd1', price : 4000, category : "B"},
+            {name : 'e1', price : 1000, category : "B"},
+        ];
+        
+        // 1 - 이름만 출력받는 리스트
+        const arr1_2 = arr1_1.map(function(elem, index){
+            return elem.name;
+        });
+        console.dir(arr1_2); // ["a1", "b1", "c1", "d1", "e1"]
+
+        // 2 - 이름과 카테고리만 출력하는 객체를 담는 리스트 작성
+        const arr1_3 = arr1_1.map(function(elem, index){
+            return {name : elem.name, category : elem.category};
+        });
+        console.dir(arr1_3); //[ {name:"a1", category : "A"}, ... ]
+
+        // 3 - name이 "c1"이 아닌 것만 남기고 전부 리스팅
+        const arr1_4 = arr1_1.map(function(elem, index){
+            if(elem.name !== "c1"){
+                return elem;
+            }
+        });
+        console.dir(arr1_4); //c1 이름을 가진 객체를 제외한 나머지 리스팅
+    </script>
+</body>
+</html>

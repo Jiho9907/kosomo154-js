@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function Person(){
+            this.val1 = 123;
+        };
+
+        Person.prototype.func1 = function(){
+            console.log("프로토타입에서 생성한 기능");
+        }
+
+        const per1 = new Person();
+
+        console.dir(per1);
+        console.log(per1.__proto__ === Person.prototype); //true
+    </script>
+</body>
+</html>

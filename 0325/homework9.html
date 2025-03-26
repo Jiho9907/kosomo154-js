@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>동영상 정보(현재 시간, 전체 길이, 완료율) 표시하기</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            text-align: center;
+            margin-top: 2em;
+        }
+
+        #info {
+            margin-top: 1em;
+            font-size: 18px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <video id="myVideo" width="640" height="360" controls>
+        <source src="videos/sample1.mp4" type="video/mp4">
+    </video>
+    <div id="info">
+        <p>현재 시간: <span id="currentTime">0.00</span> 초</p>
+        <p>전체 길이: <span id="duration">0.00</span> 초</p>
+        <p>완료율: <span id="percentage">0</span>%</p>
+    </div>
+    <script>
+        const video = document.getElementById('myVideo');
+        const currentTimeEl = document.getElementById('currentTime');
+        const durationEl = document.getElementById('duration');
+        const percentageEl = document.getElementById('percentage');
+
+        video.addEventListener('loadedmetadata', function () {
+            durationEl.innerText = video.duration.toFixed(2);
+        });
+        
+        video.addEventListener('timeupdate', function () {
+            currentTimeEl.innerText = video.currentTime.toFixed(2);
+            const percent = (video.currentTime / video.duration) * 100;
+            percentageEl.innerText = percent.toFixed(1);
+        });
+    </script>
+</body>
+
+</html>

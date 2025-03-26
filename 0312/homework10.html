@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 10px;
+            text-align: center;
+        }
+        header, div, footer {
+            border: 1px solid black;
+        }
+        div{
+            display: flex;
+            flex-direction: column;
+            height: 300px;
+        }
+    </style>
+</head>
+<body>
+    <header>헤더영역</header>
+    <div id="content">
+        <div id="content1">컨텐츠1</div>
+        <div id="content2">컨텐츠2</div>
+        <div id="content3">컨텐츠4</div>
+    </div>
+    <p id="p1">윈도우 리사이즈에 따른 글자 크기 동적 변경</p>
+    <footer>풋터영역</footer>
+    
+
+    <script>
+        let content = document.getElementById("content");
+        let p1 = document.getElementById("p1");
+
+        window.addEventListener("resize", function(){
+            p1.style.fontSize = window.innerWidth/50 + "px";
+            content.style.fontSize = window.innerWidth/50 + "px"
+        });
+
+        if(width > 600){
+            content.style.flexDirection = "row";
+        }else{
+            content.style.flexDirection = "column";
+        }
+    </script>
+</body>
+</html>

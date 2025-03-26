@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .txt1 {
+            color: red;
+        }
+        .txt2 {
+            font-size: 3rem;
+        }
+        .txt3 {
+            outline: 2px solid black;
+        }
+    </style>
+</head>
+<body>
+    <p id="p1">안녕하세요 반갑습니다.</p>
+    <button id="btn">토글 p태그</button>
+    <script>
+        // document.getElementById("p1").classList.add("txt1");
+        // document.getElementById("p1").classList.add("txt2");
+        // document.getElementById("p1").classList.add("txt3");
+        // document.getElementById("p1").classList.add("txt1","txt2","txt3")
+
+        // document.getElementById("p1").classList.remove("txt3");
+        // document.getElementById("p1").classList.remove("txt2");
+        // document.getElementById("p1").classList.remove("txt1");
+        // document.getElementById("p1").classList.remove("txt1","txt2","txt3")
+        
+        document.getElementById("btn").addEventListener("click",function(){
+            // 1. txt1이 있는지 없는지 확인
+            // 2. 만약 있으면 txt1을 제거하는 로직 생성
+            // 3. 없으면 txt1을 적용하는 로직 생성
+            const p1 = document.getElementById("p1");
+            // if(p1.classList.contains("txt1")){
+            //     p1.classList.remove("txt1");
+            // }else{
+            //     p1.classList.add("txt1");
+            // }
+            p1.classList.toggle("txt1");
+        });
+    </script>
+</body>
+</html>

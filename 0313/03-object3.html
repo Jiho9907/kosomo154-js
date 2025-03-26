@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const bottle = {
+            juice : 50,
+            open(){ // ◀ ": function" 에서 생략가능 | 함수(x) 메서드(o)
+                console.log("뚜껑을 연다");
+            }
+        }
+
+        //1 - const는 자체적인 {데이터 갱신} 불가
+        // bottle = {
+        //     water : 80
+        // }
+
+        //2 - {}안쪽의 속성 값은 갱신 가능
+        bottle.juice = 80;
+        console.dir(bottle);
+
+        //3 - {}안쪽의 속성 생성 가능 (자바스크립트 특수성)
+        bottle.water = 100;
+        console.dir(bottle);
+
+        //4
+        // bottle.open();
+        bottle["open"]();
+
+        //5 - {} 안쪽의 속성 삭제 가능
+        delete bottle.juice;
+        console.dir(bottle);
+    </script>
+</body>
+</html>

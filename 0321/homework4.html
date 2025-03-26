@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>박스 클릭 시 내용 및 배경 변경</title>
+    <script src="lib/jquery-3.7.1.min.js"></script>
+</head>
+<body>
+    <div class="box">박스1</div>
+    <div class="box">박스2</div>
+    <div class="box">박스3</div>
+
+    <script>
+        $(()=>{
+            $(".box").click(function(){
+                $(this).css("background-color","blue");
+                $(this).html("내용변경")
+            })
+        })
+    </script>
+</body>
+</html>

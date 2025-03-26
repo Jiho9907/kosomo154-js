@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>메뉴 아이템 하이라이트 전환</title>
+    <script src="lib/jquery-3.7.1.min.js"></script>
+    <style>
+        .highlighted{
+            background-color: yellow;
+        }
+    </style>
+</head>
+<body>
+    <ul id="menu">
+        <li>리스트1</li>
+        <li>리스트2</li>
+        <li>리스트3</li>
+    </ul>
+
+    <script>
+        $(()=>{
+            $("#menu li").click(function(){
+                $("li").removeClass("highlighted");
+                $(this).addClass("highlighted");
+            })
+        })
+    </script>
+</body>
+</html>

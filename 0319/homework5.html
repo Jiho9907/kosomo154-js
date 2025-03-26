@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>여러 버튼 클릭 시 마우스 버튼 번호 확인하기</title>
+</head>
+<body>
+    <button id="btn1" class="btn">버튼1</button>
+    <button id="btn2" class="btn">버튼2</button>
+    <button id="btn3" class="btn">버튼3</button>
+
+    <script>
+        const btns = document.querySelectorAll(".btn");
+        btns.forEach((btn)=>{
+            btn.addEventListener("mousedown",(e)=> {
+                console.log(`클릭된 버튼 번호 : ${e.button}`);
+            })
+        });
+    </script>
+</body>
+</html>

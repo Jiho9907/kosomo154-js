@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 클래스 내에서 직접 속성을 선언하는 방식
+        class Class1{
+            //1) 프로퍼티 직접 선언 방식
+            age = 40;
+            getAge(){
+                return this.age;
+            }
+        }
+
+        const obj1 = new Class1();
+        console.log(obj1.getAge());
+
+
+        // 다른 객체를 같은 클래스로 선언 후 
+        // 속성값을 변경해도 해당 클래스로 선언한 다른 객체에 영향 X
+        const obj2 = new Class1();
+        obj1.age = 50;
+        console.log(obj2.getAge());
+
+    </script>
+</body>
+</html>

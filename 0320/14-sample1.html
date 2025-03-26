@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Responsive Fullscreen Background 예제</title>
+    <style>
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        /* 전체 화면을 채우는 배경 영역 */
+        #fullscreen-bg {
+            background: linear-gradient(45deg, #ff9a9e, #fad0c4);
+            position: relative;
+        }
+
+        /* 뷰포트 크기를 표시하는 정보 박스 */
+        #sizeInfo {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: rgba(255, 255, 255, 0.7);
+            padding: 8px;
+            border-radius: 4px;
+            font-family: sans-serif;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="fullscreen-bg">
+        <div id="sizeInfo"></div>
+    </div>
+    <script>
+        function updateBackgroundSize() {
+            // 뷰포트의 내부 크기를 document.documentElement 를 통해 가져옴
+            var width = document.documentElement.clientWidth;
+            var height = document.documentElement.clientHeight;
+            var bg = document.getElementById("fullscreen-bg");
+            bg.style.width = width + "px";
+            bg.style.height = height + "px";
+            // 정보 박스에 현재 뷰포트 크기 출력
+            var info = document.getElementById("sizeInfo");
+            info.textContent = "Viewport: " + width + "px x " + height + "px";
+        }
+        window.addEventListener("resize", updateBackgroundSize);
+        window.addEventListener("load", updateBackgroundSize);
+    </script>
+</body>
+
+</html>

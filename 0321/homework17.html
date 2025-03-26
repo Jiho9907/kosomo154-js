@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>클래스 토글로 스타일 변화</title>
+    <script src="lib/jquery-3.7.1.min.js"></script>
+    <style>
+        .active{
+            background-color: yellowgreen;
+        }
+    </style>
+</head>
+<body>
+    <p class="contentPara">단락1</p>
+    <p class="contentPara">단락2</p>
+    <p class="contentPara">단락3</p>
+    <p class="contentPara">단락4</p>
+    <button id="toggleClassBtn">Toggle Active Class</button>
+    <script>
+        $(()=>{
+            $("#toggleClassBtn").click(function(){
+                $(".contentPara").toggleClass("active");
+            })
+        })
+    </script>
+</body>
+</html>

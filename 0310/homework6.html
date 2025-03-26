@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="btn">구구단 출력</button>
+    <div id="result"></div>
+
+    <script>
+        var result = "";
+        document.getElementById("btn").addEventListener("click",function(){
+            for(let i = 2; i <= 9; i++){
+                result += "<h3>" + i + "단 </h3>";
+                for(let j = 1; j <= 9; j++){
+                    result += i + "x" + j + "=" + (i*j) + "<br>"
+                }
+            }
+            document.getElementById("result").innerHTML = result;
+
+        });
+    </script>
+</body>
+</html>

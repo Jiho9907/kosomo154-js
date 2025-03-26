@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+    <body>
+        <script>
+            //파라미터 - 함수에 전달할 데이터를 담은 변수
+            //호출 시 호출과 동시에 담을 데이터를 넣으면(func1(5)) 
+            //해당 데이터가 파라미터에 선언된 변수(a)에 
+            //들어가서 사용할 수 있도록 이동이 된다(a=5)
+
+            function func1(a){
+                console.log(`전달받은 값은 : ${a}`);
+            }
+            func1(5);
+
+            //왼쪽에서 오른쪽으로 맵핑
+            //안넣으면 undefined
+            //선언한 pram보다 값을 더 선언하면 선언한 개수까지만 반영하고 버림
+            function func2(a,b){
+                console.log(`전달받은 값은 : ${a}, ${b}`);
+            }
+            func2(2,5);
+            func2(4);
+            func2(undefined, 7);
+            func2(6,7,9);
+
+            //가변적 값 받을 때 ... >  배열로 받음
+            function func3(a, ...b){
+                console.log(`전달받은 값은 : ${a}, ${b}`);
+            }
+            func3(6,7,8,9);
+            func3("a", 9);
+
+            function func4_1(){
+                function func4_2(){
+                }
+            }
+        </script>
+    </body>
+    </html>
+</body>
+</html>

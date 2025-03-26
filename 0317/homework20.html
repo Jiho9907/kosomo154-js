@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="parent">
+        <div>item1</div>
+        <div>item2</div>
+        <div>item3</div>
+    </div>
+    <script>
+        // 부모 요소 선택
+        const parent = document.getElementById("parent");
+
+        // 첫 번째 자식 요소 선택
+        const firstChild = parent.firstChild;
+
+        // 새 요소 생성 
+        const insertedDiv = document.createElement("div");
+        insertedDiv.textContent = "Inserted Div";
+
+        // 새 요소 삽입
+        firstChild.parentNode.insertBefore(insertedDiv, firstChild.nextSibling);
+        // firstChild.after(insertedDiv);
+    </script>
+</body>
+</html>

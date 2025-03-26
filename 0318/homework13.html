@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> 동적 스타일 변경: 폰트 크기 확대하기</title>
+</head>
+<body>
+    <div id="changeStyleDiv">스타일 변경 대상 텍스트</div>
+    <button id="growBtn">폰트 크기 확대</button>
+
+    <script>
+        const growBtn = document.getElementById("growBtn");
+        const changeStyleDiv = document.getElementById("changeStyleDiv");
+        
+        growBtn.addEventListener("click", function(){
+            const current = window.getComputedStyle(changeStyleDiv);
+            const newSize = parseInt(current.fontSize) * 2;
+            changeStyleDiv.style.fontSize = newSize + "px";
+        });
+    </script>
+</body>
+</html>

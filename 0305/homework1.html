@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        
+        var v1 = prompt("첫번째 값");
+        var v2 = prompt("두번째 값");
+
+        //1
+        // alert(parseInt(v1)+parseInt(v2));
+
+        //2
+        // alert(`${v1} - ${v2} : ${parseInt(v1)-parseInt(v2)}`);
+
+        //3
+        // console.log(`${v1} 곱하기 ${v2}는 ${parseInt(v1)*parseInt(v2)} 입니다.`);
+
+        //4
+        // console.log(`${v1} 나누기 ${v2}는 ${parseInt(v1)/parseInt(v2)} 입니다.`);
+
+        //5
+        // document.write(`<h1> ${v1}과 ${v2}를 하나씩 더하기 전 두 수를 더한 값은 ${parseInt(++v1)+parseInt(++v2)} 입니다.</h1>`);
+
+        //6
+        // var input = (v1 > v2) ? "큽니다" : "작습니다";
+        // document.write(`<p>${v1}은  ${v2} 보다 ${input} </p>`);
+
+        //7
+        // var input = (v1 < v2) ? "<" : ">";
+        // document.write(`<p>${v1} ${input} ${v2}  </p>`);
+
+        //8
+        var input = (v1 >= v2) ? "v1이 v2 이상" : "v1이 v2 미만";
+        document.write(`<input type=”text” value=”${v1}”><input type=”text” value=”${v2}”><p>${input}</p>`);
+</script>
+</body>
+</html>

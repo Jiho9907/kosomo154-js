@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 클래스 == 생성자 함수
+        // 다만 클래스가 생성자 함수보다 제약 有 ..
+        class Class1{
+            //2) 메서드를 통해 선언
+            setAge(age){
+                this.age = age;
+            }
+            getAge(){
+                return this.age;
+            }
+        }
+        const obj1 = new Class1();
+        obj1.setAge(40);
+        console.log(obj1.getAge());
+
+        const obj2 = new Class1();
+        obj2.setAge(50);
+        console.dir(obj1);
+        console.dir(obj2);
+
+        // 1
+        // 프로토타입에 생성한 함수 공유되어 짐
+        // 프로퍼티만 고유함
+        obj1.__proto__.setA = function(){
+            console.log("이것은 SetA다");
+        }
+        console.dir(obj1);
+        console.dir(obj2);
+
+        // 2
+        Class1.prototype.setB = function(){
+            console.log("이것은 SetB다");
+        }
+        obj1.setB();
+        obj2.setB();
+
+    </script> 
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // Employee에 대한 정의
+        function Employee(name, age, dept){
+            this.name = name;
+            this.age = age;
+            this.dept = dept;
+        }
+
+        Employee.prototype.work = function(){
+            console.log(`${this.name}이(가) 걷는다.`);
+        }
+
+        Employee.prototype.tell = function(){
+            console.log(`${this.name}이(가) 말한다.`);
+        }
+
+        const emp1 = new Employee("Jhon", 35, "영업");
+        const emp2 = new Employee("Khan", 42, "운영");
+        
+        emp1.work();
+        emp1.tell();
+        
+        emp2.work();
+        emp2.tell();
+    </script>
+</body>
+</html>

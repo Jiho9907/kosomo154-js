@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> HTMLCollection 배열 변환 후 첫 번째와 마지막 요소 추출하기</title>
+</head>
+<body>
+    <ul>
+        <li>리스트1</li>
+        <li>리스트2</li>
+        <li>리스트3</li>
+        <li>리스트4</li>
+    </ul>
+
+    <script>
+        const lists = document.getElementsByTagName("li");
+        const liArr = Array.from(lists);
+        const [firsItem, ...rest] = liArr;
+        const lastItem = rest[rest.length-1];
+        console.log(firsItem.textContent, lastItem.textContent);
+    </script>
+</body>
+</html>

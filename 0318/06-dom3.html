@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="div1">
+        <p id="p1"></p>
+    </div>
+
+    <script>
+        // textNode : 글자를 textContent 처럼 안에 삽입하는 형질을 가진 태그
+        const txt1 = document.createTextNode("안녕하세요");
+        document.querySelector("#p1").append(txt1);
+    </script>
+</body>
+</html>

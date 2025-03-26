@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./lib/jquery-3.7.1.min.js"></script>
+</head>
+<body>
+    <div>
+        <h1>제목1</h1>
+        <p>내용1</p>
+        <p>내용2</p>
+        <p id="p3">내용3</p>
+        <p>내용4</p>
+        <p>내용5</p>
+        <h2>서브제목1</h2>
+    </div>
+
+    <script>
+        $(()=>{
+            $("#p3").prevUntil("h1").css("text-decoration","underline");
+            $("#p3").nextUntil("h2").css("text-decoration","underline");
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>문자열 길이 비교</h1>
+    <input type="text" name="string1" id="string1" placeholder="첫 번째 문자열 입력">
+    <input type="text" name="string2" id="string2" placeholder="두 번째 문자열 입력">
+    <button id="btn">길이비교</button>
+    <div id="result"></div>
+    <script>
+        document.getElementById("btn").addEventListener("click", function(){
+            var len1 = document.getElementById("string1").value.length;
+            var len2 = document.getElementById("string2").value.length;
+
+            document.getElementById("result").textContent =
+                (len1 == len2) ? `두 문자열의 길이가 같습니다.(${len1}자)` :
+                    (len1 > len2) ? `첫 번째 문자열(길이: ${len1})이 두 번째 문자열(길이: ${len2})보다 깁니다.`:
+                    `첫 번째 문자열(길이: ${len1})이 두 번째 문자열(길이: ${len2})보다 짧습니다.`
+        });
+    </script>
+</body>
+</html>

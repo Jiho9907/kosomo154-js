@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>이중 클릭 이벤트 활용하기</title>
+</head>
+<body>
+    <div id="doubleClick">더블 클릭 시 텍스트 변경</div>
+
+    <script>
+        const dbClick = document.getElementById("doubleClick");
+        dbClick.addEventListener("dblclick",function(){
+            dbClick.textContent = "Double Clicked";
+        });
+    </script>
+</body>
+</html>

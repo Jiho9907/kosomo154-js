@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 프로토타입은 공유가 된다
+        const obj1 = {
+            a1 : 123,
+            b1 : "abc"
+        }
+
+        obj1.__proto__.func1 = function(){
+            console.log("이것은 obj1의 프로토타입에서 선언한 함수입니다.");
+            console.log(this.a1);
+        };
+
+        obj1.func1();
+
+        // 이상 현상
+        const obj2 = {
+            a1 : 987,
+            c1 : 456
+        }
+
+        obj2.func1();
+
+    </script>
+</body>
+</html>

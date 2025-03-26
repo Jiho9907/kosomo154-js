@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>텍스트 내용 변경하기</title>
+</head>
+<body>
+    <div id="myText">원래 텍스트</div>
+    <button id="btn">교체</button>
+
+    <script>
+        document.getElementById("btn").addEventListener("click", function(){
+            const myText = document.getElementById("myText");
+
+            const newElem = document.createElement("div");
+            newElem.textContent = "Hello DOM!";
+
+            myText.replaceWith(newElem);
+        });
+
+    </script>
+</body>
+</html>

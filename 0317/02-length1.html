@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //length 속성
+        const arr1 = [1,2,3,"a","b","c"];
+        console.dir(arr1); //length : 6
+
+        //length : ★ 배열의 전체 길이 O 아이템 개수 XXX
+        const arr2 = [0,1,2];
+        arr2[100] = "a";
+        console.dir(arr2); //length : 101
+
+        //length 직접 조작
+        const arr3 = [0,1,2];
+        arr3.length = 5; //undefined로 추가
+        console.dir(arr3);
+
+        // >> 중간수정, 조작 등 자제할 것 <<
+    </script>
+</body>
+</html>

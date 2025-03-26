@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> 폼 유효성 검사하기</title>
+</head>
+<body>
+    <form id="myForm">
+        <input type="text" id="username" placeholder="이름 입력"> 
+        <button type="submit">제출</button>
+    </form>
+    <script>
+        const myForm = document.getElementById("myForm");
+        myForm.addEventListener("submit", function(event){
+            const username = document.getElementById("username");
+            if(username.value === ""){
+                event.preventDefault();
+                alert("이름을 입력하세요");
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>ToDo 리스트</h1>
+    <div id="div1">
+        <ul id="ul1"></ul>
+    </div>
+
+    <input type="text" name="txt1" id="txt1">
+    <button id="btn1">할일추가</button>
+    
+    <script>
+        document.getElementById("btn1").addEventListener("click", function(){
+            // li태그 추가
+            const li = document.createElement("li");
+
+            // span 태그 추가에 txt1에서 데이터 읽어서 span 태그 안에 추가
+            const span = document.createElement("span");
+            span.textContent = document.getElementById("txt1").value;
+            document.getElementById("txt1").value = "";
+
+            // 수정 버튼 추가
+            const modify_btn = document.createElement("button");
+            modify_btn.textContent = "수정"
+            // 수정 버튼에 대한 이벤트 작성
+            modify_btn.addEventListener("click",function(){
+                //input 태그의 데이터로 span의 데이터를 갈아치운 후 input 태그를 초기화
+                modify_btn.previousElementSibling.textContent = 
+                    document.getElementById("txt1").value;
+                    document.getElementById("txt1").value = "";
+                // modify_btn.nextElementSibling
+            });
+
+            // 삭제 버튼 추가
+            const delete_btn = document.createElement("button");
+            delete_btn.textContent = "삭제"
+            delete_btn.addEventListener("click", function(){
+                delete_btn.parentElement.remove();
+            });
+
+            li.append(span);
+            li.append(modify_btn);
+            li.append(delete_btn);
+
+            document.getElementById("ul1").append(li);
+        });
+    </script>
+</body>
+</html>

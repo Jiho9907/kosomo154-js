@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>점수 등급 평가</h1>
+    <input type="number" name="score" id="score" min="0" max="100">
+    <button id="btn">등급확인</button>
+    <div id="result"></div>
+
+    <script>
+        //1. 버튼을 클릭하는 이벤트 추가
+        // * TIP : 자동화 할 수 있는 로직을 제외한 나머지에서 에러를 찾을 것
+        document.getElementById("btn").addEventListener("click", function(){
+            //2. input태그에 입력한 내용을 변수로 가져온다
+            var score = parseInt(document.getElementById("score").value);  
+            //3. 각 점수에 따라 등급 부여하는 로직 작성 후 result라는 변수에 넣는다.
+            var result = (score >= 90) ? "A" :
+                    (score >= 80) ? "B" :
+                    (score >= 70) ? "C" :
+                    (score >= 60) ? "D" : "F";
+            //4. 해당 결과를 div에 추가 - '당신의 점수는 score이며 등급은 result입니다'라는 문구를 추가 
+            document.getElementById("result").textContent = `당신의 점수는 ${score}이며, 등급은 ${result}입니다.`;
+        }); 
+    </script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 오버라이딩
+        // ▶ 부모클래스의 특정 메서드의 기능을 자식 클래스에서 덮어쓴느 것을 의미
+        // ▶ 자식 클래스의 기능은 부모클래스의 기능보다 우선권을 가지며 실행시
+        //   부모 클래스의 기능의 실행 대신  자식 클래스의 기능이 실행 됨
+        // ▶ 기능에 대한 재사용 시 일부 기능을 고쳐 쓰고자 할 경우 유용함
+        
+        // ** 참고 **
+        // ■ this : 나 자신의 기능 혹은 속성을 참조할 때 접근 가능한 접근자
+        // ■ super : 나 외의 부모의 기능 혹은 속성을 참조할 때 접근 가능한 접근자
+
+        class SuperClass1 {
+            superMethod1(){
+                console.log("이것은 부모 클래스의 superMethod1");
+            }
+        }
+        class ChildClass1 extends SuperClass1{
+            superMethod1(){
+                console.log("이것은 자식 클래스의 superMethod1");
+            }
+            superMethod2(){
+                super.superMethod1();
+                console.log("추가 선언");
+            }
+        }
+        const obj1 = new ChildClass1();
+        obj1.superMethod1();
+        obj1.superMethod2();
+
+    </script>
+</body>
+</html>

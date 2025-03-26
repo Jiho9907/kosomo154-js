@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const obj1 = {
+            __val1__ : "데이터1",
+            get val1() {
+                return __val1__ + "aaa";
+            },
+            set val1(val){
+                __val1__ = 123 + val;
+            },
+        }
+
+        obj1.val1 = "데이터1111";
+        console.log(obj1.val1);
+    </script>
+</body>
+</html>

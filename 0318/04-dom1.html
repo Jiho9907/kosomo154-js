@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="div1">
+        <p>안녕하세요</p>
+        <h1>반갑습니다</h1>
+        <h3>이것은 풀스택 클래스 입니다.</h3>
+        <p>추가 글입니다.</p>
+    </div>
+
+    <script>
+        
+        // ★유사배열 객체(HTMLCollection) 
+        // - 배열 메서드를 직접 사용할 수 없는 객체(인덱스 접근 O , length 프로퍼티 O)
+        // - childeren : 유사배열 객체 반환
+        const objs = document.getElementById("div1").children;
+        
+        // console.dir(objs);
+        // 프로토타입 세부내용에서 foreach가 없고
+        // Symbol.iterator가 존재하기 때문에 for of 문으로 순회가능
+        for(const obj of objs){
+            console.dir(obj);
+        };
+
+
+        // ★NodeList 
+        // - DOM 요소들의 컬렉션, 배열은 아니지만 배열 메서드를 지원하는 객체
+        const objs2 = document.querySelectorAll("p");
+        console.dir(objs2);
+
+        objs2.forEach(function(elem, index){
+            console.dir(elem);
+        })
+    </script>
+</body>
+</html>

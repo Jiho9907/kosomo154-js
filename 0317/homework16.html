@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2 id="title">Old Title</h2>
+
+    <script>
+        // 기존 제목 선택
+        const title = document.getElementById("title");
+
+        // 새 제목 요소 생성
+        const newElement = document.createElement("h2");
+        newElement.textContent = "New Title";
+
+        // 교체 
+        title.replaceWith(newElement);
+    </script>
+</body>
+</html>

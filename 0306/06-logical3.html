@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //only 자바스크립트 특수 연산
+        console.log("Cat" && true); //true
+
+        console.log(!!"Cat"); //문자열은 비어있지 않으면 true
+        console.log(!!""); //문자열은 비어있으면 false
+        console.log(!!" "); //공백도 true
+        // " abcd    ".trim();
+
+        console.log(false && "Cat"); //false
+        console.log("Dog" && "Cat"); //Cat 
+        console.log("Dog" && false); //false
+        console.log(true && "Cat"); //Cat
+        console.log("" && true); //비어있음
+
+        console.log(false || "Cat"); //Cat
+        console.log("Dog" || "Cat"); //Dog
+
+        console.log("Dog" && " "); // " "
+        console.log("Dog" && ""); // ""
+        console.log("" && "Cat"); // ""
+        console.log(" " && "Cat"); // "Cat"
+        console.log("" && true); // ""
+        console.log("" && false); // ""
+        console.log(" " && true); // true
+        console.log(" " && false); // false
+        console.log(true && ""); // ""
+        console.log(false && ""); // false
+        console.log(true && " "); // " "
+        console.log(false && " "); // false
+
+        console.log("Dog" || "Cat" || null);//Dog
+
+        // isPending && list
+
+        console.log(!!{}); //true
+        console.log(!!null); //false : object타입에서 유일한 false
+        //논리연산이 중첩될 경우 괄호를 통해 순서 지정
+    </script>
+</body>
+</html>

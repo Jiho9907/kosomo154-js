@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <title>clientWidth / clientHeight 예제</title>
+    <style>
+        #testBox {
+            width: 300px;
+            height: 200px;
+            padding: 20px;
+            background-color: #b3e5fc;
+            border: 3px solid #0277bd;
+            /* 보더는 client* 에 포함되지 않음 */
+        }
+    </style>
+</head>
+
+<body>
+    <h1>clientWidth / clientHeight 속성 확인</h1>
+    <div id="testBox">
+        이 박스는 패딩(20px)이 적용되었으며, 보더는 있지만 client 값에는 포함되지 않습니다.
+    </div>
+    <button onclick="showClientSize()">크기 확인</button>
+    <p id="output"></p>
+    <script>
+        function showClientSize() {
+            var box = document.getElementById('testBox');
+            var output = document.getElementById('output');
+            output.innerHTML = "clientWidth: " + box.clientWidth + "px<br>" +
+                "clientHeight: " + box.clientHeight + "px";
+            console.log("clientWidth:", box.clientWidth);
+            console.log("clientHeight:", box.clientHeight);
+        }
+    </script>
+</body>
+
+</html>

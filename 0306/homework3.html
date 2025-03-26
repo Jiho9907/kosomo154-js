@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 나이 계산기 -->
+     <h1>나이계산기</h1>
+     <input type="text" name="" id="txt1">
+     <button id="btn">나이 계산</button>
+     <div id="div1"></div>
+     <script>
+        document.getElementById("btn").addEventListener("click",function(){
+            var date = parseInt(document.getElementById("txt1").value);
+            var age = (new Date().getFullYear())-date;
+            var adult = (age >= 18) ? " 성인입니다." : " 미성년자입니다.";
+            document.getElementById("div1").innerText = "현재 나이는 " + age + "세 입니다." + adult;
+        });
+     </script>
+</body>
+</html>

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>단일 요소의 속성을 객체 구조 분해로 추출하기</title>
+</head>
+<body>
+    <p id="info" class="text-info">Some text</p>
+    <script>
+        const info = document.getElementById("info");
+        const {textContent : content, className:cls} = info;
+        console.log(content, cls);
+    </script>
+</body>
+</html>

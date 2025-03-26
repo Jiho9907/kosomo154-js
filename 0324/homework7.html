@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>지연 DOM 요소 추가</title>
+</head>
+<body>
+    <button id="addBtn">Add Paragraph</button>
+    <div id="content"></div>
+
+    <script>
+        document.getElementById("addBtn").addEventListener("click", function(){
+
+            setTimeout(() => {
+                const content = document.querySelector("#content");
+                content.innerHTML = `<p>New Paragraph Added!</p>`;
+            }, 2000);
+        });
+    </script>
+</body>
+</html>

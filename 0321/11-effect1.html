@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="lib/jquery-3.7.1.min.js"></script>
+</head>
+<body>
+    <button id="btn1">slide1</button>
+    <div class="box1">
+        <p>내용1</p>
+    </div>
+
+    <button id="btn2">fade1</button>
+    <button id="btn3">fade2</button>
+    <div class="box2">
+        <p>내용2</p>
+    </div>
+
+    <button id="btn4">show</button>
+    <button id="btn5">hide</button>
+    <div class="box3">
+        <p>내용3</p>
+    </div>
+    
+    <script>
+        $(()=>{
+            $("#btn1").click(function(){
+                $(".box1").slideToggle(1000, "linear");
+            })
+            $("#btn2").click(function(){
+                $(".box2").fadeTo("slow", 0.5);
+            })
+            $("#btn3").click(function(){
+                $(".box2").fadeTo("fast", 1);
+            })
+            // $("#btn4").click(function(){
+            //     $(".box3").show();
+            // })
+            // $("#btn5").click(function(){
+            //     $(".box3").hide();
+            // })
+            $("#btn4").click(function(){
+                $(".box3").animate({
+                    opacity: 1}, 2000, "linear", function(){
+                        alert("보여주기 성공!");
+                    });
+            });
+            $("#btn5").click(function(){
+                $(".box3").animate({
+                    opacity : 0}, 2000, "linear", function(){
+                        alert("사라지기 완료!");
+                    });
+            });
+        })
+    </script>
+</body>
+</html>

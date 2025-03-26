@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p id="p1">안녕하세요</p>
+    <script>
+        //dom object 접근방식
+        document.getElementById("p1").style.color = "red";
+        
+        /* 실제
+        const document = {
+            getElementById : function(){
+                return obj.style.color
+            }
+        }
+        */
+    </script>
+</body>
+</html>

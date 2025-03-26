@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- <p id="p1" data-count="0">안녕하세요</p> -->
+    <p id="p1">안녕하세요</p>
+    <button id="btn">버튼</button>
+ 
+    <script>
+        document.getElementById("btn").addEventListener("click", function(){
+            // let cnt = document.getElementById("p1").dataset.count;
+            let cnt = document.getElementById("p1").dataset.count || 0;
+            document.getElementById("p1").dataset.count = ++cnt;
+
+            document.getElementById("p1").dataset.name = "aaa";
+        });
+
+        // let dts = document.getElementById("p1").dataset;
+        // for(key in dts){
+        // }
+    </script>
+</body>
+</html>

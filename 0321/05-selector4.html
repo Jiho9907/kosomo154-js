@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./lib/jquery-3.7.1.min.js"></script>
+
+</head>
+<body>
+    <ul>
+        <li>내용1</li>
+        <li>내용2</li>
+        <li id="li3">내용3</li>
+        <li>내용4</li>
+    </ul>
+
+    <script>
+        $(()=>{
+            console.log($("li").index($("#li3")));
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const obj1 = {
+            a1 : 123,
+            b1 : "abc"
+        };
+        obj1.__proto__.x1 = "안녕하세요";
+        console.dir(obj1);
+
+        console.dir(obj1.__proto__.x1);
+        console.dir(obj1.x1); //__proto__생략가능
+    </script>
+</body>
+</html>

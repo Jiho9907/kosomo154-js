@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="div1"></div>
+    <button id="btn1">실행</button>
+    <button id="btn2">취소</button>
+
+    <script>
+        let inter1;
+
+        document.getElementById("btn1").addEventListener("click",function(){
+            inter1 = setInterval(function(){
+                document.querySelector("#div1").textContent += "hello";
+            },2000)
+        });
+        document.getElementById("btn2").addEventListener("click",function(){
+            clearInterval(inter1);
+        });
+
+    </script>
+</body>
+</html>

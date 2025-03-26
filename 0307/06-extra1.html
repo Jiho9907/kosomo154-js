@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        document.addEventListener("keydown", function(e){
+            // console.dir(e);
+
+            //HTML4
+            // if(e.keyCode === 13){
+            //     alert("엔터키 누름");
+            // }
+
+            //HTML5 키워드 방식
+            // if(e.key === "Enter"){
+            //     alert("엔터키 누름");
+            // }
+            console.log(e.key);
+            console.log(e.keyCode);
+        });
+    </script>
+</body>
+</html>

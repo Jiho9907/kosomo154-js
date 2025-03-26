@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> 문단 스타일 일괄 변경하기</title>
+</head>
+<body>
+    <p>item1</p>
+    <p>item2</p>
+    <p>item3</p>
+    <button id="btn">색 변경</button>
+    <script>
+        document.getElementById("btn").addEventListener("click", function(){
+        const ps = document.querySelectorAll("p");
+        ps.forEach(function(a,b){
+            a.style.color = "red"
+        });
+        });
+
+    </script>
+</body>
+</html>

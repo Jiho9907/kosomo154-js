@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p id="p1">안녕하세요</p>
+    <img id="img"> 
+    <a id="a1">이동</a>
+    <input type="text" name="txt1" id="txt1">
+
+    <script>
+        //dom에서 사용하는 모든 속성들 보기
+        console.dir(document.getElementById("p1"));
+        console.dir(document.getElementById("img"));
+        console.dir(document.getElementById("a1")); 
+        console.dir(document.getElementById("txt1"));
+
+        // 정의 되지 않은 속성(ttl) 정의
+        document.getElementById("img").setAttribute("ttl","asdf"); 
+        
+        document.getElementById("a1").href="http://www.naver.com"; 
+
+        // 기존 제공하고 있는 속성에 접근해서 변경(text > number)   
+        document.getElementById("txt1").setAttribute("type", "number"); 
+
+        // 속성 삭제
+        document.getElementById("img").removeAttribute("ttl");
+        
+        // 속성 가지고 있는지
+        document.getElementById("txt1").hasAttribute("type");
+    </script>
+</body>
+</html>

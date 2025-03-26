@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        // 1
+        const obj1 = {
+            prop1 : "속성1",
+            prop : "속성2",
+            prop8 : "속성3",
+            prop4 : "속성4"
+        }
+
+        //for in 객체의 키 값을 순회
+        //가변적인 데이터 값은 [] 사용 필수
+        for(key in obj1){
+            console.log(key);
+            console.log(obj1[key]);
+        }
+
+        //obj1.prop 대신 사용가능..with
+        with(obj1){
+            console.log(`${prop}`);
+            console.log(`${prop1}`);
+        }
+    </script>
+</body>
+</html>

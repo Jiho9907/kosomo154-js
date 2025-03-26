@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>드래그 앤 드롭 시 요소 좌표 실시간 표시</title>
+
+    <style>
+        #draggable{
+            width: 150px;
+            height: 150px;
+            background-color: lightskyblue;
+            position: absolute;
+        }
+        #coords-display{
+            float: right;
+            width: 200px;
+            height: 100px;
+            border: 1px solid black;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="draggable"></div>
+    <div id="coords-display"></div>
+
+    <script>
+        const drag = document.getElementById("draggable");
+        const display = document.getElementById("coords-display");
+        let offsetX, offsetY;
+        let isDragging = false;
+
+        drag.addEventListener("mousedown",e =>{
+            isDragging = true;
+
+            offsetX = e.clientX - drag.offsetLeft;
+            offsetY = e.clientY - drag.offsetTop;
+        });
+
+        drag.addEventListener("mousemove", e=>{
+            if(!isDragging) return
+            const newX = e.clientX - offsetX;
+            const newY = e.clientY - offsetY;
+            drag.style.left = newX + "px";
+            drag.style.top = newY + "px";
+
+            const rect = drag.getBoundingClientRect();
+            display.innerHTML = "x: " + rect.x.toFixed(1) + "px<br>" +
+            "y: " + rect.y.toFixed(1) + "px<br>" +
+            "width: " + rect.width.toFixed(1) + "px<br>" +
+            "height: " + rect.height.toFixed(1) + "px";
+        });
+
+        drag.addEventListener("mouseup", e=>{
+            isDragging = false;
+        })
+    </script>
+</body>
+</html>

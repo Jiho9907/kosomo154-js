@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //연산된 프로퍼티 이름
+        let i1 = 3;
+        let i2 = 4;
+
+        function calc1(a,b){
+            return a+b;
+        }
+
+        const obj1 = {
+            key1 : "abc",
+            ["key" + 2] : "aaa",
+            [`key${i1}`] : "bbb",
+            [`key${i2}`](){
+                console.log("ccc");
+            },
+            [`key`+ ++i2] : "ddd" ,
+            ["k" + "ey" + ++i2] : "eee",
+            ["key" + calc1(3,4)] : "fff"
+        }
+        console.log(obj1.key1); //abc
+        console.log(obj1.key2); //aaa
+        console.log(obj1.key3); //bbb
+        obj1.key4(); //ccc
+        console.log(obj1.key5); //ddd
+        console.log(obj1.key6); //eee
+        console.log(obj1.key7); //fff
+    </script>
+</body>
+</html>

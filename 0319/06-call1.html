@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        // 객체 calling
+        // 함수 호출 시, 그 함수 내부에서 
+        // this 값이 참조하는 객체를 외부에서 설정할 수 있는 방법을 제공
+        function func1(x,y,z){
+            console.log(this, x, y, z);
+        }
+        var b1 = {
+            c1 : "abc"
+        }
+        func1.call(b1,4,6,5); //{c1: 'abc'} 4 6 5
+
+    </script>
+
+    <!-- <div class="c1">div1</div>
+    <div class="c1">div2</div>
+    <div class="c1">div3</div>
+
+    <script>
+        const divs = document.getElementsByClassName("c1");
+        console.log(divs);
+
+        // console.dir(new Array());
+        new Array().forEach.call(divs, function(item){
+            console.log(item);
+        });
+    </script> -->
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="cardContainer">
+        <div class="card">
+            <p>카드 내용</p>
+            <button id="deleteBtn">Delete Card</button>
+        </div>
+    </div>
+
+    <script>
+        // 버튼 요소 선택
+        const deleteBtn = document.getElementById("deleteBtn");
+
+        // 부모 요소(`card`) 선택
+        const card = deleteBtn.parentElement;
+
+        // 부모 요소인 `<div class="card">`를 DOM에서 삭제
+        card.parentElement.removeChild(card);
+    </script>
+</body>
+</html>

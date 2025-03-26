@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="div1">클릭</div>
+    <script>
+        // 1 - 전역공간에서의 this : window
+        console.log(this); //window 
+
+        // 2 - 함수에서 this : window
+        function func1(){
+            console.log(this);  
+        }
+        func1(); //window 
+
+        // 3 - 객체에서 this : 호출한 객체
+        const obj1 = {
+            a1 : 123,
+            b1(){
+                console.log(this); //obj1
+                console.log(this.a1); //123
+            }
+        }
+        obj1.b1();
+
+        // 4 - 객체 안 함수에서 this : window
+        const obj2 = {
+            a1 : 123,
+            b1(){
+                function func1(){
+                    console.log(this); //window
+                }
+                func1();
+            }
+        }
+        obj2.b1(); 
+
+        // 5 - 객체 안 객체에서 this : 객체 안 객체
+        const obj3 = {
+            a1 : 123,
+            obj3_1 : {
+                b1 : "abc",
+                c1(){
+                    console.log(this); //obj3_1
+                }
+            }
+        }
+        obj3.obj3_1.c1(); 
+
+        // 6 -이벤트리스너 내의 this : 호출한 주체 
+        document.getElementById("div1").addEventListener("click", function(){
+            console.log(this); //div1
+        })
+    </script>
+</body>
+</html>

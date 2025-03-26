@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="footer">
+        <p id="p1">item1</p>
+        <p id="p2">item2</p>
+        <p id="p3">item3</p>
+    </div>
+
+    <script>
+        //  footer 요소 선택 
+        const footer = document.getElementById("footer");
+
+        // 새 요소 생성 
+        const newElement = document.createElement("p");
+        newElement.textContent = "Footer Info";
+
+        // DOM 끝에 추가
+        footer.append(newElement);
+    </script>
+</body>
+</html>

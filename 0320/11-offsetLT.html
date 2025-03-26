@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <title>offsetLeft / offsetTop 예제</title>
+    <style>
+        #container {
+            width: 400px;
+            height: 300px;
+            position: relative;
+            /* 기준이 되는 요소 */
+            background-color: #dcedc8;
+            border: 2px solid #558b2f;
+            padding: 10px;
+        }
+
+        #child {
+            width: 100px;
+            height: 100px;
+            background-color: #ffcc80;
+            position: relative;
+            left: 40px;
+            top: 30px;
+            text-align: center;
+            line-height: 100px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>offsetLeft / offsetTop 속성 확인</h1>
+    <div id="container">
+        <div id="child">Child</div>
+    </div>
+    <button onclick="showOffsets()">위치 확인</button>
+    <p id="offsetResult"></p>
+    <script>
+        function showOffsets() {
+            var child = document.getElementById('child');
+            var result = document.getElementById('offsetResult');
+            result.innerHTML = "offsetLeft: " + child.offsetLeft + "px<br>" +
+                "offsetTop: " + child.offsetTop + "px";
+            console.log("offsetLeft:", child.offsetLeft);
+            console.log("offsetTop:", child.offsetTop);
+        }
+    </script>
+</body>
+
+</html>

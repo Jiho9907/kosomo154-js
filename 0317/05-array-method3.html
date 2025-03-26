@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 대소문자 구분 없이 비교 하는 법
+        const arr1_1 = ["banna","b","Boy"];
+        arr1_1.sort(function(a,b){
+
+            a = a.toUpperCase();
+            b = b.toUpperCase();
+
+            if(a>b) return 1;
+            if(a<b) return -1;
+            if(a===b) return 0;
+        });
+        console.log(arr1_1); //['b', 'banna', 'Boy']
+
+        // 객체 비교 ▶ 게시판 리스트 오름차순, 내림차순 정렬에 많이 활용
+        const obj1 = [
+            {name : "짜장면", price : 7000},
+            {name : "탕수육", price : 10000},
+            {name : "짬뽕", price : 8000}
+        ];
+
+        obj1.sort(function(a,b){
+            return a.price - b.price;
+        });
+        console.dir(obj1);
+
+        // reverse : 반전 효과(정렬x)
+        // 같은 주소값 가짐 ▶ 구조분해할당(스프레드 연산자 사용)
+        const arr2_1 = [5,2,3,6,1];
+        const arr2_2 = arr2_1.reverse();
+        arr2_2.push(100);
+        console.log(arr2_1); //[1, 6, 3, 2, 5, 100]
+        console.log(arr2_2); //[1, 6, 3, 2, 5, 100]
+    </script>
+</body>
+</html>

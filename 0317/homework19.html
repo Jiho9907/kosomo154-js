@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="left">Left</div>
+    <div id="right">Right</div>
+
+    <script>
+        // 두 요소 선택
+        const left = document.getElementById("left");
+        const right = document.getElementById("right");
+
+        // 새 요소 생성 
+        const newElement = document.createElement("div");
+        newElement.textContent = "Center";
+
+        // 둘 중 하나를 사용하여 가운데에 삽입
+        left.after(newElement);
+        right.before(newElement);
+    </script>
+</body>
+</html>

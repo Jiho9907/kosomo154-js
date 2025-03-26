@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        class Member{
+            setName(name){
+                this.name = name;
+            }
+            getName(){
+                return this.name;
+            }
+        }
+
+        class Employee extends Member{
+            setDept(dept){
+                this.dept = dept;
+            }
+            getDept(){
+                return this.dept;
+            }
+        }
+
+        const John = new Employee();
+        John.setName("John Doe");
+        John.setDept("saleman");
+
+        console.log(`${John.getName()} : ${John.getDept()}`);
+
+    </script>
+</body>
+</html>

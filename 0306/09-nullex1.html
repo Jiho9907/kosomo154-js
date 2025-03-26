@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var firstName = null;
+        var secondName1 = undefined;
+        var secondName2 = '';
+        var nickName = "호호";
+
+        // firstName = (firstName !== null && firstName !== undefined) ? a : b;
+
+        // console.log(firstName || secondName || nickName || '익명의 사용자');
+        
+        console.log(firstName ?? secondName1 ?? secondName2 ?? nickName ?? '익명의 사용자');
+
+        let height = 0;
+        console.log(height || 100); //100
+        console.log(height ?? 100); //0
+
+        // null병합 연산자('??')는 null, undefined 제외
+        // 0,"" 등의 false값을 true(유효한 값)로 판단
+    </script>
+</body>
+</html>

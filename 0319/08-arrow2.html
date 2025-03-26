@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="div1">클릭</div>
+    <script>
+        // 1
+        // const func1 = (a,b,c) => a+b+c; 
+        // 스프레드 연산자 사용 시 무조건 () 사용
+        const func1 = (...values) => values.reduce((prev, next) => prev+next); 
+        const result1 = func1(1,2,3);
+        console.log(result1);
+
+        // 2
+        const func2 = ({a,b}) => a+b;
+        const result2 = func2({a:123, b:"abc"});
+        console.log(result2);
+
+        // 3
+        const func3 = (a,b,c) => a+b+c;
+        const result3 = func3(3,4,5);
+        console.log(result3);
+
+        // 커링 currying
+        // const func3_2 = function (a){
+        //     return function(b) {
+        //          return function(c){
+        //              return a + b + c;
+        //          }
+        //     };
+        // }
+        const func3_1 = a => b => c => a+b+c;
+        const result3_1 = func3_1(3)(4)(5);
+        console.log(result3_1); //12
+
+        // 4 객체 안 애로우 함수에서의 this : window
+        const obj1 = {
+            val1 : 123,
+            val2 : () => {
+                console.log(this);
+            }
+        }
+
+        obj1.val2(); //window
+
+        // 5 이벤트리스너 안 애로우 함수에서 this  : window
+        // eTarget 사용하는 것 추천
+        document.getElementById("div1").addEventListener("click", e =>{
+            // console.log(this); //window
+            console.log(e.target); //#div1
+        });
+    </script>
+</body>
+</html>

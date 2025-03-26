@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            text-align: center;
+        }
+        button {
+            padding: 10px 20px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>가위바위보 게임</h1>
+    <p>아래 버튼을 클릭하여 가위, 바위, 보 중 하나를 선택하세요.</p>
+    <button id="btn1" onclick="btn(1)">가위</button>
+    <button id="btn2" onclick="btn(2)">바위</button>
+    <button id="btn3" onclick="btn(3)">보</button>
+    <div id="div1"></div>
+    <div id="div2"></div>
+    
+    <script>
+        var com = ""
+        var me = ""
+        var result = ""
+
+        function btn(a){
+
+            var num =  Math.floor(Math.random() * 3) + 1;
+            if(num == 1){
+                com = "가위";
+            }else if(num == 2){
+                com = "바위";
+            }else{
+                com = "보";
+            }
+
+            document.getElementById("div1").innerText = `컴퓨터의 선택 : ${com}`;
+
+            if(a==1){
+                me = "가위";
+                if(com=="보"){
+                    result = "이겼습니다!"
+                }else if(com=="바위"){
+                    result2 = "졌습니다!"
+                }else{
+                    result = "비겼습니다!"
+                }
+            }else if(a == 2){
+                me = "바위";
+                if(com=="보"){
+                    result = "졌습니다!"
+                }else if(com=="바위"){
+                    result = "비겼습니다!"
+                }else{
+                    result = "이겼습니다!"
+                }
+            }else{
+                me = "보";
+                if(com=="보"){
+                    result = "비겼습니다!"
+                }else if(com=="바위"){
+                    result = "이겼습니다!"
+                }else{
+                    result = "졌습니다!"
+                }
+            }
+           
+            document.getElementById("div2").innerText = result;
+        }
+
+    </script>
+</body>
+</html>

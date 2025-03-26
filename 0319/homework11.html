@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>여러 `<div>` 요소에서 첫 번째와 두 번째 요소 추출하기</title>
+</head>
+<body>
+    <div>div요소1</div>
+    <div>div요소2</div>
+    <div>div요소3</div>
+
+    <script>
+        const divs = document.querySelectorAll("div")
+        const [firstDiv, secondDiv] = divs;
+        firstDiv.textContent = "Hello";
+    </script>
+</body>
+</html>

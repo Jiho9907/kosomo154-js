@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            width: 200px;
+            height: 200px;
+        }
+    </style>
+</head>
+<body>
+    <div id="div1">더블클릭 시 배경색 변경</div>
+    <script>
+        document.getElementById("div1").addEventListener("dblclick", function(){
+            document.getElementById("div1").style.backgroundColor = "yellow";
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const obj1 = {
+            a1 : 1,
+            b1 : "abc"
+        }
+        const obj2 = obj1; //obj1의 주소값 참조
+        obj1.a1 = 10;
+        console.log(obj2.a1); //10 call by reference : 주소값이 동일한 메모리를 가르키기 때문에 변경됨
+    
+        //객체의 주소값 변경
+        const obj3 = {
+            ...obj1
+        }
+    </script>
+</body>
+</html>

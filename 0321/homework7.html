@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> 단락 더블클릭 시 제거 기능</title>
+    <script src="lib/jquery-3.7.1.min.js"></script>
+</head>
+<body>
+    <p>단락1</p>
+    <p>단락2</p>
+    <p>단락3</p>
+    <p>단락4</p>
+    <p>단락5</p>
+    
+    <script>
+        $(()=>{
+            $("p").dblclick(function(){
+                console.log("삭제될 단락:",$(this).text());
+                $(this).remove();
+            })
+        })
+    </script>
+</body>
+</html>

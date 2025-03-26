@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>음료수 키오스크 자판기</h1>
+    <!-- div*3>(span{상품$}+input#stuff$[value="0" min="0"]) -->
+    <div>
+        <span>상품1</span>
+        <input type="number" id="stuff1" value="0" min="0">
+    </div>
+    <div>
+        <span>상품2</span>
+        <input type="number" id="stuff2" value="0" min="0">
+    </div>
+    <div>
+        <span>상품3</span>
+        <input type="number" id="stuff3" value="0" min="0">
+    </div>
+    <div>
+        총합 : <span id="total">0</span>원
+    </div>
+
+    <button id="res">리셋</button>
+
+    <script>
+        document.getElementById("stuff1").addEventListener("input", function(){
+            const st1 = parseInt(document.getElementById("stuff1").value);
+            const st2 = parseInt(document.getElementById("stuff2").value);
+            const st3 = parseInt(document.getElementById("stuff3").value);
+
+            document.getElementById("total").textContent = st1 * 1500 + st2 * 1300 + st3 * 1000;
+        });
+        document.getElementById("stuff2").addEventListener("input", function(){
+            const st1 = parseInt(document.getElementById("stuff1").value);
+            const st2 = parseInt(document.getElementById("stuff2").value);
+            const st3 = parseInt(document.getElementById("stuff3").value);
+
+            document.getElementById("total").textContent = st1 * 1500 + st2 * 1300 + st3 * 1000;;
+        });
+        document.getElementById("stuff3").addEventListener("input", function(){
+            const st1 = parseInt(document.getElementById("stuff1").value);
+            const st2 = parseInt(document.getElementById("stuff2").value);
+            const st3 = parseInt(document.getElementById("stuff3").value);
+
+            document.getElementById("total").textContent = st1 * 1500 + st2 * 1300 + st3 * 1000;;
+        });
+        document.getElementById("res").addEventListener("click", function(){
+            document.getElementById("stuff1").value = 0;
+            document.getElementById("stuff2").value = 0;
+            document.getElementById("stuff3").value = 0;
+
+        });
+
+    </script>
+</body>
+</html>

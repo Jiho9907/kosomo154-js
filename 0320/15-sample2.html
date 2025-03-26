@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <title>문서 전체 크기 및 속성 표시 예제</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 20px;
+        }
+
+        #dimensions {
+            border: 1px solid #ddd;
+            padding: 10px;
+            background: #f9f9f9;
+        }
+
+        button {
+            margin-top: 10px;
+            padding: 6px 12px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>문서 크기 및 속성 표시</h1>
+    <div id="dimensions"></div>
+    <button id="updateBtn">속성 값 업데이트</button>
+    <script>
+        function updateDimensions() {
+            var d = document.documentElement;
+            var html = "";
+            html += "clientWidth: " + d.clientWidth + "px<br>";
+            html += "clientHeight: " + d.clientHeight + "px<br>";
+            html += "offsetWidth: " + d.offsetWidth + "px<br>";
+            html += "offsetHeight: " + d.offsetHeight + "px<br>";
+            html += "scrollWidth: " + d.scrollWidth + "px<br>";
+            html += "scrollHeight: " + d.scrollHeight + "px<br>";
+            html += "scrollTop: " + d.scrollTop + "px<br>";
+            document.getElementById("dimensions").innerHTML = html;
+        }
+        document.getElementById("updateBtn").addEventListener("click", updateDimensions);
+        window.addEventListener("resize", updateDimensions);
+        window.addEventListener("load", updateDimensions);
+    </script>
+</body>
+
+</html>

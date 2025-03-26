@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>슬라이드쇼 이미지 전환</title>
+</head>
+<body>
+    <img id="slideshow" src="./images/show1.jpg" width="300px"/>
+    <button id="btn">Stop Slideshow</button>
+
+    <script>
+        const images = ["images/show1.jpg", "images/show2.jpg","images/show3.jpg"];
+        let index = 0;
+        const inter = setInterval(()=>{
+            index ++;
+            const imgSlide = document.querySelector("#slideshow");
+            imgSlide.setAttribute("src",images[index]);
+            if(index === 2){
+                index = 0;
+            }
+        }, 3000);
+
+        document.getElementById("btn").addEventListener("click",()=>{
+            clearInterval(inter);
+        });
+    </script>
+</body>
+</html>

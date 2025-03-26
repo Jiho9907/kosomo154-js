@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>전체 화면(Fullscreen) 토글 버튼 구현</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            text-align: center;
+            margin-top: 2em;
+        }
+        button {
+            padding: 0.5em 1em;
+            font-size: 16px;
+        }
+    </style>
+</head>
+
+<body>
+    <video id="myVideo" width="640" height="360" controls>
+        <source src="videos/sample1.mp4" type="video/mp4">
+    </video>
+    <br>
+    <button id="btn">전체 화면 토글</button>
+
+    <script>
+        const video = document.getElementById("myVideo");
+        const btn = document.getElementById("btn");
+
+        btn.addEventListener("click", function(){
+            if(!document.fullscreenElement){
+                if(video.requestFullscreen){
+                    video.requestFullscreen();
+                }else if(video.webkitRequestFullscreen){
+                    video.webkitRequestFullscreen();
+                }else if(video.msRequestFullscreen){
+                    video.msRequestFullscreen();
+                }
+            }else{
+                if(document.exitFullscreen){
+                    document.exitFullscreen();
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

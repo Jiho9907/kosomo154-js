@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>더블 클릭 시 배경색 변경하기</title>
+    <style>
+        div{
+            border: 1px solid black;
+            text-align: center;
+            height: 150px;
+            padding: 50px;
+        }
+    </style>
+</head>
+<body>
+    <div id="colorBox">더블 클릭해 배경색 변경</div>
+
+    <script>
+        const cB = document.getElementById("colorBox");
+        cB.addEventListener("dblclick",()=>{
+            let r = Math.floor(Math.random() * 256);
+            let g = Math.floor(Math.random() * 256);
+            let b = Math.floor(Math.random() * 256);
+            cB.style.backgroundColor = `rgb(${r},${g},${b})`;
+        });
+    </script>
+</body>
+</html>

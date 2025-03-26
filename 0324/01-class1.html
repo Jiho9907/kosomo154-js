@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 클래스의 경우 두가지 방식으로 선언 가능
+        // 기능은  함수와 동일
+        // 호이스팅 X        
+        
+        // 1. Class 선언 방식
+        // class Member{
+        //     getName(){
+        //         return "호호";
+        //     }
+        // }
+        
+        // 2. Class 표현 방식
+        const Member = class {
+            getName(){
+                return "호호";
+            }
+        }
+
+        const member1 = new Member();
+        console.log(member1.getName());
+
+    </script>
+</body>
+</html>

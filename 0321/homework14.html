@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>콘텐츠 토글과 바로 옆 형제 요소 접근</title>
+    <script src="lib/jquery-3.7.1.min.js"></script>
+</head>
+<body>
+    <div class="toggleContent">toggleContent</div>
+    <div class="content">content</div>
+    
+    <script>
+        $(()=>{
+            $(".toggleContent").click(function(){
+                $(this).next().toggle();
+            })
+        })
+    </script>
+</body>
+</html>

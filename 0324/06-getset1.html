@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        class Member1{
+            constructor(name){
+                this._name = name;
+            }
+            get name(){
+                return this._name;
+            }
+            set name(name){
+                this._name = name;
+            }
+        }
+
+        const obj1 = new Member1("cjh");
+        console.log(obj1.name); //cjh
+        obj1.name="aaa";
+        console.log(obj1.name); //aaa
+
+    </script>
+</body>
+</html>

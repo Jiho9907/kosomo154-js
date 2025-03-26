@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>이벤트 전파 차단 연습</title>
+    <style>
+        #parent{
+            height: 100px;
+            background-color: orchid;
+            padding: 30px;
+        }
+        #child{
+            width: 50px;
+            height: 50px;
+            background-color: pink;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div id="parent"> 부모
+        <div id="child">자식</div>
+    </div>
+
+    <script>
+        const parent = document.getElementById("parent");
+        const child = document.getElementById("child");
+
+        parent.addEventListener("click",()=>{
+            console.log("부모 클릭됨");
+        });
+        child.addEventListener("click", e=>{
+            e.stopPropagation();
+            console.log("자식 클릭됨(전파 중단)");
+        });
+    </script>
+</body>
+</html>

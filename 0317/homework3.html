@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p id="paragraph">Hello</p>
+
+    <script>
+        //기존 요소 선택 
+        const paragraph = document.getElementById("paragraph");
+        // 새 요소 생성 
+        const newElement = document.createElement("p");
+        newElement.textContent = "Goodbye"
+        // 기존 요소 교체
+        paragraph.replaceWith(newElement);
+    </script>
+</body>
+</html>

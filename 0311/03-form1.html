@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>폼 제출 이벤트</h1>
+    <form id="form1" action="./03-form1-result.html" method="get">
+        <label for="username">사용자 이름</label>
+        <input type="text" name="username" id="username" palceholder="이름을 입력하세요">
+        <input type="text" name="aaaa" id="aaaa">
+        <button>제출하기</button>
+    </form>
+
+    <script>
+        document.getElementById("form1").addEventListener("submit", function(e){
+            e.preventDefault();
+            console.log("여기로 왔나?");
+            //1. username 이라고 하는 input에서 데이터를 받아온다.
+            // 1-1. document.getElementById("username").value을 다른 변수로 받아오면 됨
+            var name = document.getElementById("username").value;
+
+            //2. 공백을 제거한 데이터가 "abc"가 맞다면 다음페이지로 전송
+            // 2-1. if문을 통해서 abc가 맞을 경우
+            // 2-2. 다음 페이지로 전송? document.getElementById("form1").submit()
+            if(name === "abc"){
+                document.getElementById("form1").submit();
+            }else{
+            //3. 만약 데이터가 "abc"가 아니라면 alert으로 "틀렸습니다"를 출력
+            // 3-1. alert("틀렸습니다");
+                alert("틀렸습니다");
+            }
+        });
+    </script>
+</body>
+</html>

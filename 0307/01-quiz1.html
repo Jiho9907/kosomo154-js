@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>홀짝 판별기</h1>
+    <input type="text" name="" id="number-input" placeholder="숫자 입력">
+    <button id="chkbtn">검사</button>
+    <div id="result"></div>
+    <script>
+        //1. 한 번에 모든 것을 치려고 하지 않기
+        //1-1.버튼이 정상적으로 눌리는 지 확인 - console.log('버튼 눌림!')메세지 출력
+        document.getElementById("chkbtn").addEventListener("click", function(){
+            // console.log("버튼 눌림!");
+            //1-2. input에 입력된 값을 받아서 변수에 저장한다 - 저장된 변수의 값울 찍어보기
+            var inputVal = parseInt(document.getElementById("number-input").value);
+            // console.log(inputVal);
+            //1-3. inputVal에 저장된 값 나누기 2의 나머지가 0이면 짝수다, 1이면 홀수다
+            // div에 출력하는 로직이 실행된다 - div에 찍힌 값을 확인
+            document.getElementById("result").textContent = 
+                ((inputVal % 2) == 0) ? 
+                `${inputVal}는 짝수입니다.`: 
+                `${inputVal}는 홀수입니다.`;
+        });
+    </script>
+</body>
+</html>

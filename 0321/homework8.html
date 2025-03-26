@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>동적 목록 추가 및 이벤트 위임</title>
+    <script src="./lib/jquery-3.7.1.min.js"></script>
+    <style>
+        .completed{
+            text-decoration: line-through;
+        }
+    </style>
+</head>
+<body>
+    <ul id="taskList"></ul>
+    <button id="addTaskBtn">작업 추가</button>
+
+    <script>
+        $(()=>{
+            let count = 0;
+            $("#addTaskBtn").click(function(){
+                count ++;
+                $("#taskList").append("<li>새작업" + count + "</li>");
+            });
+            $("#taskList").on('click', 'li', function(){
+                $(this).addClass("completed");
+             });
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <title>무한 스크롤 콘텐츠 로딩 예제</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 20px;
+        }
+
+        #content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .post {
+            padding: 10px;
+            margin-bottom: 20px;
+            background: #f0f0f0;
+            border: 1px solid #ddd;
+        }
+
+        #loading {
+            text-align: center;
+            display: none;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>무한 스크롤 콘텐츠 로딩</h1>
+    <div id="content">
+        <!-- 초기 콘텐츠 -->
+        <div class="post">콘텐츠 1</div>
+        <div class="post">콘텐츠 2</div>
+        <div class="post">콘텐츠 3</div>
+        <div class="post">콘텐츠 4</div>
+        <div class="post">콘텐츠 5</div>
+    </div>
+    <div id="loading">로딩 중...</div>
+    <script>
+        let loading = false;
+        let postCount = 5;
+        function loadMoreContent() {
+            if (loading) return;
+            loading = true;
+            document.getElementById("loading").style.display = "block";
+            // ajax 요청 역할을 하는 setTimeout (실제 환경에서는 fetch/ajax 사용)
+            setTimeout(function () {
+                let content = document.getElementById("content");
+                for (let i = 1; i <= 3; i++) {
+                    postCount++;
+                    let post = document.createElement("div");
+                    post.className = "post";
+                    post.textContent = "콘텐츠 " + postCount;
+                    content.appendChild(post);
+                }
+                loading = false;
+                document.getElementById("loading").style.display = "none";
+            }, 1000);
+        }
+        window.addEventListener("scroll", function () {
+            var d = document.documentElement;
+            // 스크롤된 위치 + 뷰포트 높이가 문서 전체 높이에서 50px 이내에 도달하면 새 콘텐츠로딩
+            if (d.scrollTop + d.clientHeight >= d.scrollHeight - 50) {
+                loadMoreContent();
+            }
+        });
+    </script>
+</body>
+
+</html>

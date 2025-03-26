@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p id="p1" style="font-size: 16px;">버튼으로 텍스트 크기 조절</p>
+    <button id="btn1">확대</button>
+    <button id="btn2">축소</button>
+
+    <script>
+        let ftSize = 16;
+        document.getElementById("btn1").addEventListener("click", function(){
+            ftSize += 2;
+            document.getElementById("p1").style.fontSize = ftSize + "px";
+        });
+        document.getElementById("btn2").addEventListener("click", function(){
+            ftSize -= 2;
+            document.getElementById("p1").style.fontSize = ftSize + "px";
+        });
+    </script>
+</body>
+</html>

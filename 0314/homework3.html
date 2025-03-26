@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .section {
+            background-color: #f1f1f1;
+            color: #444;
+            cursor: pointer;
+            padding: 18px;
+            width: 100%;
+            border: none;
+            text-align: left;
+            outline: none;
+            font-size: 15px;
+            margin: 0;
+        }
+        .acd-content {
+            display: none;
+        }
+        .active, .section:hover {
+            background-color: #444;
+            color: #f1f1f1;
+        }
+    </style>
+</head>
+<body>
+    <!-- div.accordion>(button.section{Section$}+div.acd-content>p)*3 -->
+    <div class="accordion">
+        <button class="section">Section1</button>
+        <div class="acd-content">
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis ullam magnam sint nobis sit officiis, inventore ipsam asperiores. Aliquam non quia porro at sint quidem nesciunt. Nisi dolorem qui amet!</p>
+        </div>
+        <button class="section">Section2</button>
+        <div class="acd-content">
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Molestias quas labore sunt minus maxime ut non aut quae, amet inventore? Quae vero impedit, voluptate sequi necessitatibus labore cupiditate veniam voluptas!</p>
+        </div>
+        <button class="section">Section3</button>
+        <div class="acd-content">
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates ea blanditiis sequi, omnis in beatae veniam suscipit dicta architecto aliquid perferendis adipisci ipsam quasi cum corrupti, eveniet quis odio dolor!</p>
+        </div>
+    </div>
+
+    <script>
+        var hoverDiv = document.getElementsByClassName("section");
+        for(let i=0; i<hoverDiv.length;i++){
+            // hoverDiv[i].addEventListener("hover", function(){
+            //     hoverDiv[i].classList.toggle(".active");
+            // });
+            hoverDiv[i].addEventListener("click",function(){
+                hoverDiv[i].classList.toggle("active");
+                let content = this.nextElementSibling;
+                if(content.style.display === "block"){
+                    content.style.display = "none";
+                }else{
+                    content.style.display = "block";
+                }
+            });
+        }
+    // nextElementSibling는 두번째 요소 선택! 
+    </script>
+</body>
+</html>

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var score = prompt("점수를 입력하세요");
+        score = parseInt(score);
+        var result = (score >= 90) ? "A" : (score >= 80) ? "B" : "C";
+        alert(`당신의 학점은 ${result} 입니다.`);
+    </script>
+    <!-- 다지선다는 조건문이 더 효율적인 코드, 삼항 연산자 무조건적 사용 X -->
+</body>
+</html>

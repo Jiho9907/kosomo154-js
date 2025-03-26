@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="main">
+        <section>섹션1</section>
+        <section>섹션2</section>
+        <section>섹션3</section>
+    </div>
+    <script>
+        //  메인 요소 선택 
+        const main = document.getElementById("main");
+
+        //  새 요소 생성
+        const newElement = document.createElement("section");
+        newElement.textContent = "New Section";
+
+        //  "New Section" 텍스트를 삽입
+        main.append(newElement);
+
+        //  새 요소가 마지막 자식인지를 확인
+        console.log(main.lastElementChild);
+    </script>
+</body>
+</html>

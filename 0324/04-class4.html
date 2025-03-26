@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        class Class1{
+            setName1(name){
+                this.name = name;
+            }
+            getName1(){
+                return this.name;
+            }
+            // validateCheck(){
+            //     if(this.name == undefined){
+            //         delete this.name;
+            //     }
+            // }
+        }
+
+        // 1
+        const obj1 = new Class1();
+        obj1.setName1("cjh");
+        console.log(obj1.getName1()); //cjh
+        console.dir(obj1);
+
+        // 2
+        const obj2 = new Class1();
+        obj2.name = "aaa";
+        console.log(obj2.getName1()); //aaa
+
+        // 3
+        Class1.prototype.getCustomName1 = function(){
+            return `name : ${this.name}`;
+        }
+        console.log(obj1.getCustomName1());
+        console.log(obj2.getCustomName1());
+
+        // 4
+        Class1.prototype.getCustomAge1 = function(){
+            return `age : ${this.age}`;
+        }
+        obj1.age = 30;
+        console.log(obj1.getCustomAge1()); //30
+        console.log(obj2.getCustomAge1()); //undefined
+
+        // default property
+        // obj2의 age 없기 때문에 prototype에서 찾아 리턴
+        Class1.prototype.age = 40;
+        console.log(obj2.getCustomAge1()); //40
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            width: 200px;
+            height: 200px;
+            background-color: orangered;
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <div id="div1"> div 투명도 조절(클릭)</div>
+    <script>
+        let div1 = document.getElementById("div1");
+        div1.addEventListener("click", function(){
+            let opa = div1.style.opacity;
+            div1.style.opacity = (opa == 1 ? 0.5 : 1);
+        });
+    </script>
+</body>
+</html>

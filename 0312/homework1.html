@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            width: 200px;
+            height: 200px;
+            /* background-color: gray; */
+        }
+    </style>
+</head>
+<body>
+    <button id="btn">배경색 바꾸기</button>
+    <div id="div1"></div>
+    <script>
+        let div1 = document.getElementById("div1")
+
+        document.getElementById("btn").addEventListener("click", function(){
+        
+            if(div1.style.backgroundColor == "blue"){
+                div1.style.backgroundColor = "gray";
+            }else{
+                div1.style.backgroundColor = "blue";
+            }
+
+            setTimeout(function(){
+            if(div1.style.backgroundColor == "blue" || div1.style.backgroundColor == "gray" ){
+                div1.style.backgroundColor = "white";
+            }
+            }, 3000);
+        });
+
+    </script>
+</body>
+</html>

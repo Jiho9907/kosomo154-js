@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <title>scrollLeft / scrollTop 예제</title>
+    <style>
+        #scrollBox {
+            width: 300px;
+            height: 200px;
+            padding: 10px;
+            border: 2px solid #009688;
+            overflow: auto;
+            background-color: #e0f2f1;
+        }
+
+        #scrollContent {
+            width: 600px;
+            height: 400px;
+            background-color: #b2dfdb;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>scrollLeft / scrollTop 속성 확인</h1>
+    <div id="scrollBox">
+        <div id="scrollContent">
+            이 콘텐츠는 크기가 커서 스크롤이 발생합니다.
+        </div>
+    </div>
+    <p id="scrollPos">스크롤 위치: scrollLeft = 0px, scrollTop = 0px</p>
+    <script>
+        var scrollBox = document.getElementById('scrollBox');
+        var scrollPos = document.getElementById('scrollPos');
+        scrollBox.addEventListener('scroll', function () {
+            scrollPos.innerHTML = "스크롤 위치: scrollLeft = " + scrollBox.scrollLeft + "px, scrollTop = " + scrollBox.scrollTop + "px";
+            console.log("scrollLeft:", scrollBox.scrollLeft, "scrollTop:",
+                scrollBox.scrollTop);
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>예약된 메시지 취소하기</title>
+</head>
+<body>
+    <script>
+        const timerId = setTimeout(()=>{
+            console.log("This message should not appear.");
+        }, 5000);
+        clearTimeout(timerId);
+        console.log("Timer cancelled");
+    </script>
+</body>
+</html>

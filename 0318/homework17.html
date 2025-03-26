@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>동적으로 하이퍼링크 추가하기</title>
+</head>
+<body>
+    <div id="linksDiv"></div>
+    <button id="btn">생성</button>
+    <script>
+        const linksDiv = document.getElementById("linksDiv");
+
+        document.getElementById("btn").addEventListener("click",function(){
+            const hi = document.createElement("a");
+            hi.textContent = "Click Here";
+            linksDiv.appendChild(hi);
+            hi.setAttribute("href","https://www.example.com");
+            hi.target = "_blank";
+        });
+    </script>
+</body>
+</html>

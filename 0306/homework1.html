@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 홀짝 판별기 -->
+     <h1>홀짝 판별기</h1>
+     <input type="number" name="num1" id="num1">
+     <button id="btn">검사</button>
+     <div id="div1"></div>
+     <script>
+            document.getElementById("btn").addEventListener("click", function(){ 
+            var a = parseInt(document.getElementById("num1").value);
+            var result = (a % 2) == 1 ? "홀수" : "짝수";
+            document.getElementById("div1").innerText = a+"는 "+ result+"입니다.";
+        });
+     </script>
+</body>
+</html>

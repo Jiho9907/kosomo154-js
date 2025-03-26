@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>버튼 클릭 시 배경색 변경하기</title>
+    <style>
+        body {
+            background-color: aqua;
+        }
+    </style>
+</head>
+<body>
+    <button id="changeColorBtn">배경색 변경</button>
+
+    <script>
+        document.getElementById("changeColorBtn").addEventListener("click", function(){
+            document.body.style.backgroundColor = "lightblue";
+        });
+    </script>
+</body>
+</html>

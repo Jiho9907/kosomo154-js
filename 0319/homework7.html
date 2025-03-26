@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ctrl+클릭 시 기본 동작 차단하기</title>
+</head>
+<body>
+    <a id="myLink" href="https://www.google.com">구글로 이동</a>
+
+    <script>
+        const myLink = document.getElementById("myLink");
+        myLink.addEventListener("click",e=>{
+            if(e.ctrlKey){
+                e.preventDefault();
+                console.log("Ctrl+클릭이 감지됨: 이동하지 않습니다.")
+            }
+        });
+    </script>
+</body>
+</html>

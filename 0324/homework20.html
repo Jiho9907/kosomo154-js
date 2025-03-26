@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>주기적 날씨 업데이트 시뮬레이션</title>
+</head>
+<body>
+    <div id="weather">Current temperature: XX°C</div>
+    <script>
+        let inter = setInterval(()=>{
+            let temp = Math.floor(Math.random()*16)+15;
+            document.getElementById("weather").textContent = `Current temperature: ${temp}°C`;
+        }, 5000);
+
+        setTimeout(()=>{
+            clearInterval(inter);
+            console.log("weather updates stopped");
+        },30000);
+    </script>
+</body>
+</html>

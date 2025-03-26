@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>객체 속성 추출과 기본값 사용하기</title>
+</head>
+<body>
+    <script>
+        const elementAttributes = { id: 'demo', className: 'sample-class', 'data-info': 'example' };
+        const {id, className:cls, 'data-info':datainfo = "none"} = elementAttributes;
+        console.log(id, cls, datainfo);
+    </script>  
+</body>
+</html>

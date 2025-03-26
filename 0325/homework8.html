@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>클릭 가능한 진행바를 통한 탐색(seeking) 기능 구현</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            text-align: center;
+            margin-top: 2em;
+        }
+
+        #progressContainer {
+            width: 640px;
+            height: 20px;
+            background: #ddd;
+            margin: 1em auto;
+            cursor: pointer;
+            position: relative;
+        }
+
+        #progress {
+            height: 100%;
+            width: 0;
+            background: #76a5af;
+        }
+    </style>
+</head>
+
+<body>
+    <video id="myVideo" width="640" height="360" controls>
+        <source src="videos/sample1.mp4" type="video/mp4">
+    </video>
+    <div id="progressContainer">
+        <div id="progress"></div>
+    </div>
+
+    <script>
+        const video = document.getElementById("myVideo");
+        const progressContainer = document.getElementById("progressContainer");
+        const progress = document.getElementById("progress");
+
+        video.addEventListener('timeupdate',()=>{
+            const perc = (video.currentTime / video.duration)*100;
+            progress.style.width = `${perc}%`;
+        })
+
+        progressContainer.addEventListener("click", function(e){
+            const rect = progressContainer.getBoundingClientRect();
+            const clickX = e.clientX - rect.left;
+            const newTime = (clickX / progressContainer.clientWidth) * video.duration;
+            video.currentTime = newTime;
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //서버측으로부터 온 데이터
+        const obj1 = {
+            name : 'kim',
+            age : 40,
+            hobby : "잠자기"
+        }
+
+        //클라이언트에서 받아야할 형식
+        // {name , age , {hobby}}
+
+        // function send1(server_data){
+        //     const obj2 = {
+        //         name : server_data.name,
+        //         age : server_data.age,
+        //         hobby : {
+        //             hobby1 : server_data.hobby
+        //         }
+        //     }
+        //     return obj2;
+        // }
+
+        function send1({name, age, hobby}){
+            const obj2 = {
+                name,age,hobby:{ hobby1 : hobby}
+            }
+            return obj2;
+        }
+
+        const client = send1(obj1);
+        console.dir(client);
+    </script>
+</body>
+</html>

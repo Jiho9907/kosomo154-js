@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <title>웹 미궁게임 - 3단계</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background: #f0f0f0;
+        }
+
+        .container {
+            background: #fff;
+            padding: 20px;
+            max-width: 600px;
+            margin: 50px auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        input {
+            padding: 8px;
+            font-size: 16px;
+            width: 80%;
+            box-sizing: border-box;
+        }
+
+        button {
+            padding: 8px 12px;
+            font-size: 16px;
+            margin-left: 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>웹 미궁게임 - 3단계</h1>
+        <p>퀴즈: "Cherry"의 첫 글자는 무엇일까요?</p>
+        <form id="quizForm" method="GET">
+            <input type="text" name="answer" placeholder="정답 입력">
+            <button type="submit">제출하기</button>
+        </form>
+    </div>
+
+    <script>
+        const form = document.getElementById("quizForm");
+
+        form.addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            const answer = form.elements["answer"].value.trim().toLowerCase();
+            // 올바른 정답은 "c" 입니다.
+            if (answer !== "c") {
+                alert("정답이 아닙니다.");
+                return;
+            }
+            form.action = "final.html";
+            form.submit();
+        });
+    </script>
+</body>
+
+</html>

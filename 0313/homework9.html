@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="dataButton" data-state="off">클릭</button>
+    <script>
+        let dataButton = document.getElementById("dataButton");
+        document.getElementById("dataButton").addEventListener("click",function(){
+            let current = dataButton.getAttribute("data-state");
+            let newD = (current === "off") ? "on" : "off";
+            dataButton.setAttribute("data-state",newD);        
+        });
+    </script>
+</body>
+</html>

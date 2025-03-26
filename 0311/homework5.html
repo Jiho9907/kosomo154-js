@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="checkbox" name="" id="tf">
+    <button id="btn" onclick="boolean()">불린 값 확인</button>
+
+    <script>
+        function boolean(){
+            // <input> 태그를 통해 문자열 또는 체크박스의 값을 받아 변수 flag에 저장합니다.
+            var flag = document.getElementById("tf").checked;
+            // if 문으로 flag의 값이 true인 경우 alert("참입니다")라고 출력합니다.
+            // (불린값 비교 시 문자열 "true"와 true는 다르므로 주의하세요.)
+            if(flag==true){
+                alert("참입니다.");
+            }
+        }
+    </script>
+</body>
+</html>

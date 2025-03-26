@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .color{
+            fill : lightblue;
+        }
+    </style>
+</head>
+<body>
+    <h1>SVG 속성 조작 예제</h1>
+
+    <svg width="300" height="200" viewBox="0 0 300 200">
+        <circle id="myCircle" cx = "150" cy = "100" r="50" fill="coral" />
+    </svg>
+
+    <button id="change-color">색상변경</button>
+    <!-- 
+        문제1. 원의 가로 위치를 무작위로 변경하는 로직을 작성하세요
+        - 버튼을 누르게 되면 원의 위치가 50~250 사이의 숫자로 변경됩니다.
+        - 해당 숫자를 x축에 반영하여 가로 위치를 무작위로 바꾸는 이벤트 작성하세요.
+    -->
+    <button id="moveCircle">위치변경</button>
+
+    <!-- 문제2. 원의 반지름을 무작위 값으로 변경하는 로직을 작성하세요.
+         - 버튼을 누르게 되면 원의 반지름이 30부터 70사이의 숫자로 변경됩니다.
+         - 해당 숫자를 r에 반영하여 반지름을 무작위로 바꾸는 이벤트를 작성하세요.
+     -->
+    <button id="resizeCircle">크기변경</button>
+
+    <script>
+        //색상변경하는 이벤트
+        document.getElementById("change-color").addEventListener("click", function(){
+            const circle = document.getElementById("myCircle");
+            // 원 색상이 빨간색이면 파란색으로 
+            // 파란색이면 빨간색으로 마치 토글처럼 변경
+            circle.classList.toggle("color");
+
+            // circle.setAttribute("fill", "lightblue");
+
+            // const currentFill = circle.getAttribute("fill");
+            // circle.setAttribute("fill", currentFill=='red'?'lightblue':'coral');
+        });
+
+        //위치변경
+        document.getElementById("moveCircle").addEventListener("click",function(){
+            const circle = document.getElementById("myCircle");
+            let newCx = Math.floor(Math.random()*200)+50;
+            circle.setAttribute("cx",newCx);
+        });
+
+        //크기변경
+        document.getElementById("resizeCircle").addEventListener("click",function(){
+            const circle = document.getElementById("myCircle");
+            let newRadius = Math.floor(Math.random()*40)+30;
+            circle.setAttribute("r",newRadius);
+        });
+    </script>
+</body>
+</html>

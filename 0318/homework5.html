@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>요소 가시성 토글하기</title>
+    <style>
+        .dis1{
+            display: none;
+        }
+        .dis2{
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div id="toggleElement" class="dis">보이거나 숨김</div>
+    <button id="toggleBtn">토글</button>
+
+    <script>
+        document.getElementById("toggleBtn").addEventListener("click", function(){
+            let toggleElem = document.getElementById("toggleElement");
+
+            if(toggleElem.classList.contains("dis1")){
+                toggleElem.classList.remove("dis1");
+                toggleElem.classList.add("dis2")
+            }else{
+                toggleElem.classList.remove("dis2");
+                toggleElem.classList.add("dis1");
+            }
+        });
+    </script>
+</body>
+</html>

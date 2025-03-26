@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>라이브 텍스트 업데이트 기능 구현</title>
+    <script src="lib/jquery-3.7.1.min.js"></script>
+</head>
+<body>
+    <input type="text" id="liveInput" placeholder="텍스트를 입력하세요">
+    <span id="liveOutput">입력값 없음</span>
+
+    <script>
+        $(()=>{
+            $("#liveInput").keyup(function(){
+                let inputValue = $("#liveInput").val();
+                if(inputValue===""){
+                    $("#liveOutput").text("입력값 없음");
+                }else{
+                    $("#liveOutput").text(inputValue);
+                }
+                console.log(inputValue);
+            })
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" name="txt1" id="txt1">
+    <input type="text" name="txt2" id="txt2">
+    <button id="btn1" onclick="calc(1)">+</button>
+    <button id="btn2" onclick="calc(2)">-</button>
+    <button id="btn3" onclick="calc(3)">*</button>
+    <button id="btn4" onclick="calc(4)">/</button>
+    <script>
+        function calc(num){
+            let a = parseInt(document.getElementById("txt1").value);
+            let b = parseInt(document.getElementById("txt2").value);
+            alert(`${(num==1) ? a+b : (num==2) ? a-b : (num==e) ? a*b : a/b}`);
+        }
+        // document.getElementById("btn1").addEventListener("click", function(){
+        //     let a = parseInt(document.getElementById("txt1").value);
+        //     let b = parseInt(document.getElementById("txt2").value);
+        //     alert(a+b);
+        // });
+        // document.getElementById("btn1").addEventListener("click", function(){
+        //     let a = parseInt(document.getElementById("txt1").value);
+        //     let b = parseInt(document.getElementById("txt2").value);
+        //     alert(a-b);
+        // });
+        // document.getElementById("btn1").addEventListener("click", function(){
+        //     let a = parseInt(document.getElementById("txt1").value);
+        //     let b = parseInt(document.getElementById("txt2").value);
+        //     alert(a*b);
+        // });
+        // document.getElementById("btn1").addEventListener("click", function(){
+        //     let a = parseInt(document.getElementById("txt1").value);
+        //     let b = parseInt(document.getElementById("txt2").value);
+        //     alert(a/b);
+        // });
+    </script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>랜덤 인사말 출력</h1><br>
+    <button id="btn">인사말 출력</button>
+    <div id="div1"></div>
+    <script>
+        document.getElementById("btn").addEventListener("click", function(){
+            var leng = ["안녕하세요", "반갑습니다", "좋은 하루 되세요"];
+            var n =  Math.floor(Math.random() * 3);
+            // console.log(n);
+            var result = "";
+            if(n==0){
+                result = leng[n];
+            }else if(n==1){
+                result = leng[n];
+            }else if(n==2){
+                result = leng[n];
+            }
+            document.getElementById("div1").innerText = result;
+        });
+
+    </script>
+</body>
+</html>

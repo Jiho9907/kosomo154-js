@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const arr1_1 = [1,2,3,4,5];
+
+        // for in 문
+        // key(인덱스) 값 순회
+        for(let val in arr1_1){
+            console.log(`${val} : ${arr1_1[val]}`);
+        }
+
+        //배열에서만 사용하는 for문--------------------------------------------
+
+        // ▶ 1 - for of 문
+        // value 값 순회
+        for(const val of arr1_1){
+            console.log(val);
+        }
+        // ** Symbol.iterator, 이터러블 객체(배열, 문자열, 맵, 셋 등)에만 사용가능
+        // const obj1 = {a:1, b:"abc"};
+        // for(const val of obj1){
+        //     console.log(val);
+        // }
+
+        // ▶ 2 - foreach 문
+        // 콜백함수 function(item, index)로 값과 인덱스 순회
+        const arr2_1 = ["a","d","b","c"];
+        arr2_1.forEach(function(item, index){
+            console.log(`${index} : ${item}`);
+        });
+        // ** 배열에서 사용가능, prototype에서 foreach 있으면 사용가능
+        // but 객체 바인딩 기법으로 사용가능 **
+        // const obj2 = {
+        //     0 : "a",
+        //     1 : "b",
+        //     2 : "c"
+        // };
+        // Object.values(obj2).forEach(function(value, index) {
+        // console.log(`${index} :${value}`);
+        // });
+    </script>
+</body>
+</html>

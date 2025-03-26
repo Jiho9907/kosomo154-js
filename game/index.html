@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <title>웹 미궁게임 - 1단계</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background: #f0f0f0;
+        }
+
+        .container {
+            background: #fff;
+            padding: 20px;
+            max-width: 600px;
+            margin: 50px auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        input {
+            padding: 8px;
+            font-size: 16px;
+            width: 80%;
+            box-sizing: border-box;
+        }
+
+        button {
+            padding: 8px 12px;
+            font-size: 16px;
+            margin-left: 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>웹 미궁게임 - 1단계</h1>
+        <p>퀴즈: "Apple"의 첫 글자는 무엇일까요?</p>
+        <!-- action은 정답일 때 동적으로 지정 -->
+        <form id="quizForm" method="GET">
+            <input type="text" name="answer" placeholder="정답 입력">
+            <button type="submit">제출하기</button>
+        </form>
+    </div>
+
+    <script>
+        const form = document.getElementById("quizForm");
+
+        form.addEventListener("submit", function (event) {
+            // 기본 제출 동작(페이지 새로고침, 자동 제출) 중단
+            event.preventDefault();
+
+            const answer = form.elements["answer"].value.trim().toLowerCase();
+            // 올바른 정답은 "a" 입니다.
+            if (answer !== "a") {
+                alert("정답이 아닙니다.");
+                return;
+            }
+            // 정답이면 폼의 action을 다음 페이지로 설정한 후 프로그램적으로 제출
+            form.action = "page2.html";
+            form.submit();
+        });
+    </script>
+</body>
+
+</html>

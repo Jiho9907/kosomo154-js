@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="div1"></div>
+    <div id="div2"></div>
+    <div id="div3"></div>
+    <input type="number" name="num1" id="num1">
+
+    <script>
+        //textContent : 태그 상관 없이 모든 것을 컨텐츠로
+        // document.getElementById("div1").textContent = "<h1>이것은 헤더 태그입니다.</h1>";
+        
+        //innerText : 유사한 기능
+        // document.getElementById("div1").innerText = "<h1>이것은 헤더 태그입니다.</h1>";    
+    
+        //innerHTML : 태그인식하지만 불확실성 커짐
+        document.getElementById("div2").innerHTML = "<h1>이것은 헤더 태그입니다.</h1>";    
+    
+        var h1 = document.createElement("h1");
+        h1.textContent = "이것은 헤더 태그입니다."
+        document.getElementById("div3").append(h1);
+
+        document.getElementById("num1").addEventListener("input", function(){
+            var val1 = document.getElementById("num1").value;
+            console.log(val1);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>할인 계산기</h1>
+    <input type="text" name="" id="txt1">
+    <input type="text" name="" id="txt2">
+    <button id="btn">계산</button>
+    <div id="div1"></div>
+    <div id="div2"></div>
+    <div id="div3"></div>
+    <div id="div4"></div>
+    <div id="div5"></div>
+    <script>
+        document.getElementById("btn").addEventListener("click", function(){
+            var price1 = parseInt(document.getElementById("txt1").value);
+            var salePercent = parseInt(document.getElementById("txt2").value);
+            var a = (salePercent < 0) || (salePercent > 100) ? 
+             "올바른 금액과 할인율을 입력하세요" : 
+             `원가격: ${price1}원 할인율: ${salePercent}%` ;
+            // document.getElementById("div1").innerText = a;
+
+            var salePrice = price1 * (salePercent/100);
+            var price2 = price1 - salePrice;
+            document.getElementById("div3").innerText = (salePercent < 0) || (salePercent > 100) ? 
+             "올바른 금액과 할인율을 입력하세요" : `할인 금액:   ${salePrice} 원
+                                                         최종 가격  ${price2}원`;
+
+        });
+
+    </script>
+</body>
+</html>

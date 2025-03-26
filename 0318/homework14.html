@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>자식 요소 개수 확인하기</title>
+</head>
+<body>
+    <div id="parentDiv">
+        <p>자식요소1</p>
+        <p>자식요소2</p>
+        <p>자식요소3</p>
+        <p>자식요소4</p>
+    </div>
+
+    <script>
+        const parentDiv = document.getElementById("parentDiv");
+        const childNum = parentDiv.children.length;
+        console.log(`자식요소의 개수는 ${childNum}개`);
+    </script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <title>offsetWidth / offsetHeight 예제</title>
+    <style>
+        #offsetBox {
+            width: 300px;
+            height: 200px;
+            padding: 20px;
+            border: 3px solid #ff5722;
+            background-color: #ffe0b2;
+            overflow: auto;
+            /* 스크롤바 확인용 */
+        }
+    </style>
+</head>
+
+<body>
+    <h1>offsetWidth / offsetHeight 속성 확인</h1>
+    <div id="offsetBox">
+        이 박스는 패딩과 보더가 적용되었으며, offsetWidth/Height 는 이들을 포함한 값을
+        반환합니다.
+    </div>
+    <button onclick="showOffsetSize()">크기 확인</button>
+    <p id="offsetOutput"></p>
+    <script>
+        function showOffsetSize() {
+            var box = document.getElementById('offsetBox');
+            var output = document.getElementById('offsetOutput');
+            output.innerHTML = "offsetWidth: " + box.offsetWidth + "px<br>" +
+                "offsetHeight: " + box.offsetHeight + "px";
+            console.log("offsetWidth:", box.offsetWidth);
+            console.log("offsetHeight:", box.offsetHeight);
+        }
+    </script>
+</body>
+
+</html

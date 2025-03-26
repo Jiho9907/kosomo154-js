@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>인라인 스타일 객체에서 속성 추출하기</title>
+</head>
+<body>
+    <div id="styled" style="color: red; background-color: blue; font-size: 16px;"></div>
+    <script>
+        const styleObj = document.getElementById("styled").style;
+        const { color, backgroundColor, fontSize } = styleObj;
+        console.log(color, backgroundColor, fontSize);
+    </script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> NodeList에서 특정 요소 추출하기</title>
+</head>
+<body>
+    <div>div요소1</div>
+    <div>div요소2</div>
+    <div>div요소3</div>
+    <div>div요소4</div>
+    <div>div요소5</div>
+
+    <script>
+        const divs = document.querySelectorAll("div");
+        const [firstDiv, ,thirdDiv] = divs;
+        firstDiv.style.backgroundColor = "red";
+        thirdDiv.style.backgroundColor = "blue";
+    </script>
+</body>
+</html>

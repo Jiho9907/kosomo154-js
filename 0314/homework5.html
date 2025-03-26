@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .menu {
+            display: flex;
+        }
+        .section {
+            background-color: #444;
+            color: #f0f0f0;
+            cursor: pointer;
+            padding: 18px;
+            width: 100%;
+            height: 100px;
+            border: none;
+            text-align: center;
+            outline: none;
+            font-size: 15px;
+            margin: 0;
+        }
+        .content{
+            height: 100vh;
+            padding-top: 50vh;
+            padding-left: 50px;
+            color: #f0f0f0;
+            display: none;
+        }
+
+        #Home {
+            background-color: red;
+        }
+
+        #News {
+            background-color: green;
+        }
+
+        #Contact {
+            background-color: blue;
+        }
+
+        #About {
+            background-color: orange;
+        }
+
+        .activeContent{
+            display: block;
+        }
+
+        .active {
+           background-color: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="menu">
+        <button class="section active" >Home</button>
+        <button class="section" >News</button>
+        <button class="section" >Contact</button>
+        <button class="section" >About</button>
+    </div>
+
+    <div id="Home" class="content activeContent">
+        <h3>HOME</h3>
+        <p>Home is where the heart is..</p>
+    </div>
+    <div id="News" class="content">
+        <h3>News</h3>
+        <p>Some news this fine day!</p>
+    </div>
+    <div id="Contact" class="content">
+        <h3>Contact</h3>
+        <p>Get in touch, or swing by for a cup of coffee.</p>
+    </div>
+    <div id="About" class="content">
+        <h3>About</h3>
+        <p>Who we are and what we do.</p>
+    </div>
+
+    <script>
+        let menuAct = document.getElementsByClassName("section");
+        let divContent = document.getElementsByClassName("content");
+        let items = document.querySelectorAll(".content");
+
+        for(let i=0; i<menuAct.length;i++){
+            menuAct[i].addEventListener("click",function(){
+                var current = document.querySelector(`.active`);
+                if (current) {
+                    current.classList.remove("active");
+                    current.style.backgroundColor = "";
+                }
+ 
+                menuAct[i].classList.add("active");
+ 
+                if (i === 0) {
+                    menuAct[i].style.backgroundColor = "red";
+                    divContent[i].style.backgroundColor ="red"
+                } else if (i === 1) {
+                    menuAct[i].style.backgroundColor = "green";
+                    divContent[i].style.backgroundColor ="green"
+                } else if (i === 2) {
+                    menuAct[i].style.backgroundColor = "blue";
+                    divContent[i].style.backgroundColor ="blue"
+                } else if (i === 3) {
+                    menuAct[i].style.backgroundColor = "orange";
+                    divContent[i].style.backgroundColor ="orange"
+                }
+ 
+                var currentContent = document.querySelector(".activeContent");
+                if (currentContent) {
+                    currentContent.classList.remove("activeContent");
+                }
+
+                // var currentContent = document.querySelector(".activeContent");
+                // currentContent.classList.remove("activeContent");
+                divContent[i].classList.add("activeContent");
+            });
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" name="num1" id="num1" placeholder="콤마 구분">
+    <button id="btn">계산하기</button>
+    <div id="result"></div>
+     
+    <script>
+        document.getElementById("btn").addEventListener("click", function(){
+            var input = document.getElementById("num1").value;
+            var sum = 0;
+            var aver = 0;
+            var count = 0;
+            var numStr = "";
+            input += ",";
+
+            for(let i = 0; i < input.length; i++){
+                var ch = input.charAt(i);
+                if(ch !== ","){
+                    numStr += ch;
+                }else{
+                    if(numStr.trim !== ""){
+                    sum += parseInt(numStr.trim());
+                    count++;
+                    }
+                    numStr = "";
+                }
+            }
+            aver = sum/count;
+            document.getElementById("result").textContent = `총합 : ${sum}, 평균: ${aver}`;
+        });
+    </script>
+</body>
+</html>

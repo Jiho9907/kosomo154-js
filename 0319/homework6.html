@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>뷰포트 좌표와 문서 좌표의 차이 이해하기</title>
+</head>
+<body>
+    <div>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum error blanditiis earum eveniet? Quo aspernatur doloribus in odio. Ratione placeat consectetur doloremque, dicta quos id vitae maxime nobis debitis eaque?</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum error blanditiis earum eveniet? Quo aspernatur doloribus in odio. Ratione placeat consectetur doloremque, dicta quos id vitae maxime nobis debitis eaque?</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum error blanditiis earum eveniet? Quo aspernatur doloribus in odio. Ratione placeat consectetur doloremque, dicta quos id vitae maxime nobis debitis eaque?</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum error blanditiis earum eveniet? Quo aspernatur doloribus in odio. Ratione placeat consectetur doloremque, dicta quos id vitae maxime nobis debitis eaque?</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum error blanditiis earum eveniet? Quo aspernatur doloribus in odio. Ratione placeat consectetur doloremque, dicta quos id vitae maxime nobis debitis eaque?</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum error blanditiis earum eveniet? Quo aspernatur doloribus in odio. Ratione placeat consectetur doloremque, dicta quos id vitae maxime nobis debitis eaque?</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum error blanditiis earum eveniet? Quo aspernatur doloribus in odio. Ratione placeat consectetur doloremque, dicta quos id vitae maxime nobis debitis eaque?</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum error blanditiis earum eveniet? Quo aspernatur doloribus in odio. Ratione placeat consectetur doloremque, dicta quos id vitae maxime nobis debitis eaque?</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum error blanditiis earum eveniet? Quo aspernatur doloribus in odio. Ratione placeat consectetur doloremque, dicta quos id vitae maxime nobis debitis eaque?</p>
+    
+    </div>
+    <button id="coordButton">좌표 확인하기</button>
+
+    <script>
+        const cBtn = document.getElementById("coordButton");
+        cBtn.addEventListener("click",e=>{
+            alert(`뷰포트 좌표:(${e.clientX},${e.clientY}), 문서 좌표(${e.pageX},${e.pageY})`);
+        });
+    </script>
+</body>
+</html>

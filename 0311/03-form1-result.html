@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <h1>폼 제출 결과</h1>
+        <p id="result"></p>
+    </div>
+
+    <script>
+        var queryString = window.location.search;
+        // document.getElementById("result").textContent = queryString;
+
+        //url의 param을 가공처리하는 객체 생성
+        var urlParams = new URLSearchParams(queryString);
+
+        //get 메서드 활용하여 데이터를 받아온다
+        var username = urlParams.get("username");
+
+        //결과 출력 요소 선택
+        document.getElementById("result").textContent = `전송받은 username 값 : ${username}`;
+
+    </script>
+</body>
+</html>

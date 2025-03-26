@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="number" name="num" id="num" placeholder="행의 수">
+    <button id="btn">실행</button>
+    <div id="result"></div>
+    <script>
+
+        document.getElementById("btn").addEventListener("click", function(){
+            var rows = document.getElementById("num").value;
+            var star = "";
+
+            for(let i = 1; i <= rows; i++){
+                for(let j = 1; j <= i; j++){
+                    star += "*";
+                }
+                star += "</br>";
+            }
+            document.getElementById("result").innerHTML = star;
+        });
+
+    </script>
+</body>
+</html>

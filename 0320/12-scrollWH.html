@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <title>scrollWidth / scrollHeight 예제</title>
+    <style>
+        #scrollContainer {
+            width: 300px;
+            height: 200px;
+            padding: 15px;
+            border: 2px solid #3f51b5;
+            overflow: auto;
+            background-color: #e8eaf6;
+        }
+
+        #largeContent {
+            width: 500px;
+            height: 400px;
+            background-color: #c5cae9;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>scrollWidth / scrollHeight 속성 확인</h1>
+    <div id="scrollContainer">
+        <div id="largeContent">
+            크기가 큰 콘텐츠 영역
+        </div>
+    </div>
+    <button onclick="showScrollDimensions()">전체 콘텐츠 크기 확인</button>
+    <p id="scrollOutput"></p>
+    <script>
+        function showScrollDimensions() {
+            var container = document.getElementById('scrollContainer');
+            var output = document.getElementById('scrollOutput');
+            output.innerHTML = "scrollWidth: " + container.scrollWidth + "px<br>" +
+                "scrollHeight: " + container.scrollHeight + "px";
+            console.log("scrollWidth:", container.scrollWidth);
+            console.log("scrollHeight:", container.scrollHeight);
+        }
+    </script>
+</body>
+
+</html>

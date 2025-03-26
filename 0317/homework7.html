@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="content">
+        <p id="text">text</p>
+    </div>
+
+    <script>
+        // 대상 요소 선택 
+        const text = document.getElementById("text");
+
+        // 새 `<span>` 생성 
+        const newElement = document.createElement("span");
+        newElement.textContent = "After Text";
+
+        // "After Text"를 추가
+        text.after(newElement);
+
+        // 위치 검증
+        console.log(newElement.previousElementSibling.id);
+    </script>
+</body>
+</html>

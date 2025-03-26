@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>클릭 시 좌표 확인하기</title>
+</head>
+<body>
+    <button id="myButton">클릭해주세요!</button>
+    <script>
+        const myButton = document.getElementById("myButton");
+        myButton.addEventListener("click",(e)=>{
+        alert(`클릭위치(x, y): ${event.clientX}, ${event.clientY}`);
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function Class1(){
+            this.val1 = 123;
+        }
+
+        // 생성자 함수 자체의 프로토타입
+        console.dir(Class1.__proto__);
+
+        // 후에 생성하게 될 객체의 프로토타입
+        console.dir(Class1.prototype);
+
+        Class1.__proto__.func2 = function(){
+            console.log("함수에 직접 적용한 기능");
+        }
+
+        Class1.prototype.func1 = function(){
+            console.log("객체 기능 정의1");
+        }
+
+        const obj1 = new Class1();
+        console.dir(obj1);
+        console.log(obj1.__proto__ === Class1.prototype);
+        obj1.func1();
+        // obj1.func2();
+
+        const obj2 = new Class1();
+        obj2.func1();
+    </script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>getBoundingClientRect() 활용하여 요소 위치 및 크기 측정</title>
+
+    <style>
+        #measure-element{
+            border: 1px solid seagreen;
+            background-color: greenyellow;
+            margin: 100px auto;
+            width: 300px;
+            height: 300px;
+        }
+    </style>
+</head>
+<body>
+    <div id="measure-element"></div>
+    <button id="btn">측정하기</button>
+    <pre id="output"></pre>
+
+    <script>
+        const divElem = document.getElementById("measure-element")
+        document.getElementById("btn").addEventListener("click",()=>{
+            var mElement = divElem.getBoundingClientRect();
+            var result = "";
+            result += "left : " + mElement.left.toFixed(2) + "px\n";
+            result += "top : " + mElement.top.toFixed(2) + "px\n";
+            result += "right : " + mElement.right.toFixed(2) + "px\n";
+            result += "bottom: " + mElement.bottom.toFixed(2) + "px\n";
+            result += "width : " + mElement.width.toFixed(2) + "px\n";
+            result += "height: " + mElement.height.toFixed(2) + "px\n";
+            result += "x : " + mElement.x.toFixed(2) + "px\n";
+            result += "y : " + mElement.y.toFixed(2) + "px\n";
+            result += "** 뷰포트 기준으로 값이 측정됩니다."
+
+            document.getElementById("output").textContent = result;
+            console.log("getBoundingClientRect():", mElement);
+
+        })
+    </script>
+</body>
+</html>

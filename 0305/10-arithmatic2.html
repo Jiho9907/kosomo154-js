@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //1 : 문자열 + ?타입 → 결합연산
+        console.log("1"+2); //12 
+        console.log(typeof ("1"+2));
+
+        //2 : 문자열에서 '+' 제외한 연산은 숫자로 치환 가능한지 판단 후 산술연산
+        console.log("5"-"2"); //3 
+        console.log(typeof ("5"-"2"));
+
+        //3 : true=1, false=0으로 치환하여 산술연산
+        console.log(true+3); //4 
+
+        //4 : 몫이 나누어 떨어질 때까지 연산 후 정수로 표현
+        console.log(4/2); //2
+        console.log(4/2.0); //2
+        console.log(4.0/2); //2
+        console.log(5/2); //2.5
+
+        //5  
+        console.log(3 + 5 *2); //13
+        console.log((3 + 5) *2);
+
+        //6
+        console.log(4 + 3 - 2);//5
+        console.log(2 ** 3 ** 2);//512
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //단항 연산자
+        
+        //1 단항 부정
+        var x1 = 3;
+        console.log(-x1); //-3
+
+        //2 단항 양부호 : 문자열에 +,-기호 넣으면 숫자로 형변환
+        var x2 = "4";
+        console.log(typeof(-x2));
+
+        //3 단항 양부호 : 문자열에 +,-기호 넣으면 숫자로 형변환
+        var x3 = "3"
+        console.log(x3);
+        console.log(typeof +(x3));
+
+        //4 단부호 연산자
+        console.log(+true); //1
+        console.log(+false); //0
+        console.log(+null); //0
+        console.log(+undefined); //NaN
+
+        //5 증감연산자 : 연산이 앞에 나오면 로직 수행/ 연산이 뒤에 나오면 로직 수행 후 연산
+        var y1 = 3;
+        console.log(++y1); //4 → y1 = y1+1
+        console.log(y1++);
+        console.log(y1);
+
+        var y2 = 5;
+        console.log(--y2); //4
+        console.log(y2--); //4
+        console.log(y2); //3
+    </script>
+</body>
+</html>

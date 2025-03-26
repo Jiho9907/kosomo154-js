@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>이벤트 위임 활용하기</title>
+</head>
+<body>
+    <ul id="parentList">
+        <li>리스트1</li>
+        <li>리스트2</li>
+        <li>리스트3</li>
+        <li>리스트4</li>
+    </ul>
+
+    <script>
+        const pL = document.getElementById("parentList");
+        pL.addEventListener("click", function(event){
+            event.target.style.backgroundColor = "yellow";
+        });
+    </script>
+</body>
+</html>

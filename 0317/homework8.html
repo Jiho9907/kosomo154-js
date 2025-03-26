@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="note">노트</div>
+    <script>
+        // note 요소 선택
+        const note = document.querySelector("#note");
+
+        // 새 요소 생성 
+        const newDiv = document.createElement("div");
+        newDiv.textContent = "Note Start";
+
+        // 텍스트를 추가
+        note.before(newDiv);
+
+        // 이전 요소 확인
+        console.log(newDiv.previousElementSibling.id);
+    </script>
+</body>
+</html>
