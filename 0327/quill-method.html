@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <title>인스턴스 메서드 나열</title>
+    <link href="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.snow.css" rel="stylesheet" />
+</head>
+
+<body>
+    <h1>Quill 인스턴스의 메서드 및 속성 나열</h1>
+    <p>버튼 클릭 시 콘솔에 Quill 인스턴스에 포함된 모든 속성과 메서드를 출력하세요.</p>
+    <div id="editor-container" style="height:200px; border:1px solid #ccc;"></div>
+    <button id="list-methods-btn">메서드/속성 나열</button>
+    <script src="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.js"></script>
+    <script>
+        const quill = new Quill('#editor-container', { theme: 'snow' });
+        document.getElementById('list-methods-btn').addEventListener('click', () => {
+            console.log("Quill 인스턴스의 속성과 메서드:", Object.keys(quill));
+        });
+    </script>
+</body>
+
+</html>

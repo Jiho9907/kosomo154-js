@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>특정 인덱스에 텍스트 삽입</title>
+    <link href="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.snow.css" rel="stylesheet" />
+    <style>
+        #editor-container {
+            height: 200px;
+            border: 1px solid #ccc;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>연습문제 7: 특정 인덱스에 텍스트 삽입</h1>
+    <p>버튼 클릭 시 에디터 시작 부분에 "Hello " 텍스트를 삽입하세요.</p>
+    <div id="editor-container"></div>
+    <button id="insert-btn">텍스트 삽입</button>
+    <script src="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.js"></script>
+    <script>
+        const quill = new Quill('#editor-container', { theme: 'snow' });
+        document.getElementById('insert-btn').addEventListener('click', () => {
+            quill.insertText(0, "Hello ");
+        });
+    </script>
+
+</body>
+
+</html>

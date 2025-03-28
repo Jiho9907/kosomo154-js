@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <title> 텍스트 삭제</title>
+    <link href="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.snow.css" rel="stylesheet" />
+    <style>
+        #editor-container {
+            height: 200px;
+            border: 1px solid #ccc;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>deleteText()를 이용한 일정 부분 삭제</h1>
+    <p>버튼 클릭 시 에디터의 시작부터 10 글자를 삭제하세요.</p>
+    <div id="editor-container"></div>
+    <button id="delete-btn">시작 10 글자 삭제</button>
+    
+    <script src="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.js"></script>
+    <script>
+        const quill = new Quill('#editor-container', { theme: 'snow' });
+        document.getElementById('delete-btn').addEventListener('click', () => {
+            quill.deleteText(0, 10);
+        });
+    </script>
+</body>
+
+</html>

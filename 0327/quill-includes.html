@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>특정 단어 경고</title>
+    <link href="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.snow.css" rel="stylesheet" />
+    <style>
+        #editor-container {
+            height: 200px;
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>연습문제 11: 특정 단어 입력 시 경고 메시지</h1>
+    <p>에디터에 텍스트 입력 시 “forbidden”이라는 단어가 발견되면 경고 메시지를 표시하세요.</p>
+    <div id="editor-container"></div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.js"></script>
+    <script>
+        const quill = new Quill('#editor-container', { theme: 'snow' });
+        quill.on('text-change', () => {
+            const text = quill.getText();
+            if (text.includes("forbidden")) {
+                alert("‘forbidden’ 단어는 사용할 수 없습니다!");
+            }
+        });
+    </script>
+
+</body>
+
+</html>

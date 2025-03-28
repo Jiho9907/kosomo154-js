@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>콘텐츠 저장 및 불러오기 (Delta 사용)</title>
+    <link href="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.snow.css" rel="stylesheet" />
+    <style>
+        #editor-container {
+            height: 200px;
+            border: 1px solid #ccc;
+            margin-bottom: 10px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <h1>콘텐츠 저장과 불러오기</h1>
+    <div id="editor-container"></div>
+    <button id="save-content">저장</button>
+    <button id="load-content">불러오기</button>
+    <h3>저장된 Delta</h3>
+    <pre id="delta-output"></pre>
+
+    <script src="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.js"></script>
+    <script>
+        const quill = new Quill('#editor-container', {
+            theme: 'snow',
+            modules: {
+                toolbar: [['bold', 'italic', 'underline'], ['link', 'image']]
+            }
+        });
+
+        // "저장" 버튼: 에디터의 Delta 데이터를 localStorage 에 저장하고 화면에 출력
+        document.getElementById('save-content').addEventListener('click', function () {
+            const delta = quill.getContents();
+            localStorage.setItem('quill-delta', JSON.stringify(delta));
+            document.getElementById('delta-output').textContent = JSON.stringify(delta, null, 2);
+            alert('콘텐츠가 저장되었습니다.');
+        })
+
+        // "불러오기" 버튼: 저장된 데이터를 불러와 에디터 내용 복원
+        document.getElementById('load-content').addEventListener('click', function () {
+            const deltaString = localStorage.getItem('quill-delta');
+            if (deltaString) {
+                const delta = JSON.parse(deltaString);
+                quill.setContents(delta);
+                alert('콘텐츠를 불러왔습니다!');
+            } else {
+                alert('저장된 콘텐츠가 없습니다.');
+            }
+        });
+    </script>
+
+</body>
+
+</html>

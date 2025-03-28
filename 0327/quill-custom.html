@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <title>커스텀 툴바 버튼</title>
+    <link href="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.snow.css" rel="stylesheet" />
+    <style>
+        #editor-container {
+            height: 200px;
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>커스텀 툴바 버튼으로 사용자 함수 호출</h1>
+    <p>툴바에 "Custom" 버튼을 추가하고, 해당 버튼 클릭 시 사용자 정의 함수가 실행되도록
+        하세요.</p>
+    <div id="editor-container"></div>
+    <script src="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.js"></script>
+    <script>
+        // 툴바 옵션 배열에 커스텀 버튼 추가 (여기서는 { custom: 'Custom' }로 지정)
+        const toolbarOptions = [
+            ['bold', 'italic', 'underline'],
+            ['link', 'image'],
+            [{ 'custom': 'Custom' }]
+        ];
+        // Quill 에디터 초기화 시, 툴바 핸들러에 custom 버튼 함수를 등록
+        const quill = new Quill('#editor-container', {
+            theme: 'snow',
+            modules: {
+                toolbar: {
+                    container: toolbarOptions,
+                    handlers: {
+                        'custom': function () {
+                            console.log("Custom module triggered");
+                            alert("Custom module triggered");
+                        }
+                    }
+                }
+            }
+        });
+        // 툴바에 버튼을 추가
+        const toolbar = quill.root.closest('.ql-toolbar');  // .ql-toolbar를 찾아 툴바 엘리먼트
+        toolbar.appendChild(Custom);
+    </script>
+</body>
+
+</html>

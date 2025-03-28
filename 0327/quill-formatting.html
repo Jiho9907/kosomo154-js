@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <title>03 - 서식 및 스타일 적용</title>
+    <link href="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.snow.css" rel="stylesheet" />
+    <style>
+        #editor-container {
+            height: 200px;
+            border: 1px solid #ccc;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>서식 및 스타일 적용</h1>
+    <div id="editor-container"></div>
+    <button id="apply-format">포맷 적용 (첫 글자 이탤릭)</button>
+    <script src="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.js"></script>
+    <script>
+        const quill = new Quill('#editor-container', {
+            theme: 'snow',
+            modules: {
+                toolbar: [['bold', 'italic', 'underline']]
+            }
+        });
+        // "포맷 적용" 버튼을 클릭하면 에디터 시작 부분 한 글자에 이탤릭 효과 적용
+        document.getElementById('apply-format').addEventListener('click', function () {
+            quill.formatText(0, 1, 'italic', true);
+        });
+    </script>
+</body>
+
+</html>

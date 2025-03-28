@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #div1 {
+            width: 80vw;
+            height: 20vh;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <textarea></textarea>
+    <div id="div1" contenteditable="true"></div>
+
+    <button onclick="document.execCommand('bold')">Bold</button>
+    <button onclick="document.execCommand('italic')">Italic</button>
+    <button onclick="document.execCommand('underline')">Underline</button>
+    <button onclick="document.execCommand('justifyLeft')">Left Align</button>
+    <button onclick="document.execCommand('justifyCenter')">Center Align</button>
+    <button onclick="document.execCommand('justifyRight')">Right Align</button>
+</body>
+
+</html>

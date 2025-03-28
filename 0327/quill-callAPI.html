@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <title>연습문제 17 - API 연쇄 호출</title>
+    <link href="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.snow.css" rel="stylesheet" />
+    <style>
+        #editor-container {
+            height: 200px;
+            border: 1px solid #ccc;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>연습문제 17: 여러 API 메서드 연쇄 호출</h1>
+    <p>버튼 클릭 시 "Hello " 삽입 → "World" (굵게) 삽입 → 시작 5 글자 삭제 순서대로
+        실행합니다.</p>
+    <div id="editor-container"></div>
+    <button id="chain-btn">연쇄 작업 실행</button>
+
+    <script src="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.js"></script>
+    <script>
+        const quill = new Quill('#editor-container', { theme: 'snow' });
+        document.getElementById('chain-btn').addEventListener('click', () => {
+            // 1. "Hello " 삽입
+            quill.insertText(0, "Hello ");
+            // 2. 에디터의 현재 길이를 구해 "World"를 굵게 삽입
+            quill.insertText(quill.getLength(), "World", { bold: true });
+            // 3. 인덱스 0 부터 5 글자 삭제
+            quill.deleteText(0, 5);
+        });
+    </script>
+</body>
+
+</html>

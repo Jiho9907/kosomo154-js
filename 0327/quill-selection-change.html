@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>selection-change 이벤트</title>
+    <link href="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.snow.css" rel="stylesheet" />
+    <style>
+        #editor-container {
+            height: 200px;
+            border: 1px solid #ccc;
+            margin-bottom: 10px;
+        }
+
+        #log {
+            border: 1px solid #ddd;
+            background: #f9f9f9;
+            padding: 10px;
+            height: 100px;
+            overflow-y: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>연습문제 4: selection-change 이벤트로 선택 영역 로깅</h1>
+    <div id="editor-container"></div>
+    <h3>선택 영역 로그</h3>
+    <div id="log"></div>
+    <script src="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.js"></script>
+    <script>
+        const quill = new Quill('#editor-container', { theme: 'snow' });
+        quill.on('selection-change', (range, oldRange, source) => {
+            const logDiv = document.getElementById('log');
+            const message = range
+                ? "선택 영역: " + JSON.stringify(range)
+                : "에디터 블러됨 (선택 없음)";
+            // 이전 로그 아래에 새로운 로그 줄 추가
+            logDiv.innerHTML += `<p>${message}</p>`;
+        });
+    </script>
+</body>
+
+</html>

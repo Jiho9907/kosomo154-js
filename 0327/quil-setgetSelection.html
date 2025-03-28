@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <title>연습문제 16 - 커서 이동</title>
+    <link href="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.snow.css" rel="stylesheet" />
+    <style>
+        #editor-container {
+            height: 200px;
+            border: 1px solid #ccc;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>연습문제 16: setSelection()/getSelection()으로 커서 이동</h1>
+    <p>각 버튼을 클릭하여 커서를 처음이나 마지막 위치로 이동시키고, 콘솔에서 현재 선택 영역을
+        확인하세요.</p>
+    <div id="editor-container"></div>
+    <button id="move-start-btn">커서를 시작으로 이동</button>
+    <button id="move-end-btn">커서를 끝으로 이동</button>
+    
+    <script src="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.js"></script>
+    <script>
+        const quill = new Quill('#editor-container', { theme: 'snow' });
+        document.getElementById('move-start-btn').addEventListener('click', () => {
+            quill.setSelection(0);
+            console.log("현재 선택:", quill.getSelection());
+        });
+        document.getElementById('move-end-btn').addEventListener('click', () => {
+            const length = quill.getLength();
+            quill.setSelection(length - 1);
+            console.log("현재 선택:", quill.getSelection());
+        });
+    </script>
+</body>
+
+</html>

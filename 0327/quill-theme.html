@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <title>테마 전환: Snow vs Bubble</title>
+    <!-- 두 테마의 CSS 파일 (v2.0.3) -->
+    <link href="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.snow.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.bubble.css" rel="stylesheet" />
+    <style>
+        .editor {
+            height: 200px;
+            border: 1px solid #ccc;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>연습문제 2: 테마 전환</h1>
+    <h2>Snow 테마 에디터</h2>
+    <div id="snow-editor" class="editor"></div>
+    <h2>Bubble 테마 에디터</h2>
+    <div id="bubble-editor" class="editor"></div>
+    <script src="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.js"></script>
+    <script>
+        // Snow 테마 에디터 초기화 (툴바는 기본 제공)
+        new Quill('#snow-editor', {
+            theme: 'snow',
+            modules: { toolbar: [['bold', 'italic', 'underline']] }
+        });
+        // Bubble 테마 에디터 초기화 (툴바는 생략 가능)
+        new Quill('#bubble-editor', {
+            theme: 'bubble'
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.snow.css" rel="stylesheet" />
+    <style>
+        #container {
+            height : 200px;
+            border : 1px solid black;
+            margin-bottom: 10px;
+        }
+        pre{
+            background-color: #f3f3f3;
+            padding: 10px;
+            border: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+    <div id="container"></div>
+    <!-- button#cont{콘텐츠 불러오기}+button#reset{초기화}+h1{Delta 출력}+pre#output -->
+    <button id="cont">콘텐츠 불러오기</button>
+    <button id="reset">초기화</button>
+    <h1>Delta 출력</h1>
+    <pre id="output"></pre>
+
+    <script src="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.js"></script>
+    <script>
+        //에디터 초기화
+        const quill = new Quill("#container", {
+            theme : 'snow', // Quill 에디터 생성시 쓸 테마
+            modules : { // Quill에서 쓸 기본 옵션
+                 toolbar : [['bold','italic', 'underline', 'strike']] //툴바에서 활성화할 버튼 리스트
+            }   //각각 ['굵게', '이탤릭', '밑줄', '라인관통']
+        })
+
+        quill.on("text-change", function(delta, oldDelta, source){
+            document.getElementById("output").textContent 
+                = JSON.stringify(quill.getContents(), null, 2);
+        })
+
+        // "콘텐츠 불러오기" 버튼 클릭 시 Delta를 alert로 보여줌
+        document.getElementById('cont').addEventListener('click', function () {
+            alert("Delta 형식:\n" + JSON.stringify(quill.getContents(), null, 2));
+        });
+ 
+        // "내용 초기화" 버튼 클릭 시 기본 텍스트를 설정
+        document.getElementById('reset').addEventListener('click', function () {
+            quill.setText("안녕하세요! Quill 에디터에 오신 것을 환영합니다.");
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>선택 텍스트 이탤릭 토글</title>
+    <link href="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.snow.css" rel="stylesheet" />
+    <style>
+        #editor-container {
+            height: 200px;
+            border: 1px solid #ccc;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>연습문제 8: 선택 텍스트에 이탤릭 토글 적용</h1>
+    <p>텍스트 선택 후 버튼을 클릭하면 해당 부분의 이탤릭 서식이 토글되어야 합니다.</p>
+    <div id="editor-container"></div>
+    <button id="toggle-italic-btn">이탤릭 토글</button>
+    <script src="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.js"></script>
+    <script>
+        const quill = new Quill('#editor-container', { theme: 'snow' });
+        document.getElementById('toggle-italic-btn').addEventListener('click', () => {
+            const range = quill.getSelection();
+            if (range) {
+                // 현재 선택 영역에 적용된 italic 여부를 확인하고 반전시킴
+                const currentFormat = quill.getFormat(range);
+                quill.format('italic', !currentFormat.italic);
+            } else {
+                alert("먼저 에디터의 텍스트를 선택하세요.");
+            }
+        });
+    </script>
+
+</body>
+
+</html>

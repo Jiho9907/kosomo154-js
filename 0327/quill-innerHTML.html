@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <title>에디터 내부 HTML 출력</title>
+    <link href="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.snow.css" rel="stylesheet" />
+    <style>
+        #editor-container {
+            height: 200px;
+            border: 1px solid #ccc;
+            margin-bottom: 10px;
+        }
+
+        #html-output {
+            border: 1px solid #ddd;
+            padding: 10px;
+            background: #f4f4f4;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>연습문제 15: 에디터 내부 HTML 출력</h1>
+    <p>버튼 클릭 시 에디터의 내부 HTML 을 출력 영역에 표시하세요.</p>
+    <div id="editor-container"></div>
+    <button id="show-html-btn">내부 HTML 보기</button>
+    <div id="html-output"></div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.js"></script>
+    <script>
+        const quill = new Quill('#editor-container', { theme: 'snow' });
+        document.getElementById('show-html-btn').addEventListener('click', () => {
+            document.getElementById('html-output').textContent = quill.root.innerHTML;
+        });
+    </script>
+</body>
+
+</html>
