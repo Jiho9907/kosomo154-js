@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ko">
+ 
+<head>
+    <meta charset="UTF-8">
+    <title>콜백 및 라벨 예제</title>
+    <style>
+        #labelBox {
+            width: 100px;
+            height: 100px;
+            background-color: #9b59b6;
+            margin: 100px auto;
+            line-height: 100px;
+            text-align: center;
+            color: #fff;
+            border-radius: 5px;
+            position: relative;
+        }
+ 
+        #message {
+            text-align: center;
+            font-size: 16px;
+            color: #34495e;
+        }
+ 
+        button {
+            padding: 8px 14px;
+            margin: 5px;
+            background-color: #8e44ad;
+            color: #fff;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+ 
+<body>
+    <h2>콜백 및 라벨 예제</h2>
+    <div id="labelBox">Label</div>
+    <p id="message">메시지가 여기에 표시됩니다.</p>
+    <div style="text-align:center;">
+        <button onclick="tlLabel.restart()">타임라인 재생</button>
+        <button onclick="tlLabel.seek('midLabel')">라벨로 점프 (Mid)</button>
+    </div>
+    <!-- GSAP 로드 -->
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js"></script>
+    <script>
+        // 타임라인 생성 (기본 옵션: duration 1초)
+        let tlLabel = gsap.timeline({ defaults: { duration: 1 } });
+ 
+        // 첫 번째 tween: 오른쪽 이동
+        tlLabel.to("#labelBox", { x: 300 })
+ 
+            // 콜백 추가: tween이 끝난 후 메시지 업데이트
+            .call(() => {
+                document.getElementById("message").textContent = "첫 번째 tween 완료!";
+            })
+ 
+            // 라벨 추가: 이 라벨이 "midLabel"입니다.
+            .addLabel("midLabel")
+ 
+            // 두 번째 tween: 회전
+            .to("#labelBox", { rotation: 360 }, "+=0.5")
+ 
+            .call(() => {
+                document.getElementById("message").textContent = "두 번째 tween 완료!";
+            })
+ 
+            // 마지막 tween: 원위치 복귀
+            .to("#labelBox", { x: 0, rotation: 0 }, "+=0.5")
+            .call(() => {
+                document.getElementById("message").textContent = "애니메이션 완료!";
+            });
+    </script>
+</body>
+ 
+</html>

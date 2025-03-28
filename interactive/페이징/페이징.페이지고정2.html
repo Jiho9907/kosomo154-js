@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>페이징</title>
+  <style>
+    body {
+      /* transition : all 2.5s cubic-bezier(0.075, 0.82, 0.165, 1); */
+      /* overflow-x: hidden; 스크롤바가 가로 방향으로 생기지 않도록 설정합니다. */
+        /* 페이지의 배경색을 #e8e19b로 설정합니다. */
+      overflow-x: hidden;
+      background-color: #e8e19b;
+    }
+
+    section {
+      /* 섹션의 위치를 상대 위치로 설정합니다. */
+        /* 섹션의 높이를 뷰포트의 높이(100vh)로 설정합니다. */
+        /* 섹션의 너비를 뷰포트의 너비(100vw)로 설정합니다. */
+      position: relative;
+      height: 100vh;
+      width: 100vw;
+      /* border-top: 1px dashed #333; */
+    }
+
+    section.active .image {
+       /* 활성 섹션의 이미지를 표시합니다. */
+      display: block;
+      /* opacity: 1; */
+    }
+
+    .innerWrap {
+      /* 내부 래퍼의 패딩을 120px로 설정합니다. */
+        /* 내부 래퍼의 너비를 340px로 설정합니다. */
+        /* 내부 래퍼의 상단 마진을 50px로 설정합니다. */
+        /* 내부 래퍼의 z-index를 50으로 설정하여 다른 요소 위에 표시되도록 합니다. */
+      padding: 120px;
+      width: 340px;
+      margin-top: 50px;
+      z-index: 50;
+    }
+
+    .image {
+      /* 이미지의 위치를 고정 위치로 설정합니다. */
+        /* 이미지를 오른쪽에서 5% 떨어진 위치에 배치합니다. */
+        /* 이미지를 상단에서 20% 떨어진 위치에 배치합니다. */
+        /* 이미지를 기본적으로 표시하지 않습니다. */
+        /* 이미지의 너비를 800px로 설정합니다. */
+      position: fixed;
+      right: 5%;
+      top: 20%;
+      display: none;
+      /* opacity: 0; */
+      width: 800px;
+      /* transition : all 1s ease-in-out; */
+    }
+
+
+    h1 {
+       /* h1 요소의 색상을 #111로 설정합니다. */
+        /* h1 요소의 텍스트를 중앙 정렬합니다. */
+        /* h1 요소의 상단 패딩을 뷰포트 높이의 40%로 설정합니다. */
+        /* h1 요소의 글꼴 크기를 60px로 설정합니다. */
+      color: #111;
+      text-align: center;
+      padding-top: 40vh;
+      font-size: 60px;
+    }
+
+    h2 {
+      /* h2 요소의 색상을 #111로 설정합니다. */
+      color: #111;
+    }
+
+    p {
+      /* p 요소의 색상을 #333으로 설정합니다. */
+        /* p 요소의 글꼴 크기를 16px로 설정합니다. */
+        /* p 요소의 줄 간격을 24px로 설정합니다. */
+      color: #333;
+      font-size: 16px;
+      line-height: 24px;
+    }
+
+    .pointWrap {
+      /* 포인트 래퍼의 위치를 고정 위치로 설정합니다. */
+        /* 포인트 래퍼를 오른쪽에서 3vw 떨어진 위치에 배치합니다. */
+        /* 포인트 래퍼를 상단에서 40% 떨어진 위치에 배치합니다. */
+        /* 포인트 래퍼의 z-index를 100으로 설정하여 다른 요소 위에 표시되도록 합니다. */
+      position: fixed;
+      right: 3vw;
+      top: 40%;
+      z-index: 100;
+    }
+
+    .pointWrap li {
+      /* 포인트 래퍼 내부의 li 요소에 대해 목록 스타일을 없앱니다. */
+        /* li 요소의 너비를 12px로 설정합니다. */
+        /* li 요소의 높이를 12px로 설정합니다. */
+        /* li 요소의 상단 마진을 15px로 설정합니다. */
+        /* li 요소에 대해 커서를 포인터로 설정합니다. */
+        /* li 요소의 배경색을 #666으로 설정합니다. */
+        /* li 요소를 원형으로 만듭니다. */
+        /* li 요소의 배경색에 대해 0.3초 동안 ease-out 함수를 사용하여 전환 효과를 적용합니다. */
+      list-style: none;
+      width: 12px;
+      height: 12px;
+      margin-top: 15px;
+      cursor: pointer;
+      background-color: #666;
+      border-radius: 50%;
+      transition: background .3s ease-out;
+    }
+
+    .pointWrap li.active {
+      /* 활성 li 요소의 배경색을 #000으로 설정합니다. */
+      background-color: #000;
+    }
+  </style>
+  <script>
+    window.onload = function () {
+      var section = document.getElementsByTagName("section");
+      // 섹션 요소를 모두 선택합니다.
+      var pointBtn = document.querySelectorAll('.pointWrap li');
+      // .pointWrap li 요소를 모두 선택합니다.
+
+      var pageNum = 0;
+      // 현재 페이지 번호를 저장하는 변수를 선언하고 0으로 초기화합니다.
+      var totalNum = section.length;
+      // 전체 페이지 수를 저장하는 변수를 선언하고 섹션의 수로 초기화합니다.
+
+      for (var i = 0; i < pointBtn.length; i++) {
+        (function (idx) {
+          pointBtn[idx].onclick = function () {
+            // 각 포인트 버튼을 클릭하면 실행되는 함수입니다.
+            pageNum = idx;
+            // 클릭한 버튼의 인덱스를 pageNum 변수에 저장합니다.
+            pageChangeFunc();
+            // 페이지 변경 함수를 호출합니다.
+
+            window.scrollTo({
+              top: section[pageNum].offsetTop,
+              behavior: 'smooth',
+            })
+            // 클릭한 버튼에 해당하는 섹션으로 스크롤합니다.
+          }
+        })(i);
+
+      }
+
+
+      //스크롤 이벤트
+      window.addEventListener("scroll", function (event) {
+        var scroll = this.scrollY;
+        // 현재 스크롤 위치를 저장하는 변수를 선언하고 window.scrollY로 초기화합니다.
+
+        for (var i = 0; i < totalNum; i++) {
+          if (scroll > section[i].offsetTop - window.outerHeight / 1.5 && scroll < section[i].offsetTop - window.outerHeight / 1.5 + section[i].offsetHeight) {
+            pageNum = i;
+            // 스크롤 위치가 현재 섹션 내에 있으면 pageNum 변수를 해당 섹션의 인덱스로 업데이트합니다.
+            break;
+          }
+        }
+        pageChangeFunc();
+        // 페이지 변경 함수를 호출합니다.
+      });
+
+
+      //페이지 변경
+      function pageChangeFunc() {
+        for (var i = 0; i < totalNum; i++) {
+          section[i].classList.remove("active");
+          // 모든 섹션에서 "active" 클래스를 제거합니다.
+          pointBtn[i].classList.remove("active");
+          // 모든 포인트 버튼에서 "active" 클래스를 제거합니다.
+        }
+        section[pageNum].classList.add("active");
+        // 현재 페이지에 해당하는 섹션에 "active" 클래스를 추가합니다.
+        pointBtn[pageNum].classList.add("active");
+        // 현재 페이지에 해당하는 포인트 버튼에 "active" 클래스를 추가합니다.
+
+      }
+
+      //페이지 로드되면 바로 실행
+      pageChangeFunc();
+      // 페이지가 로드되면 페이지 변경 함수를 호출합니다.
+    }
+
+  </script>
+</head>
+
+<body>
+  <ul class="pointWrap">
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+  </ul>
+
+  <section>
+    <h1>페이지 타이틀</h1>
+  </section>
+
+  <section>
+    <div class="innerWrap">
+      <h2>page 1</h2>
+      <p>스케치를 한다</p>
+    </div>
+    <img src="./image/pic_1.jpg" class="image" alt="나이키 스니커즈 스케치">
+  </section>
+
+  <section>
+    <div class="innerWrap">
+      <h2>page 2</h2>
+      <p>선을 정리한다.</p>
+    </div>
+    <img src="./image/pic_2.jpg" class="image" alt="">
+  </section>
+
+  <section>
+    <div class="innerWrap">
+      <h2>page 3</h2>
+      <p>컬러를 넣는다.</p>
+    </div>
+    <img src="./image/pic_3.jpg" class="image" alt="">
+  </section>
+
+  <section>
+    <div class="innerWrap">
+      <h2>page 4</h2>
+      <p>블랙 컬러를 넣는다.</p>
+    </div>
+    <img src="./image/pic_4.jpg" class="image" alt="">
+  </section>
+
+  <section>
+    <div class="innerWrap">
+      <h2>page 4</h2>
+      <p>포인트 컬러를 칠해줍니다.</p>
+    </div>
+    <img src="./image/pic_5.jpg" class="image" alt="">
+  </section>
+
+  <section>
+    <div class="innerWrap">
+      <h2>page 4</h2>
+      <p>그리고 마무리</p>
+    </div>
+    <img src="./image/pic_6.jpg" class="image" alt="">
+  </section>
+
+  <section>
+    <div class="innerWrap">
+      <h2>page 4</h2>
+      <p>스티치를 넣으면 끝</p>
+    </div>
+    <img src="./image/pic_7.jpg" class="image" alt="">
+  </section>
+</body>
+
+</html>

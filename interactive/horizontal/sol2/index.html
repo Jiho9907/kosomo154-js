@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* Google Fonts에서 Oxanium과 Great Vibes 폰트를 가져옵니다. */
+        @import url("https://fonts.googleapis.com/css2?family=Oxanium:wght@700&family=Great+Vibes&display=swap");
+
+        /* 사용자 정의 속성(--k)을 정의합니다. 초기값은 0입니다. */
+        @property --k {
+            syntax: "<number>";
+            initial-value: 0;
+            inherits: true;
+        }
+
+        /* HTML 요소의 기본 스타일을 설정합니다. */
+        html {
+            overflow-x: hidden; /* 수평 스크롤을 숨깁니다. */
+            scrollbar-color: gold #121212; /* 스크롤바 색상을 설정합니다. */
+        }
+
+        /* body 요소의 기본 스타일을 설정합니다. */
+        body {
+            margin: 0; /* 기본 여백을 제거합니다. */
+        }
+
+        /* header와 footer 요소의 스타일을 설정합니다. */
+        header,
+        footer {
+            display: grid; /* 그리드 레이아웃을 사용합니다. */
+            place-content: center; /* 콘텐츠를 중앙에 배치합니다. */
+            min-height: 100vh; /* 최소 높이를 뷰포트 높이로 설정합니다. */
+            background: silver; /* 배경색을 은색으로 설정합니다. */
+            font-size: 2em; /* 폰트 크기를 설정합니다. */
+            font: 700 4em oxanium, sans-serif; /* 폰트를 설정합니다. */
+            text-shadow: 1px 1px 3px; /* 텍스트 그림자를 설정합니다. */
+        }
+
+        /* footer 요소의 폰트를 설정합니다. */
+        footer {
+            font-family: Great Vibes, cursive; /* 폰트를 설정합니다. */
+        }
+
+        /* section 요소의 스타일을 설정합니다. */
+        section {
+            height: 500vh; /* 높이를 뷰포트 높이의 500배로 설정합니다. */
+            background: #212121; /* 배경색을 설정합니다. */
+        }
+
+        /* animation-timeline을 지원하는 경우의 스타일을 설정합니다. */
+        @supports (animation-timeline: view()) {
+            section {
+                /* 배경을 설정합니다. */
+                background-image: linear-gradient(90deg, rgba(255, 215, 0, calc(1 - round(down, var(--k)))) calc(var(--k)*100%), #0000 0);
+                background-position: 0 0;
+                background-size: 100% 0.5rem;
+                background-repeat: no-repeat;
+                background-attachment: fixed;
+                background-color: #212121;
+                /* background: linear-gradient(90deg, rgba(255, 215, 0, calc(1 - round(down, var(--k)))) calc(var(--k)*100%), #0000 0) 0 0/100% 0.5rem no-repeat fixed #212121;  */
+                animation: ani1 1s both; /* 애니메이션을 설정합니다. */
+                animation-timeline: view(); /* 애니메이션 타임라인을 설정합니다. */
+                animation-range: contain; /* 애니메이션 범위를 설정합니다. */
+            }
+        }
+
+        /* ani1 키프레임 애니메이션을 정의합니다. */
+        @keyframes ani1 {
+            to {
+                --k: 1; /* 애니메이션이 끝날 때 --k 값을 1로 설정합니다. */
+            }
+        }
+
+        /* h2 요소의 스타일을 설정합니다. */
+        h2 {
+            color: #ededed; /* 텍스트 색상을 설정합니다. */
+            font: 900 2em/2 sans-serif; /* 폰트를 설정합니다. */
+        }
+
+        /* img 요소의 스타일을 설정합니다. */
+        img {
+            width: min(30vw, 70vh); /* 너비를 설정합니다. */
+            aspect-ratio: 1; /* 가로 세로 비율을 1:1로 설정합니다. */
+            object-fit: cover; /* 이미지를 커버 모드로 설정합니다. */
+            box-shadow: 2px 2px 5px; /* 그림자를 설정합니다. */
+        }
+
+        /* .stick 클래스의 스타일을 설정합니다. */
+        .stick {
+            box-sizing: border-box; /* 박스 크기 계산 방식을 설정합니다. */
+            display: grid; /* 그리드 레이아웃을 사용합니다. */
+            align-content: center; /* 콘텐츠를 중앙에 배치합니다. */
+            position: sticky; /* 스크롤 시 고정 위치를 설정합니다. */
+            top: 0; /* 상단 위치를 0으로 설정합니다. */
+            padding: 2em; /* 패딩을 설정합니다. */
+            height: 100vh; /* 높이를 뷰포트 높이로 설정합니다. */
+        }
+
+        /* .wrap 클래스의 스타일을 설정합니다. */
+        .wrap {
+            display: grid; /* 그리드 레이아웃을 사용합니다. */
+            grid-auto-flow: column; /* 그리드 항목을 열 방향으로 배치합니다. */
+            grid-gap: 2em; /* 그리드 항목 간격을 설정합니다. */
+            translate: calc(var(--k)*(50vw - 100%)); /* 변환을 설정합니다. */
+        }
+    </style>
+</head>
+
+<body>
+    <header>scroll down</header>
+    <section class="h-scroll">
+        <div class="stick">
+            <h2>Keep scrolling...</h2>
+            <div class="wrap">
+                <img src="./img/photo1.jpeg" alt="">
+                <img src="./img/photo2.jpeg" alt="">
+                <img src="./img/photo3.jpeg" alt="">
+                <img src="./img/photo4.jpeg" alt="">
+                <img src="./img/photo5.jpeg" alt="">
+                <img src="./img/photo6.jpeg" alt="">
+                <img src="./img/photo7.jpeg" alt="">
+                <img src="./img/photo8.jpeg" alt="">
+            </div>
+        </div>
+    </section>
+    <footer>Fin.</footer>
+</body>
+
+</html>

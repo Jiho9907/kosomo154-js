@@ -1,0 +1,129 @@
+@charset "utf-8"; /* UTF-8 문자 인코딩을 설정합니다. */
+@import url('https://fonts.googleapis.com/css?family=Poiret+One'); /* 'Poiret One' 폰트를 가져옵니다. */
+
+* {
+	margin: 0px; /* 모든 요소의 외부 여백을 제거합니다. */
+	padding: 0px; /* 모든 요소의 내부 여백을 제거합니다. */
+}
+body { 
+	width: 100%; /* body 요소의 너비를 브라우저 창의 너비와 동일하게 설정합니다. */
+	height: 100vh; /* body 요소의 높이를 브라우저 창의 높이와 동일하게 설정합니다. */
+	overflow: hidden; /* body 요소의 너비나 높이를 초과하는 내용은 숨깁니다. */
+	animation: sky linear 20s infinite; /* 'sky'라는 이름의 애니메이션을 선형 속도로 20초 동안 무한 반복합니다. */
+}
+h1 { 
+	width: 1000px; /* h1 요소의 너비를 1000px로 설정합니다. */
+	position: absolute; /* h1 요소의 위치를 절대 위치로 설정합니다. */
+	top: 50%; /* h1 요소의 상단을 부모 요소의 중앙에 위치시킵니다. */
+	left: 50%; /* h1 요소의 왼쪽을 부모 요소의 중앙에 위치시킵니다. */
+	transform: translate(-50%,150%); /* h1 요소를 좌측으로 50%, 하단으로 150% 이동시킵니다. */
+	font: 92px/1 "Poiret one"; /* h1 요소의 폰트 크기를 92px, 줄 간격을 1, 폰트 패밀리를 'Poiret One'으로 설정합니다. */
+	color: #fff; /* h1 요소의 텍스트 색상을 흰색으로 설정합니다. */
+	text-align: center; /* h1 요소의 텍스트를 가운데 정렬합니다. */
+	animation: day linear 20s infinite; /* 'day'라는 이름의 애니메이션을 선형 속도로 20초 동안 무한 반복합니다. */
+}
+section { 
+	width: 1000px; /* section 요소의 너비를 1000px로 설정합니다. */
+	height: 400px; /* section 요소의 높이를 400px로 설정합니다. */
+	position: absolute; /* section 요소의 위치를 절대 위치로 설정합니다. */
+	top: 50%; /* section 요소의 상단을 부모 요소의 중앙에 위치시킵니다. */
+	left: 50%; /* section 요소의 왼쪽을 부모 요소의 중앙에 위치시킵니다. */
+	transform: translate(-50%,-70%); /* section 요소를 좌측으로 50%, 상단으로 70% 이동시킵니다. */
+}
+section .sky {
+	position: absolute; /* .sky 클래스를 가진 요소의 위치를 절대 위치로 설정합니다. */
+	width: 100%; /* .sky 클래스를 가진 요소의 너비를 부모 요소의 너비와 동일하게 설정합니다. */
+	height: 100%; /* .sky 클래스를 가진 요소의 높이를 부모 요소의 높이와 동일하게 설정합니다. */
+}
+section .sky .sun {
+	position: absolute; /* .sun 클래스를 가진 요소의 위치를 절대 위치로 설정합니다. */
+	top: -150px; /* .sun 클래스를 가진 요소의 상단을 부모 요소의 상단으로부터 -150px 위치에 설정합니다. */
+	left: 50%; /* .sun 클래스를 가진 요소의 왼쪽을 부모 요소의 중앙에 위치시킵니다. */
+	margin-left: -100px; /* .sun 클래스를 가진 요소의 왼쪽 마진을 -100px로 설정하여 요소를 좌측으로 이동시킵니다. */
+	transform-origin: center 500px; /* .sun 클래스를 가진 요소의 변형 원점을 설정합니다. */
+	animation: sun linear 20s infinite; /* 'sun'라는 이름의 애니메이션을 선형 속도로 20초 동안 무한 반복합니다. */
+}
+section .sky .cloud1 {
+	position: absolute; /* .cloud1 클래스를 가진 요소의 위치를 절대 위치로 설정합니다. */
+	top: -30px; /* .cloud1 클래스를 가진 요소의 상단을 부모 요소의 상단으로부터 -30px 위치에 설정합니다. */
+	left: 10%; /* .cloud1 클래스를 가진 요소의 왼쪽을 부모 요소의 너비의 10% 위치에 설정합니다. */
+	animation: flow linear 10s infinite; /* 'flow'라는 이름의 애니메이션을 선형 속도로 10초 동안 무한 반복합니다. */
+}
+section .sky .cloud2 {
+	position: absolute; /* .cloud2 클래스를 가진 요소의 위치를 절대 위치로 설정합니다. */
+	top: 20px; /* .cloud2 클래스를 가진 요소의 상단을 부모 요소의 상단으로부터 20px 위치에 설정합니다. */
+	left: 0%; /* .cloud2 클래스를 가진 요소의 왼쪽을 부모 요소의 왼쪽 끝에 위치시킵니다. */
+	animation: flow linear 20s infinite; /* 'flow'라는 이름의 애니메이션을 선형 속도로 20초 동안 무한 반복합니다. */
+}
+section .town .night { 
+	position: absolute; /* .night 클래스를 가진 요소의 위치를 절대 위치로 설정합니다. */
+	bottom: 0px; /* .night 클래스를 가진 요소의 하단을 부모 요소의 하단에 위치시킵니다. */
+	left: 40px; /* .night 클래스를 가진 요소의 왼쪽을 부모 요소의 왼쪽으로부터 40px 위치에 설정합니다. */
+}
+section .town .day { 
+	position: absolute; /* .day 클래스를 가진 요소의 위치를 절대 위치로 설정합니다. */
+	bottom: 0px; /* .day 클래스를 가진 요소의 하단을 부모 요소의 하단에 위치시킵니다. */
+	left: 40px; /* .day 클래스를 가진 요소의 왼쪽을 부모 요소의 왼쪽으로부터 40px 위치에 설정합니다. */
+	animation: day linear 20s infinite; /* 'day'라는 이름의 애니메이션을 선형 속도로 20초 동안 무한 반복합니다. */
+}
+section .town .circle {
+	position: absolute; /* .circle 클래스를 가진 요소의 위치를 절대 위치로 설정합니다. */
+	bottom: 104px; /* .circle 클래스를 가진 요소의 하단을 부모 요소의 하단으로부터 104px 위치에 설정합니다. */
+	left: 50%; /* .circle 클래스를 가진 요소의 왼쪽을 부모 요소의 중앙에 위치시킵니다. */
+	margin-left: -165px; /* .circle 클래스를 가진 요소의 왼쪽 마진을 -165px로 설정하여 요소를 좌측으로 이동시킵니다. */
+	opacity: 0.7; /* .circle 클래스를 가진 요소의 투명도를 0.7로 설정합니다. */
+	animation: rotation linear 20s infinite; /* 'rotation'이라는 이름의 애니메이션을 선형 속도로 20초 동안 무한 반복합니다. */
+}
+section .people {	
+	width: 100%; /* .people 클래스를 가진 요소의 너비를 부모 요소의 너비와 동일하게 설정합니다. */
+	height: 100%; /* .people 클래스를 가진 요소의 높이를 부모 요소의 높이와 동일하게 설정합니다. */
+	position: absolute; /* .people 클래스를 가진 요소의 위치를 절대 위치로 설정합니다. */
+	top: 0px; /* .people 클래스를 가진 요소의 상단을 부모 요소의 상단에 위치시킵니다. */
+	left: 0px; /* .people 클래스를 가진 요소의 왼쪽을 부모 요소의 왼쪽에 위치시킵니다. */
+	animation: day linear 20s infinite; /* 'day'라는 이름의 애니메이션을 선형 속도로 20초 동안 무한 반복합니다. */
+}
+section .people .man {
+	position: absolute; /* .man 클래스를 가진 요소의 위치를 절대 위치로 설정합니다. */
+	left: 0%; /* .man 클래스를 가진 요소의 왼쪽을 부모 요소의 왼쪽 끝에 위치시킵니다. */
+	bottom: 0px; /* .man 클래스를 가진 요소의 하단을 부모 요소의 하단에 위치시킵니다. */
+	animation: flow linear 7s infinite; /* 'flow'라는 이름의 애니메이션을 선형 속도로 7초 동안 무한 반복합니다. */
+}
+section .people .family {
+	position: absolute; /* .family 클래스를 가진 요소의 위치를 절대 위치로 설정합니다. */
+	left: 0%; /* .family 클래스를 가진 요소의 왼쪽을 부모 요소의 왼쪽 끝에 위치시킵니다. */
+	bottom: 0px; /* .family 클래스를 가진 요소의 하단을 부모 요소의 하단에 위치시킵니다. */
+	animation: flow linear 20s infinite; /* 'flow'라는 이름의 애니메이션을 선형 속도로 20초 동안 무한 반복합니다. */
+}
+
+@keyframes rotation {
+	0% {transform: rotate(0deg);} /* 애니메이션 시작 시 요소를 0도 회전시킵니다. */
+	100% {transform: rotate(360deg);} /* 애니메이션 종료 시 요소를 360도 회전시킵니다. */
+}
+@keyframes sky {
+	0% {background-color: #b08fcc;} /* 애니메이션 시작 시 배경색을 #b08fcc로 설정합니다. */
+	25% {background-color: #b1e1e2;} /* 애니메이션 25% 지점에서 배경색을 #b1e1e2로 설정합니다. */
+	50% {background-color: #fcd2e2;} /* 애니메이션 50% 지점에서 배경색을 #fcd2e2로 설정합니다. */
+	75% {background-color: #636888;} /* 애니메이션 75% 지점에서 배경색을 #636888로 설정합니다. */
+	100% {background-color: #b08fcc;} /* 애니메이션 종료 시 배경색을 #b08fcc로 설정합니다. */
+}
+@keyframes sun {
+	0% {opacity:0; transform: rotate(-90deg);} /* 애니메이션 시작 시 투명도를 0, 회전을 -90도로 설정합니다. */
+	25% {opacity:1; transform: rotate(-30deg);} /* 애니메이션 25% 지점에서 투명도를 1, 회전을 -30도로 설정합니다. */
+	50% {opacity:1; transform: rotate(30deg);} /* 애니메이션 50% 지점에서 투명도를 1, 회전을 30도로 설정합니다. */
+	75% {opacity:0; transform: rotate(90deg);} /* 애니메이션 75% 지점에서 투명도를 0, 회전을 90도로 설정합니다. */
+	100% {opacity:0; transform: rotate(-90deg);} /* 애니메이션 종료 시 투명도를 0, 회전을 -90도로 설정합니다. */
+}
+@keyframes day {
+	0% {opacity: 0;} /* 애니메이션 시작 시 투명도를 0으로 설정합니다. */
+	25% {opacity: 1;} /* 애니메이션 25% 지점에서 투명도를 1로 설정합니다. */
+	50% {opacity: 1;} /* 애니메이션 50% 지점에서 투명도를 1로 유지합니다. */
+	75% {opacity: 0;} /* 애니메이션 75% 지점에서 투명도를 0으로 설정합니다. */
+	100% {opacity: 0;} /* 애니메이션 종료 시 투명도를 0으로 설정합니다. */
+}
+@keyframes flow {
+	0% { left: 0%; opacity: 0;} /* 애니메이션 시작 시 왼쪽 위치를 0%, 투명도를 0으로 설정합니다. */
+	10% { opacity: 1; } /* 애니메이션 10% 지점에서 투명도를 1로 설정합니다. */
+	80% { opacity: 1; } /* 애니메이션 80% 지점에서 투명도를 1로 유지합니다. */
+	100% { left: 90%; opacity: 0;} /* 애니메이션 종료 시 왼쪽 위치를 90%, 투명도를 0으로 설정합니다. */
+}
+

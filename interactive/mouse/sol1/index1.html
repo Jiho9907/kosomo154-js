@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>sirup</title>
+    <style>
+        body {
+            width: 100%; /* body 요소의 너비를 100%로 설정합니다. */
+            height: 100vh; /* body 요소의 높이를 뷰포트의 높이와 동일하게 설정합니다. */
+            background: url(./images/bg-pc.webp) center center / cover no-repeat; /* body 요소의 배경 이미지를 설정하고, 이미지를 반복하지 않으며, 이미지의 위치를 요소의 중앙으로 설정하고, 이미지를 고정시킵니다. */
+            padding: 0; /* body 요소의 패딩을 0으로 설정합니다. */
+            margin: 0; /* body 요소의 마진을 0으로 설정합니다. */
+            overflow: hidden; /* body 요소의 너비와 높이를 벗어나는 내용을 숨깁니다. */
+        }
+
+        img {
+            width: 100%; /* img 요소의 너비를 100%로 설정합니다. */
+        }
+
+        .title {
+            text-align: center; /* .title 클래스를 가진 요소의 텍스트를 중앙 정렬합니다. */
+        }
+
+        .title img {
+            width: 150px; /* .title 클래스를 가진 요소의 자식 요소 중 img 요소의 너비를 150px로 설정합니다. */
+        }
+
+        .subTitle {
+            position: fixed; /* .subTitle 클래스를 가진 요소의 위치를 고정 위치로 설정합니다. 스크롤해도 화면에 계속 보이게 됩니다. */
+            top: 10%; /* .subTitle 요소의 상단을 부모 요소의 상단에서 10% 떨어진 위치에 맞춥니다. */
+            left: 20px; /* .subTitle 요소의 왼쪽을 부모 요소의 왼쪽에서 20px 떨어진 위치에 맞춥니다. */
+        }
+
+        .subTitle img {
+            width: 70px; /* .subTitle 클래스를 가진 요소의 자식 요소 중 img 요소의 너비를 70px로 설정합니다. */
+        }
+
+        .contWrap {
+            position: relative; /* .contWrap 클래스를 가진 요소의 위치를 상대 위치로 설정합니다. 이는 .contWrap 요소가 가장 가까운 상대 위치, 절대 위치, 또는 고정 위치의 부모 요소를 기준으로 위치를 잡을 수 있게 합니다. */
+            margin: 0 auto; /* .contWrap 요소의 마진을 상하로 0, 좌우로 자동으로 설정합니다. */
+            width: 80vw; /* .contWrap 요소의 너비를 뷰포트의 너비의 80%로 설정합니다. */
+            height: 100vh; /* .contWrap 요소의 높이를 뷰포트의 높이와 동일하게 설정합니다. */
+        }
+
+        .contWrap div {
+            position: absolute; /* .contWrap 클래스를 가진 요소의 자식 요소 중 div 요소의 위치를 절대 위치로 설정합니다. 이는 div 요소가 가장 가까운 상대 위치, 절대 위치, 또는 고정 위치의 부모 요소를 기준으로 위치를 잡을 수 있게 합니다. */
+        }
+
+        .contWrap div img {
+            transform-style: preserve-3d; /* div 요소의 자식 요소 중 img 요소의 변환 스타일을 3D로 유지합니다. */
+            transform-origin: 50% 50%; /* img 요소의 변환 원점을 요소의 중앙으로 설정합니다. */
+        }
+
+        .shadow {
+            width: 700px; /* .shadow 클래스를 가진 요소의 너비를 700px로 설정합니다. */
+            left: 50%; /* .shadow 요소의 왼쪽을 부모 요소의 왼쪽에서 50% 떨어진 위치에 맞춥니다. */
+            transform: translateX(-50%); /* .shadow 요소를 x축으로 왼쪽으로 50%만큼 이동시킵니다. */
+        }
+
+        .date {
+            width: 400px; /* .date 클래스를 가진 요소의 너비를 400px로 설정합니다. */
+            left: 50%; /* .date 요소의 왼쪽을 부모 요소의 왼쪽에서 50% 떨어진 위치에 맞춥니다. */
+            top: 70%; /* .date 요소의 상단을 부모 요소의 상단에서 70% 떨어진 위치에 맞춥니다. */
+            transform: translateX(-20%); /* .date 요소를 x축으로 왼쪽으로 20%만큼 이동시킵니다. */
+        }
+
+        .human {
+            width: 1200px; /* .human 클래스를 가진 요소의 너비를 1200px로 설정합니다. */
+            left: 50%; /* .human 요소의 왼쪽을 부모 요소의 왼쪽에서 50% 떨어진 위치에 맞춥니다. */
+            transform: translateX(-50%); /* .human 요소를 x축으로 왼쪽으로 50%만큼 이동시킵니다. */
+        }
+
+        .textImg {
+            width: 400px; /* .textImg 클래스를 가진 요소의 너비를 400px로 설정합니다. */
+            left: 50%; /* .textImg 요소의 왼쪽을 부모 요소의 왼쪽에서 50% 떨어진 위치에 맞춥니다. */
+            top: 30%; /* .textImg 요소의 상단을 부모 요소의 상단에서 30% 떨어진 위치에 맞춥니다. */
+            transform: translateX(-10%); /* .textImg 요소를 x축으로 왼쪽으로 10%만큼 이동시킵니다. */
+        }
+    </style>
+</head>
+
+<body>
+    <h1 class="title"><img src="./images/content-logo.svg" alt=""></h1>
+
+    <div class="contWrap">
+        <div class="shadow"><img src="./images/content-panel-pc.webp" alt=""></div>
+
+        <div class="date"><img src="./images/content-date-pc.svg" alt=""></div>
+
+        <div class="human"><img src="./images/content-artist.png" alt=""></div>
+
+        <div class="textImg"><img src="./images/content-rollbounce.png" alt=""></div>
+
+    </div>
+
+    <div class="subTitle">
+        <img src="./images/download.svg" alt="">
+    </div>
+    <script>
+        let x = 0; /* 마우스의 x 좌표를 저장할 변수 'x'를 선언하고 초기값을 0으로 설정합니다. */
+        let targetX = 0; /* 목표 x 좌표를 저장할 변수 'targetX'를 선언하고 초기값을 0으로 설정합니다. */
+        const speed = 0.1; /* 애니메이션의 속도를 저장할 상수 'speed'를 선언하고 값을 0.1로 설정합니다. */
+
+        const contentAll = document.querySelectorAll(".contWrap img"); /* '.contWrap' 클래스를 가진 요소의 자식 요소 중 img 요소를 모두 선택하여 'contentAll' 변수에 저장합니다. */
+        const shadow = contentAll[0]; /* 'contentAll' 변수에 저장된 요소 중 첫 번째 요소를 'shadow' 변수에 저장합니다. */
+        const date = contentAll[1]; /* 'contentAll' 변수에 저장된 요소 중 두 번째 요소를 'date' 변수에 저장합니다. */
+        const human = contentAll[2]; /* 'contentAll' 변수에 저장된 요소 중 세 번째 요소를 'human' 변수에 저장합니다. */
+        const textImg = contentAll[3]; /* 'contentAll' 변수에 저장된 요소 중 네 번째 요소를 'textImg' 변수에 저장합니다. */
+
+        window.addEventListener("mousemove", (event) => { /* 마우스가 움직일 때마다 아래의 콜백 함수를 실행합니다. */
+            x = event.pageX - window.innerWidth / 2; /* 마우스의 x 좌표에서 뷰포트의 너비의 절반을 뺀 값을 'x' 변수에 저장합니다. */
+        });
+
+        const loop = () => { /* 'loop'라는 이름의 함수를 선언합니다. */
+            targetX += (x - targetX) * speed; /* 'x' 변수와 'targetX' 변수의 차이에 'speed' 변수를 곱한 값을 'targetX' 변수에 더합니다. */
+
+            shadow.style.transform = `translateX(${targetX / 35}px)`; /* 'shadow' 변수에 저장된 요소를 x축으로 'targetX' 변수의 값의 35분의 1만큼 이동시킵니다. */
+            date.style.transform = `translateX(${targetX / 20}px)`; /* 'date' 변수에 저장된 요소를 x축으로 'targetX' 변수의 값의 20분의 1만큼 이동시킵니다. */
+            human.style.transform = `translateX(${-targetX / 20}px)`; /* 'human' 변수에 저장된 요소를 x축으로 'targetX' 변수의 값의 -20분의 1만큼 이동시킵니다. */
+            textImg.style.transform = `translateX(${-targetX / 10}px)`; /* 'textImg' 변수에 저장된 요소를 x축으로 'targetX' 변수의 값의 -10분의 1만큼 이동시킵니다. */
+            window.requestAnimationFrame(loop); /* 브라우저에 'loop' 함수를 다음 리페인트가 발생하기 전에 호출하도록 요청합니다. 이를 통해 부드러운 애니메이션을 만듭니다. */
+        };
+        loop(); /* 'loop' 함수를 호출합니다. */
+    </script>
+
+</body>
+
+</html>

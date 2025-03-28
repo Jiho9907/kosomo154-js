@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ko">
+ 
+<head>
+    <meta charset="UTF-8">
+    <title>타이밍 및 반복 제어 예제</title>
+    <style>
+        .box {
+            width: 100px;
+            height: 100px;
+            background: #3498db;
+            margin: 50px auto;
+            text-align: center;
+            line-height: 100px;
+            color: #fff;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+ 
+<body>
+    <h2>타이밍 및 반복 제어 예제</h2>
+    <div class="box" id="timingBox">Timing</div>
+ 
+    <!-- 최신 GSAP 라이브러리 로드 (버전 3.12.7) -->
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js"></script>
+    <script>
+        gsap.to("#timingBox", {
+            duration: 1,         // 1초 동안 애니메이션 실행
+            x: 300,              // x축으로 300px 이동
+            delay: 0.5,          // 시작 전 0.5초 지연
+            repeat: 2,           // 2번 반복 (총 3회 실행) - 첫 실행은 repeat에서 제외
+            repeatDelay: 0.3,    // 각 반복 사이 0.3초 대기
+            yoyo: true          // 반복 시 역방향 애니메이션 적용
+        });
+    </script>
+</body>
+ 
+</html>

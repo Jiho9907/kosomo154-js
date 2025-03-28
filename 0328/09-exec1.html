@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko">
+ 
+<head>
+    <meta charset="UTF-8">
+    <title>실행 및 렌더링 제어 예제</title>
+    <style>
+        .box {
+            width: 100px;
+            height: 100px;
+            background: #2ecc71;
+            margin: 50px auto;
+            text-align: center;
+            line-height: 100px;
+            color: #fff;
+            border-radius: 5px;
+        }
+ 
+        button {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            background-color: #27ae60;
+            color: #fff;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+ 
+<body>
+    <h2>실행 및 렌더링 제어 예제</h2>
+    <div class="box" id="executionBox">Execution</div>
+    <button onclick="playTween()">애니메이션 실행</button>
+ 
+    <!-- 최신 GSAP 라이브러리 로드 (버전 3.12.7) -->
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js"></script>
+    <script>
+        // Tween을 paused 상태로 생성하여 수동으로 실행할 수 있도록 합니다.
+        var tween = gsap.to("#executionBox", {
+            duration: 2,
+            x: 300,
+            paused: true,       // 자동 실행하지 않고 일시정지 상태로 생성
+            autoRound: true     // 애니메이션 진행 중 소수점 값을 정수로 반올림
+        });
+ 
+        function playTween() {
+            tween.play();
+        }
+    </script>
+</body>
+ 
+</html>

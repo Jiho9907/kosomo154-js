@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ko">
+ 
+<head>
+    <meta charset="UTF-8">
+    <title>이징 및 보간 제어 예제</title>
+    <style>
+        .box {
+            width: 100px;
+            height: 100px;
+            background: #e67e22;
+            margin: 50px auto;
+            text-align: center;
+            line-height: 100px;
+            color: #fff;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+ 
+<body>
+    <h2>이징 및 보간 제어 예제</h2>
+    <div class="box" id="easeBox">Ease</div>
+ 
+    <!-- 최신 GSAP 라이브러리 로드 (버전 3.12.7) -->
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js"></script>
+    <script>
+        gsap.to("#easeBox", {
+            duration: 2,          // 2초 동안 애니메이션 실행
+            x: 300,               // x축으로 이동
+            // ease: "elastic.out",  // 탄력형 easing 함수 적용
+            ease: "power3.out",
+            easeParams: [1, 0.3]   // easing 함수에 전달할 추가 매개변수
+        });
+    </script>
+</body>
+ 
+</html>

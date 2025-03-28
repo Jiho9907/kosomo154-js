@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ko">
+ 
+<head>
+    <meta charset="UTF-8">
+    <title>Flip 플러그인 기초 예제</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            padding: 40px;
+        }
+ 
+        .container {
+            width: 300px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-around;
+            transition: all 0.3s ease;
+        }
+ 
+        .container .box {
+            width: 80px;
+            height: 80px;
+            background: #3498db;
+            color: #fff;
+            line-height: 80px;
+            border-radius: 10px;
+        }
+
+        /* active 클래스가 적용되면 순서가 반전됨 */
+        .container.active {
+            flex-direction: row-reverse;
+        }
+    </style>
+</head>
+ 
+<body>
+    <h2>Flip 플러그인 기초 예제</h2>
+    <div class="container" id="flipContainer">
+        <div class="box">A</div>
+        <div class="box">B</div>
+    </div>
+    <button id="flipButton">Flip!</button>
+ 
+    <!-- GSAP 및 Flip 플러그인 (GSAP 3.11 이상 포함) 로드 -->
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/Flip.min.js"></script>
+    <script>
+        // Flip 플러그인 등록
+        gsap.registerPlugin(Flip);
+        const button = document.getElementById("flipButton");
+        const container = document.getElementById("flipContainer");
+ 
+        button.addEventListener("click", () => {
+            // 1. 현재 .box 요소들의 상태를 캡처
+            const state = Flip.getState(".box");
+            // 2. 컨테이너의 클래스를 토글하여 요소 순서 변경
+            container.classList.toggle("active");
+            // 3. 변경 상태를 기반으로 Flip 애니메이션 실행
+            Flip.from(state, {
+                duration: 1,
+                ease: "power1.inOut"
+            });
+        });
+    </script>
+</body>
+ 
+</html>

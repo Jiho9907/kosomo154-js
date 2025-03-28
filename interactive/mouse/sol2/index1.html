@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        html {
+            overflow-x: hidden; /* html 요소의 가로 스크롤을 숨깁니다. */
+        }
+
+        html,
+        body {
+            padding: 0; /* html 요소와 body 요소의 패딩을 0으로 설정합니다. */
+            margin: 0; /* html 요소와 body 요소의 마진을 0으로 설정합니다. */
+        }
+
+        .totalcontainer {
+            width: 100vw; /* .totalcontainer 클래스를 가진 요소의 너비를 뷰포트의 너비와 동일하게 설정합니다. */
+            height: 100vh; /* .totalcontainer 요소의 높이를 뷰포트의 높이와 동일하게 설정합니다. */
+            overflow: hidden; /* .totalcontainer 요소의 너비와 높이를 벗어나는 내용을 숨깁니다. */
+        }
+
+        .container1 {
+            transform: scaleX(1.11); /* .container1 클래스를 가진 요소의 가로 크기를 1.11배로 확대합니다. */
+        }
+
+        .container2 {
+            transform: scaleX(1.25); /* .container2 클래스를 가진 요소의 가로 크기를 1.25배로 확대합니다. */
+        }
+
+        .layer-1 {
+            height: 100vh; /* .layer-1 클래스를 가진 요소의 높이를 뷰포트의 높이와 동일하게 설정합니다. */
+            width: 100%; /* .layer-1 요소의 너비를 부모 요소의 너비와 동일하게 설정합니다. */
+            background-color: #fed8c1; /* .layer-1 요소의 배경 색상을 #fed8c1으로 설정합니다. */
+        }
+
+        .layer-2 {
+            background: url("./img/lay2.svg") no-repeat center center fixed; /* .layer-2 클래스를 가진 요소의 배경 이미지를 설정하고, 이미지를 반복하지 않으며, 이미지의 위치를 요소의 중앙으로 설정하고, 이미지를 고정시킵니다. */
+            animation: slide-in-top 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both; /* .layer-2 요소에 'slide-in-top' 애니메이션을 적용하고, 지속 시간을 0.5초로 설정하며, 타이밍 함수를 cubic-bezier(0.25, 0.46, 0.45, 0.94)로 설정하고, 애니메이션을 양방향으로 실행합니다. */
+        }
+
+        .layer-3 {
+            background: url("./img/lay3.svg") no-repeat center center fixed; /* .layer-3 클래스를 가진 요소의 배경 이미지를 설정하고, 이미지를 반복하지 않으며, 이미지의 위치를 요소의 중앙으로 설정하고, 이미지를 고정시킵니다. */
+            animation: slide-in-bottom 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.2s both; /* .layer-3 요소에 'slide-in-bottom' 애니메이션을 적용하고, 지속 시간을 0.5초로 설정하며, 시작 시간을 0.2초로 설정하고, 타이밍 함수를 cubic-bezier(0.25, 0.46, 0.45, 0.94)로 설정하고, 애니메이션을 양방향으로 실행합니다. */
+        }
+
+        .layer-4 {
+            background: url("./img/lay4.svg") no-repeat center center fixed; /* .layer-4 클래스를 가진 요소의 배경 이미지를 설정하고, 이미지를 반복하지 않으며, 이미지의 위치를 요소의 중앙으로 설정하고, 이미지를 고정시킵니다. */
+            animation: slide-in-bottom 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.4s both; /* .layer-4 요소에 'slide-in-bottom' 애니메이션을 적용하고, 지속 시간을 0.5초로 설정하며, 시작 시간을 0.4초로 설정하고, 타이밍 함수를 cubic-bezier(0.25, 0.46, 0.45, 0.94)로 설정하고, 애니메이션을 양방향으로 실행합니다. */
+        }
+
+        .layer-5 {
+            background: url("./img/lay5.svg") no-repeat center center fixed; /* .layer-5 클래스를 가진 요소의 배경 이미지를 설정하고, 이미지를 반복하지 않으며, 이미지의 위치를 요소의 중앙으로 설정하고, 이미지를 고정시킵니다. */
+            animation: slide-in-bottom 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.55s both; /* .layer-5 요소에 'slide-in-bottom' 애니메이션을 적용하고, 지속 시간을 0.5초로 설정하며, 시작 시간을 0.55초로 설정하고, 타이밍 함수를 cubic-bezier(0.25, 0.46, 0.45, 0.94)로 설정하고, 애니메이션을 양방향으로 실행합니다. */
+        }
+
+        .layer-6 {
+            background: url("./img/lay6.svg") no-repeat center center fixed; /* .layer-6 클래스를 가진 요소의 배경 이미지를 설정하고, 이미지를 반복하지 않으며, 이미지의 위치를 요소의 중앙으로 설정하고, 이미지를 고정시킵니다. */
+            animation: slide-in-bottom 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.75s both; /* .layer-6 요소에 'slide-in-bottom' 애니메이션을 적용하고, 지속 시간을 0.5초로 설정하며, 시작 시간을 0.75초로 설정하고, 타이밍 함수를 cubic-bezier(0.25, 0.46, 0.45, 0.94)로 설정하고, 애니메이션을 양방향으로 실행합니다. */
+        }
+
+        .layer-7 {
+            background: url("./img/lay7.svg") no-repeat center center fixed; /* .layer-7 클래스를 가진 요소의 배경 이미지를 설정하고, 이미지를 반복하지 않으며, 이미지의 위치를 요소의 중앙으로 설정하고, 이미지를 고정시킵니다. */
+            animation: slide-in-bottom 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.85s both; /* .layer-7 요소에 'slide-in-bottom' 애니메이션을 적용하고, 지속 시간을 0.5초로 설정하며, 시작 시간을 0.85초로 설정하고, 타이밍 함수를 cubic-bezier(0.25, 0.46, 0.45, 0.94)로 설정하고, 애니메이션을 양방향으로 실행합니다. */
+        }
+
+        .layer-8 {
+            background: url("./img/lay8.svg") no-repeat center center fixed; /* .layer-8 클래스를 가진 요소의 배경 이미지를 설정하고, 이미지를 반복하지 않으며, 이미지의 위치를 요소의 중앙으로 설정하고, 이미지를 고정시킵니다. */
+            animation: slide-in-bottom 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.9s both; /* .layer-8 요소에 'slide-in-bottom' 애니메이션을 적용하고, 지속 시간을 0.5초로 설정하며, 시작 시간을 0.9초로 설정하고, 타이밍 함수를 cubic-bezier(0.25, 0.46, 0.45, 0.94)로 설정하고, 애니메이션을 양방향으로 실행합니다. */
+        }
+
+        .laya-please {
+            position: absolute; /* .laya-please 클래스를 가진 요소의 위치를 절대 위치로 설정합니다. 이는 .laya-please 요소가 가장 가까운 상대 위치, 절대 위치, 또는 고정 위치의 부모 요소를 기준으로 위치를 잡을 수 있게 합니다. */
+            background-size: cover; /* 배경 이미지의 크기를 .laya-please 요소에 맞게 조절합니다. */
+            height: 100vh; /* .laya-please 요소의 높이를 뷰포트의 높이와 동일하게 설정합니다. */
+            width: 100%; /* .laya-please 요소의 너비를 부모 요소의 너비와 동일하게 설정합니다. */
+            top: 0; /* .laya-please 요소의 상단을 부모 요소의 상단에 맞춥니다. */
+            left: 0px; /* .laya-please 요소의 왼쪽을 부모 요소의 왼쪽에 맞춥니다. */
+        }
+
+        @-webkit-keyframes slide-in-bottom {
+            0% {
+                transform: translateY(1000px); /* 애니메이션의 시작점에서 요소를 Y축으로 1000px만큼 이동시킵니다. */
+                opacity: 0; /* 애니메이션의 시작점에서 요소의 투명도를 0으로 설정합니다. */
+            }
+
+            100% {
+                -webkit-transform: translateY(0); /* 애니메이션의 종료점에서 요소를 Y축으로 원래 위치로 이동시킵니다. */
+                transform: translateY(0); /* 애니메이션의 종료점에서 요소를 Y축으로 원래 위치로 이동시킵니다. */
+                opacity: 1; /* 애니메이션의 종료점에서 요소의 투명도를 1로 설정합니다. */
+            }
+        }
+
+        @keyframes slide-in-bottom {
+            0% {
+                -webkit-transform: translateY(1000px); /* 애니메이션의 시작점에서 요소를 Y축으로 1000px만큼 이동시킵니다. */
+                transform: translateY(1000px); /* 애니메이션의 시작점에서 요소를 Y축으로 1000px만큼 이동시킵니다. */
+                opacity: 0; /* 애니메이션의 시작점에서 요소의 투명도를 0으로 설정합니다. */
+            }
+
+            100% {
+                -webkit-transform: translateY(0); /* 애니메이션의 종료점에서 요소를 Y축으로 원래 위치로 이동시킵니다. */
+                transform: translateY(0); /* 애니메이션의 종료점에서 요소를 Y축으로 원래 위치로 이동시킵니다. */
+                opacity: 1; /* 애니메이션의 종료점에서 요소의 투명도를 1로 설정합니다. */
+            }
+        }
+
+        @keyframes slide-in-top {
+            0% {
+                -webkit-transform: translateY(-1000px); /* 애니메이션의 시작점에서 요소를 Y축으로 -1000px만큼 이동시킵니다. */
+                transform: translateY(-1000px); /* 애니메이션의 시작점에서 요소를 Y축으로 -1000px만큼 이동시킵니다. */
+                opacity: 0; /* 애니메이션의 시작점에서 요소의 투명도를 0으로 설정합니다. */
+            }
+
+            100% {
+                -webkit-transform: translateY(0); /* 애니메이션의 종료점에서 요소를 Y축으로 원래 위치로 이동시킵니다. */
+                transform: translateY(0); /* 애니메이션의 종료점에서 요소를 Y축으로 원래 위치로 이동시킵니다. */
+                opacity: 1; /* 애니메이션의 종료점에서 요소의 투명도를 1로 설정합니다. */
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="totalcontainer">
+        <div class="laya-please layer-1">
+        </div>
+        <div class="laya-please layer-2">
+        </div>
+        <div class="container1">
+            <div class="laya-please layer-3">
+            </div>
+            <div class="laya-please layer-4">
+            </div>
+            <div class="laya-please layer-5">
+            </div>
+            <div class="laya-please layer-6">
+            </div>
+        </div>
+        <div class="container2">
+            <div class="laya-please layer-7">
+            </div>
+            <div class="laya-please layer-8">
+            </div>
+        </div>
+    </div>
+    <script>
+        const elems = document.querySelectorAll('.laya-please'); /* '.laya-please' 클래스를 가진 모든 요소를 선택하여 'elems' 변수에 저장합니다. */
+        const layer2 = document.querySelector('.layer-2'); /* '.layer-2' 클래스를 가진 요소를 선택하여 'layer2' 변수에 저장합니다. */
+        const layer3 = document.querySelector('.layer-3'); /* '.layer-3' 클래스를 가진 요소를 선택하여 'layer3' 변수에 저장합니다. */
+        const layer4 = document.querySelector('.layer-4'); /* '.layer-4' 클래스를 가진 요소를 선택하여 'layer4' 변수에 저장합니다. */
+        const layer5 = document.querySelector('.layer-5'); /* '.layer-5' 클래스를 가진 요소를 선택하여 'layer5' 변수에 저장합니다. */
+        const layer6 = document.querySelector('.layer-6'); /* '.layer-6' 클래스를 가진 요소를 선택하여 'layer6' 변수에 저장합니다. */
+        const layer7 = document.querySelector('.layer-7'); /* '.layer-7' 클래스를 가진 요소를 선택하여 'layer7' 변수에 저장합니다. */
+        const layer8 = document.querySelector('.layer-8'); /* '.layer-8' 클래스를 가진 요소를 선택하여 'layer8' 변수에 저장합니다. */
+
+
+        setTimeout(function () {
+            elems.forEach(function (elem, index) {
+                elem.style.animation = "none";
+            });
+        }, 1500); /* 1.5초 후에 'elems' 변수에 저장된 모든 요소의 애니메이션을 없앱니다. */
+
+
+
+        document.body.addEventListener('mousemove', function (e) { /* 마우스가 움직일 때마다 아래의 콜백 함수를 실행합니다. */
+            if (!e.currentTarget.dataset.triggered) { /* 만약 현재 이벤트가 발생한 요소의 데이터셋에 'triggered' 속성이 없다면 아래의 코드를 실행합니다. */
+                elems.forEach(function (elem, index) { /* 'elems' 변수에 저장된 모든 요소에 대해 아래의 콜백 함수를 실행합니다. */
+                    if (elem.getAttribute('style')) { /* 만약 현재 요소에 'style' 속성이 있다면 아래의 코드를 실행합니다. */
+                        elem.style.transition = "all .5s"; /* 현재 요소의 모든 CSS 속성의 전환 효과를 0.5초 동안 부드럽게 설정합니다. */
+                        elem.style.transform = "none"; /* 현재 요소의 변환 효과를 없앱니다. */
+                    }
+                });
+            }
+            e.currentTarget.dataset.triggered = true; /* 현재 이벤트가 발생한 요소의 데이터셋에 'triggered' 속성을 추가하고 그 값을 'true'로 설정합니다. */
+
+            let width = window.innerWidth / 2; /* 뷰포트의 너비를 2로 나눈 값을 'width' 변수에 저장합니다. */
+            let mouseMoved2 = ((width - e.pageX) / 50); /* 마우스의 x 좌표를 'width' 변수에서 뺀 후 그 결과를 50으로 나눈 값을 'mouseMoved2' 변수에 저장합니다. */
+            let mouseMoved3 = ((width - e.pageX) / 40); /* 마우스의 x 좌표를 'width' 변수에서 뺀 후 그 결과를 40으로 나눈 값을 'mouseMoved3' 변수에 저장합니다. */
+            let mouseMoved4 = ((width - e.pageX) / 30); /* 마우스의 x 좌표를 'width' 변수에서 뺀 후 그 결과를 30으로 나눈 값을 'mouseMoved4' 변수에 저장합니다. */
+            let mouseMoved5 = ((width - e.pageX) / 20); /* 마우스의 x 좌표를 'width' 변수에서 뺀 후 그 결과를 20으로 나눈 값을 'mouseMoved5' 변수에 저장합니다. */
+            let mouseMoved6 = ((width - e.pageX) / 10); /* 마우스의 x 좌표를 'width' 변수에서 뺀 후 그 결과를 10으로 나눈 값을 'mouseMoved6' 변수에 저장합니다. */
+            let mouseMoved7 = ((width - e.pageX) / 5); /* 마우스의 x 좌표를 'width' 변수에서 뺀 후 그 결과를 5으로 나눈 값을 'mouseMoved7' 변수에 저장합니다. */
+
+            layer3.style.transform = "translateX(" + mouseMoved2 + "px)"; /* 'layer3' 요소를 x축으로 'mouseMoved2' 변수의 값만큼 이동시킵니다. */
+            layer4.style.transform = "translateX(" + mouseMoved3 + "px)"; /* 'layer4' 요소를 x축으로 'mouseMoved3' 변수의 값만큼 이동시킵니다. */
+            layer5.style.transform = "translateX(" + mouseMoved4 + "px)"; /* 'layer5' 요소를 x축으로 'mouseMoved4' 변수의 값만큼 이동시킵니다. */
+            layer6.style.transform = "translateX(" + mouseMoved5 + "px)"; /* 'layer6' 요소를 x축으로 'mouseMoved5' 변수의 값만큼 이동시킵니다. */
+            layer7.style.transform = "translateX(" + mouseMoved6 + "px)"; /* 'layer7' 요소를 x축으로 'mouseMoved6' 변수의 값만큼 이동시킵니다. */
+            layer8.style.transform = "translateX(" + mouseMoved7 + "px)"; /* 'layer8' 요소를 x축으로 'mouseMoved7' 변수의 값만큼 이동시킵니다. */
+        });
+
+        document.body.addEventListener('mouseleave', function (e) { /* 마우스가 문서 바깥으로 나갈 때마다 아래의 콜백 함수를 실행합니다. */
+            elems.forEach(function (elem, index) { /* 'elems' 변수에 저장된 모든 요소에 대해 아래의 콜백 함수를 실행합니다. */
+                elem.style.transition = "all .5s"; /* 현재 요소의 모든 CSS 속성의 전환 효과를 0.5초 동안 부드럽게 설정합니다. */
+                elem.style.transform = "none"; /* 현재 요소의 변환 효과를 없앱니다. */
+            });
+        });
+
+        document.body.addEventListener('mouseenter', function (e) { /* 마우스가 문서 안으로 들어올 때마다 아래의 콜백 함수를 실행합니다. */
+            elems.forEach(function (elem, index) { /* 'elems' 변수에 저장된 모든 요소에 대해 아래의 콜백 함수를 실행합니다. */
+                setTimeout(function () { /* 0.5초 후에 아래의 코드를 실행합니다. */
+                    elem.style.transition = "none"; /* 현재 요소의 모든 CSS 속성의 전환 효과를 없앱니다. */
+                }, 500);
+            });
+        });
+    </script>
+
+</body>
+
+</html>

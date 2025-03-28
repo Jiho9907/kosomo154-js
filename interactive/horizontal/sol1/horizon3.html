@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            overflow-x: hidden;
+            /* 수평 스크롤바를 숨깁니다. */
+            color: #FFF;
+            /* 텍스트 색상을 흰색으로 설정합니다. */
+            font-family: sans-serif;
+            /* 폰트를 산세리프로 설정합니다. */
+            font-size: 200%;
+            /* 폰트 크기를 200%로 설정합니다. */
+        }
+
+        #page {
+            overflow: hidden;
+            /* 스크롤바를 숨깁니다. */
+            white-space: nowrap;
+            /* 공백을 무시하고 한 줄에 표시합니다. */
+            position: fixed;
+            /* 페이지를 화면에 고정합니다. */
+            top: 0;
+            /* 페이지의 상단을 화면 상단에 둡니다. */
+            left: 0;
+            /* 페이지의 왼쪽을 화면 왼쪽에 둡니다. */
+            right: 0;
+            /* 페이지의 오른쪽을 화면 오른쪽에 둡니다. */
+            bottom: 0;
+            /* 페이지의 하단을 화면 하단에 둡니다. */
+            background-color: #CCC;
+            /* 배경색을 설정합니다. */
+            display: flex;
+            /* 페이지를 플렉스 박스로 만듭니다. */
+            flex-wrap: no-wrap;
+            /* 플렉스 아이템들이 한 줄에 표시되도록 합니다. */
+        }
+
+        .pane {
+            flex: 0 0 100vw;
+            /* 플렉스 아이템의 너비를 뷰포트 너비의 100%로 설정하고, 높이는 변경하지 않습니다. */
+            height: 100vh;
+            /* 플렉스 아이템의 높이를 뷰포트 높이의 100%로 설정합니다. */
+            display: flex;
+            /* 플렉스 아이템을 플렉스 박스로 만듭니다. */
+            position: relative;
+            /* 플렉스 아이템의 위치를 상대적으로 설정합니다. */
+            align-items: center;
+            /* 플렉스 아이템의 내용을 중앙에 정렬합니다. */
+            justify-content: center;
+            /* 플렉스 아이템의 내용을 중앙에 정렬합니다. */
+            background-color: #45CCFF;
+            /* 배경색을 설정합니다. */
+        }
+
+        .pane:nth-child(4n+2) {
+            background-color: #49E83E;
+            /* 배경색을 설정합니다. */
+        }
+
+        .pane:nth-child(4n+3) {
+            background-color: #EDDE05;
+            /* 배경색을 설정합니다. */
+        }
+
+        .pane:nth-child(4n+4) {
+            background-color: #E84B30;
+            /* 배경색을 설정합니다. */
+        }
+
+        .pane:last-child {
+            background-color: #45CCFF;
+            /* 배경색을 설정합니다. */
+        }
+    </style>
+</head>
+
+<body>
+    <div id="page">
+        <div class="pane">
+            <div>수평 스크롤 반복</div>
+        </div>
+        <div class="pane">
+            <div>2</div>
+        </div>
+        <div class="pane">
+            <div>3</div>
+        </div>
+        <div class="pane">
+            <div>4</div>
+        </div>
+        <div class="pane">
+            <div>5</div>
+        </div>
+        <div class="pane">
+            <div>마지막</div>
+        </div>
+        <div class="pane">
+            <div>수평 스크롤 반복</div>
+        </div>
+    </div>
+    <script>
+        var page = document.getElementById('page'); // 페이지 요소를 가져옵니다.
+        var last_pane = page.getElementsByClassName('pane'); // 페이지 내의 모든 패널을 가져옵니다.
+        last_pane = last_pane[last_pane.length - 1]; // 마지막 패널을 가져옵니다.
+        var dummy_x = null; // 더미 x 좌표를 null로 초기화합니다.
+
+        window.onscroll = function () {
+            // Horizontal Scroll.
+            var y = document.body.getBoundingClientRect().top; // body의 상단 좌표를 가져옵니다.
+            page.scrollLeft = -y; // 페이지의 수평 스크롤 위치를 body의 상단 좌표의 반대 값으로 설정합니다.
+
+            // Looping Scroll.
+            var diff = window.scrollY - dummy_x; // 현재 스크롤 위치와 더미 x 좌표의 차이를 계산합니다.
+            if (diff > 0) { // 스크롤이 아래로 이동한 경우
+                window.scrollTo(0, diff); // 스크롤 위치를 차이만큼 아래로 이동시킵니다.
+            }
+            else if (window.scrollY == 0) { // 스크롤이 최상단에 도달한 경우
+                window.scrollTo(0, dummy_x); // 스크롤 위치를 더미 x 좌표로 설정하여 스크롤을 최하단으로 이동시킵니다.
+            }
+        }
+        // Adjust the body height if the window resizes.
+        window.onresize = resize; // 창 크기가 변경되면 resize 함수를 호출합니다.
+        // Initial resize.
+        resize(); // 초기에 resize 함수를 호출하여 body의 높이를 조정합니다.
+
+        // Reset window-based vars
+        function resize() {
+            var w = page.scrollWidth - window.innerWidth + window.innerHeight; // 새로운 body의 높이를 계산합니다.
+            document.body.style.height = w + 'px'; // body의 높이를 새로운 높이로 설정합니다.
+
+            dummy_x = last_pane.getBoundingClientRect().left + window.scrollY; // 더미 x 좌표를 마지막 패널의 왼쪽 좌표와 현재 스크롤 위치의 합으로 설정합니다.
+        }
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Parallex Effect</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Titillium+Web:wght@200;300;400;600&display=swap'); /* 외부에서 'Titillium Web' 폰트를 가져옵니다. */
+
+        * {
+            padding: 0; /* 모든 요소의 패딩을 0으로 설정합니다. */
+            margin: 0; /* 모든 요소의 마진을 0으로 설정합니다. */
+            box-sizing: border-box; /* 모든 요소의 박스 크기 계산 방식을 'border-box'로 설정합니다. 이는 패딩과 테두리가 요소의 너비와 높이에 포함되도록 합니다. */
+            font-family: Titillium Web, verdana; /* 모든 요소의 폰트를 'Titillium Web'으로 설정하고, 만약 'Titillium Web'이 사용할 수 없다면 verdana 폰트를 사용합니다. */
+        }
+
+        .section-plr {
+            padding: 150px; /* .section-plr 클래스를 가진 요소의 패딩을 150px로 설정합니다. */
+        }
+
+        header {
+            position: sticky; /* header 요소의 위치를 고정 위치로 설정합니다. 스크롤해도 화면에 계속 보이게 됩니다. */
+            top: 0; /* header 요소의 상단을 부모 요소의 상단에 맞춥니다. */
+            left: 0; /* header 요소의 왼쪽을 부모 요소의 왼쪽에 맞춥니다. */
+        }
+
+        header nav ul {
+            background-color: white; /* header 요소 내의 nav 요소의 자식 요소 중 ul 요소의 배경 색상을 흰색으로 설정합니다. */
+            display: block; /* ul 요소를 블록 요소로 설정합니다. */
+            list-style-type: none; /* ul 요소의 목록 스타일을 없앱니다. */
+            overflow: hidden; /* ul 요소의 너비와 높이를 벗어나는 내용을 숨깁니다. */
+            width: 100%; /* ul 요소의 너비를 부모 요소의 너비와 동일하게 설정합니다. */
+            padding: 0; /* ul 요소의 패딩을 0으로 설정합니다. */
+            margin: 0; /* ul 요소의 마진을 0으로 설정합니다. */
+            position: fixed; /* ul 요소의 위치를 고정 위치로 설정합니다. 스크롤해도 화면에 계속 보이게 됩니다. */
+            top: 0; /* ul 요소의 상단을 부모 요소의 상단에 맞춥니다. */
+        }
+
+        header nav ul li {
+            padding: 20px 24px; /* ul 요소의 자식 요소 중 li 요소의 패딩을 상하로 20px, 좌우로 24px로 설정합니다. */
+            float: left; /* li 요소를 왼쪽으로 띄웁니다. */
+        }
+
+        header nav ul li a {
+            text-decoration: none; /* li 요소의 자식 요소 중 a 요소의 텍스트에 밑줄을 그리지 않습니다. */
+            color: black; /* a 요소의 텍스트 색상을 검은색으로 설정합니다. */
+            font-size: 18px; /* a 요소의 폰트 크기를 18px로 설정합니다. */
+        }
+
+        header nav ul li:hover {
+            background-color: #fdd000; /* 마우스를 올렸을 때 li 요소의 배경 색상을 #fdd000으로 설정합니다. */
+        }
+
+        .active {
+            background-color: #fdd000; /* .active 클래스를 가진 요소의 배경 색상을 #fdd000으로 설정합니다. */
+        }
+
+        .hero-image {
+            background-image: url('./img/hero.jpg'); /* .hero-image 클래스를 가진 요소의 배경 이미지를 설정합니다. */
+            background-size: cover; /* 배경 이미지의 크기를 .hero-image 요소에 맞게 조절합니다. */
+            background-repeat: no-repeat; /* 배경 이미지를 반복하지 않습니다. */
+            background-position: center; /* 배경 이미지의 위치를 .hero-image 요소의 중앙으로 설정합니다. */
+            height: 600px; /* .hero-image 요소의 높이를 600px로 설정합니다. */
+        }
+
+        .hero-image .hero-text {
+            color: #fdd000; /* .hero-image 요소의 자식 요소 중 .hero-text 클래스를 가진 요소의 텍스트 색상을 #fdd000으로 설정합니다. */
+            padding-top: 200px; /* .hero-text 요소의 상단 패딩을 200px로 설정합니다. */
+            margin-left: 100px; /* .hero-text 요소의 왼쪽 마진을 100px로 설정합니다. */
+            font-size: 45px; /* .hero-text 요소의 폰트 크기를 45px로 설정합니다. */
+        }
+
+        .hero-image .button span {
+            font-size: 17px; /* .hero-image 요소의 자식 요소 중 .button 클래스를 가진 요소의 자식 요소 중 span 요소의 폰트 크기를 17px로 설정합니다. */
+            background-color: white; /* span 요소의 배경 색상을 흰색으로 설정합니다. */
+            padding: 8px; /* span 요소의 패딩을 8px로 설정합니다. */
+            border-radius: 3px; /* span 요소의 테두리 모서리를 둥글게 만듭니다. */
+        }
+
+        .hero-image .button span a {
+            text-decoration: none; /* span 요소의 자식 요소 중 a 요소의 텍스트에 밑줄을 그리지 않습니다. */
+            color: black; /* a 요소의 텍스트 색상을 검은색으로 설정합니다. */
+        }
+
+        .hero-image .button span:hover {
+            background-color: #fdd000; /* 마우스를 올렸을 때 span 요소의 배경 색상을 #fdd000으로 설정합니다. */
+            transition: 1s; /* 배경 색상 변경을 1초 동안 부드럽게 전환합니다. */
+        }
+
+
+        .info-text h2,
+        p {
+            text-align: center; /* .info-text 클래스를 가진 요소의 자식 요소 중 h2 요소와 p 요소의 텍스트를 중앙 정렬합니다. */
+            padding-bottom: 10px; /* h2 요소와 p 요소의 하단 패딩을 10px로 설정합니다. */
+
+        }
+
+        .info-text h2 {
+            padding-top: 30px; /* .info-text 클래스를 가진 요소의 자식 요소 중 h2 요소의 상단 패딩을 30px로 설정합니다. */
+        }
+
+        .info-text p {
+            padding-bottom: 30px; /* p 요소의 하단 패딩을 30px로 설정합니다. */
+            padding-top: 10px; /* p 요소의 상단 패딩을 10px로 설정합니다. */
+        }
+
+        .info-text p {
+            color: grey; /* p 요소의 텍스트 색상을 회색으로 설정합니다. */
+            background-color: white; /* p 요소의 배경 색상을 흰색으로 설정합니다. */
+        }
+
+        .parallex-one {
+            width: 100%; /* .parallex-one 클래스를 가진 요소의 너비를 부모 요소의 너비와 동일하게 설정합니다. */
+            height: 600px; /* .parallex-one 요소의 높이를 600px로 설정합니다. */
+            background-image: url('./img/one.jpg'); /* .parallex-one 요소의 배경 이미지를 설정합니다. */
+            background-size: 100% 100%; /* 배경 이미지의 크기를 .parallex-one 요소의 너비와 높이와 동일하게 설정합니다. */
+            background-size: cover; /* 배경 이미지의 크기를 .parallex-one 요소에 맞게 조절합니다. */
+            background-attachment: fixed; /* 배경 이미지를 고정시킵니다. 스크롤해도 배경 이미지는 움직이지 않습니다. */
+        }
+
+        .parallex-one h2 {
+            color: #fdd000; /* .parallex-one 요소의 자식 요소 중 h2 요소의 텍스트 색상을 #fdd000으로 설정합니다. */
+            font-size: 75px; /* h2 요소의 폰트 크기를 75px로 설정합니다. */
+            text-align: center; /* h2 요소의 텍스트를 중앙 정렬합니다. */
+            padding-top: 300px; /* h2 요소의 상단 패딩을 300px로 설정합니다. */
+        }
+
+        .parallex-two {
+            width: 100%; /* .parallex-two 클래스를 가진 요소의 너비를 부모 요소의 너비와 동일하게 설정합니다. */
+            height: 600px; /* .parallex-two 요소의 높이를 600px로 설정합니다. */
+            background-image: url('./img/two.jpg'); /* .parallex-two 요소의 배경 이미지를 설정합니다. */
+            background-size: 100% 100%; /* 배경 이미지의 크기를 .parallex-two 요소의 너비와 높이와 동일하게 설정합니다. */
+            background-size: cover; /* 배경 이미지의 크기를 .parallex-two 요소에 맞게 조절합니다. */
+            background-attachment: fixed; /* 배경 이미지를 고정시킵니다. 스크롤해도 배경 이미지는 움직이지 않습니다. */
+        }
+
+        .parallex-two h2 {
+            color: #fdd000; /* .parallex-two 요소의 자식 요소 중 h2 요소의 텍스트 색상을 #fdd000으로 설정합니다. */
+            font-size: 75px; /* h2 요소의 폰트 크기를 75px로 설정합니다. */
+            text-align: center; /* h2 요소의 텍스트를 중앙 정렬합니다. */
+            padding-top: 300px; /* h2 요소의 상단 패딩을 300px로 설정합니다. */
+        }
+
+        .parallex-three {
+            width: 100%; /* .parallex-three 클래스를 가진 요소의 너비를 부모 요소의 너비와 동일하게 설정합니다. */
+            height: 100vh; /* .parallex-three 요소의 높이를 뷰포트의 높이와 동일하게 설정합니다. */
+            background-image: url('./img/three.jpg'); /* .parallex-three 요소의 배경 이미지를 설정합니다. */
+            background-size: 100% 100%; /* 배경 이미지의 크기를 .parallex-three 요소의 너비와 높이와 동일하게 설정합니다. */
+            background-size: cover; /* 배경 이미지의 크기를 .parallex-three 요소에 맞게 조절합니다. */
+            background-attachment: fixed; /* 배경 이미지를 고정시킵니다. 스크롤해도 배경 이미지는 움직이지 않습니다. */
+        }
+
+        .parallex-three h2 {
+            color: #fdd000; /* .parallex-three 요소의 자식 요소 중 h2 요소의 텍스트 색상을 #fdd000으로 설정합니다. */
+            font-size: 75px; /* h2 요소의 폰트 크기를 75px로 설정합니다. */
+            text-align: center; /* h2 요소의 텍스트를 중앙 정렬합니다. */
+            padding-top: 300px; /* h2 요소의 상단 패딩을 300px로 설정합니다. */
+        }
+
+        .footer {
+            width: 100%; /* .footer 클래스를 가진 요소의 너비를 부모 요소의 너비와 동일하게 설정합니다. */
+            background-image: url('./img/footer.jpg'); /* .footer 요소의 배경 이미지를 설정합니다. */
+            position: absolute; /* .footer 요소의 위치를 절대 위치로 설정합니다. 이는 .footer 요소가 가장 가까운 상대 위치, 절대 위치, 또는 고정 위치의 부모 요소를 기준으로 위치를 잡을 수 있게 합니다. */
+            background-size: 100% 100%; /* 배경 이미지의 크기를 .footer 요소의 너비와 높이와 동일하게 설정합니다. */
+            background-size: cover; /* 배경 이미지의 크기를 .footer 요소에 맞게 조절합니다. */
+        }
+
+        .footer .footer-row {
+            display: grid; /* .footer 요소의 자식 요소 중 .footer-row 클래스를 가진 요소의 디스플레이 속성을 grid로 설정하여 그리드 레이아웃을 사용합니다. */
+            grid-template-columns: 1fr; /* .footer-row 요소의 그리드 열을 하나로 설정하고, 그 열의 너비를 부모 요소의 너비와 동일하게 설정합니다. */
+            background-color: rgba(0, 0, 0, 0.6); /* .footer-row 요소의 배경 색상을 rgba(0, 0, 0, 0.6)으로 설정합니다. */
+            padding: 150px 0px; /* .footer-row 요소의 패딩을 상하로 150px, 좌우로 0px로 설정합니다. */
+        }
+
+        .footer .footer-row .footer-links h2{
+            color: white; /* .footer-row 요소의 자식 요소 중 .footer-links 클래스를 가진 요소의 자식 요소 중 h2 요소의 텍스트 색상을 흰색으로 설정합니다. */
+            text-align: center; /* h2 요소의 텍스트를 중앙 정렬합니다. */
+        }
+
+        .footer .footer-row .footer-links h2 {
+            padding-top: 30px; /* .footer-links 요소의 자식 요소 중 h2 요소의 상단 패딩을 30px로 설정합니다. */
+            padding-bottom: 10px; /* h2 요소의 하단 패딩을 10px로 설정합니다. */
+            color: white; /* h2 요소의 텍스트 색상을 흰색으로 설정합니다. */
+            font-size: 42px; /* h2 요소의 폰트 크기를 42px로 설정합니다. */
+        }
+
+        .footer p {
+            color: darkgrey; /* .footer 요소의 자식 요소 중 p 요소의 텍스트 색상을 어두운 회색으로 설정합니다. */
+        }
+
+        .footer .footer-row .footer-two {
+            padding-top: 40px; /* .footer-row 요소의 자식 요소 중 .footer-two 클래스를 가진 요소의 상단 패딩을 40px로 설정합니다. */
+            padding-bottom: 40px; /* .footer-two 요소의 하단 패딩을 40px로 설정합니다. */
+            display: flex; /* .footer-two 요소의 디스플레이 속성을 flex로 설정하여 flexbox 레이아웃을 사용합니다. */
+            flex-direction: row; /* .footer-two 요소의 자식 요소들을 가로 방향으로 배치합니다. */
+            align-items: center; /* .footer-two 요소의 자식 요소들을 세로 방향으로 중앙에 배치합니다. */
+            justify-content: center; /* .footer-two 요소의 자식 요소들을 가로 방향으로 중앙에 배치합니다. */
+        }
+
+        .footer .footer-row .footer-three {
+            padding-bottom: 40px; /* .footer-row 요소의 자식 요소 중 .footer-three 클래스를 가진 요소의 하단 패딩을 40px로 설정합니다. */
+            display: flex; /* .footer-three 요소의 디스플레이 속성을 flex로 설정하여 flexbox 레이아웃을 사용합니다. */
+            flex-direction: row; /* .footer-three 요소의 자식 요소들을 가로 방향으로 배치합니다. */
+            align-items: center; /* .footer-three 요소의 자식 요소들을 세로 방향으로 중앙에 배치합니다. */
+            justify-content: center; /* .footer-three 요소의 자식 요소들을 가로 방향으로 중앙에 배치합니다. */
+        }
+
+
+        .footer .footer-row .footer-links a {
+            text-decoration: none; /* .footer-row 요소의 자식 요소 중 .footer-links 클래스를 가진 요소의 자식 요소 중 a 요소의 텍스트에 밑줄을 그리지 않습니다. */
+            color: white; /* a 요소의 텍스트 색상을 흰색으로 설정합니다. */
+            font-weight: 600; /* a 요소의 폰트 두께를 600으로 설정합니다. */
+            font-size: 25px; /* a 요소의 폰트 크기를 25px로 설정합니다. */
+            padding: 0 20px; /* a 요소의 패딩을 상하로 0, 좌우로 20px로 설정합니다. */
+            text-align: center; /* a 요소의 텍스트를 중앙 정렬합니다. */
+        }
+
+        .footer .footer-row .footer-links a:hover {
+            color: #fdd000; /* 마우스를 올렸을 때 a 요소의 텍스트 색상을 #fdd000으로 설정합니다. */
+        }
+
+        @media (max-width: 800px) {
+            .hero-image .hero-text {
+                padding-top: 200px; /* 뷰포트의 너비가 800px 이하일 때 .hero-image 요소의 자식 요소 중 .hero-text 클래스를 가진 요소의 상단 패딩을 200px로 설정합니다. */
+                margin-left: 50px; /* .hero-text 요소의 왼쪽 마진을 50px로 설정합니다. */
+                font-size: 25px; /* .hero-text 요소의 폰트 크기를 25px로 설정합니다. */
+            }
+
+            .info-text {
+                padding: 20px 30px; /* 뷰포트의 너비가 800px 이하일 때 .info-text 클래스를 가진 요소의 패딩을 상하로 20px, 좌우로 30px로 설정합니다. */
+            }
+        }
+    </style>
+</head>
+
+<body>
+    
+    <header>
+        <nav>
+            <ul>
+                <li class="active"><a href="#">Home</a></li>
+                <li><a href="#">Shop</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
+                <li style="float:right;"><a href="#">Sign In</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="hero-image">
+        <div class="hero-text">
+            <h2>Reserve For<br>Next Batch Open</h2>
+            <div class="button">
+                <span><a href="#">Order Now</a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="info-text section-plr">
+        <h2>Electric Motorcycle Saving Calculator</h2>
+        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+            industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
+            scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into
+            electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of
+            Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like
+            Aldus PageMaker including versions of Lorem Ipsum</p>
+    </div>
+
+    <div class="parallex-one">
+        <h2>VLEKTRA BOLT</h2>
+    </div>
+
+    <div class="para section-plr">
+        <p>Modern and trendy street fighter looks which will make heads roll at every turn. Lighter weight body parts
+            allow easy and seamless driving experience while looking amazing. Experience the thrill of riding the latest
+            technology electric motorcycles first-hand. Visit our store to test ride "Bolt" and be part of the
+            technology revolution.</p>
+
+        <hr>
+
+        <p>Modern and trendy street fighter looks which will make heads roll at every turn. Lighter weight body parts
+            allow easy and seamless driving experience while looking amazing. Experience the thrill of riding the latest
+            technology electric motorcycles first-hand. Visit our store to test ride "Bolt" and be part of the
+            technology revolution.</p>
+    </div>
+
+    <div class="parallex-two">
+        <h2>VLEKTRA RETRO</h2>
+    </div>
+    <div class="para section-plr">
+        <p>Modern and trendy street fighter looks which will make heads roll at every turn. Lighter weight body parts
+            allow easy and seamless driving experience while looking amazing. Experience the thrill of riding the latest
+            technology electric motorcycles first-hand. Visit our store to test ride "Bolt" and be part of the
+            technology revolution.</p>
+    </div>
+
+    <div class="parallex-three">
+        <h2>CLASSIC YEZDI</h2>
+    </div>
+
+    <div class="info-text section-plr">
+        <h2>Electric Motorcycle Saving Calculator</h2>
+        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+            industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
+            scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into
+            electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of
+            Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like
+            Aldus PageMaker including versions of Lorem Ipsum. Lorem Ipsum is simply dummy text of the printing and
+            typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an
+            unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not
+            only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was
+            popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more
+            recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. Lorem
+            Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
+            standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to
+            make a type specimen book. It has survived not only five centuries, but also the leap into electronic
+            typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset
+            sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus
+            PageMaker including versions of Lorem Ipsum. Lorem Ipsum is simply dummy text of the printing and
+            typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an
+            unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not
+            only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was
+            popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more
+            recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. Lorem
+            Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
+            standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to
+            make a type specimen book.</p>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-row ">
+            <div class="footer-links">
+                <h2 class="" style="padding:0 150px;">About Us</h2>
+                <p class="" style="padding:0 150px; text-align: left;">Lorem Ipsum is simply dummy text of the printing
+                    and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the
+                    1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+                    It has survived not only five centuries, but also the leap into electronic typesetting, remaining
+                    essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets
+                    containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus
+                    PageMaker including versions of Lorem Ipsum.</p>
+            </div>
+            <div class="footer-links footer-two ">
+                <a href="#">Home</a>
+                <a href="#">Shop</a>
+                <a href="#">About</a>
+                <a href="#">Contact</a>
+                <a href="#">Sign In</a>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>

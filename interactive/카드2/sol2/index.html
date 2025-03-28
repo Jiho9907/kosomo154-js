@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            overflow: hidden;
+            /* body 요소의 스크롤을 숨깁니다. */
+            font-family: "Roboto", serif;
+            /* body 요소의 글꼴을 Roboto로 설정하고, Roboto가 사용할 수 없는 경우 세리프 글꼴을 사용합니다. */
+            background: linear-gradient(135deg, black, #220033);
+            /* body 요소의 배경을 135도 방향으로 향하는 선형 그라디언트로 설정합니다. */
+        }
+
+        .carousel {
+            position: relative;
+            /* .carousel 클래스를 가진 요소의 위치를 상대 위치로 설정합니다. */
+            z-index: 1;
+            /* .carousel 클래스를 가진 요소의 z-index를 1로 설정합니다. */
+            height: 100vh;
+            /* .carousel 클래스를 가진 요소의 높이를 뷰포트 높이의 100%로 설정합니다. */
+            overflow: hidden;
+            /* .carousel 클래스를 가진 요소의 스크롤을 숨깁니다. */
+            pointer-events: none;
+            /* .carousel 클래스를 가진 요소에 대한 포인터 이벤트를 비활성화합니다. */
+        }
+
+        .carousel-item {
+            --items: 10;
+            /* .carousel-item 클래스를 가진 요소의 사용자 정의 속성 --items를 10으로 설정합니다. */
+            --width: clamp(150px, 30vw, 300px);
+            /* .carousel-item 클래스를 가진 요소의 사용자 정의 속성 --width를 최소 150px, 최대 300px, 그리고 그 사이에서는 뷰포트 너비의 30%로 설정합니다. */
+            --height: clamp(200px, 40vw, 400px);
+            /* .carousel-item 클래스를 가진 요소의 사용자 정의 속성 --height를 최소 200px, 최대 400px, 그리고 그 사이에서는 뷰포트 너비의 40%로 설정합니다. */
+            --x: calc(var(--active) * 800%);
+            /* .carousel-item 클래스를 가진 요소의 사용자 정의 속성 --x를 --active 속성의 값에 800%를 곱한 값으로 설정합니다. */
+            --y: calc(var(--active) * 200%);
+            /* .carousel-item 클래스를 가진 요소의 사용자 정의 속성 --y를 --active 속성의 값에 200%를 곱한 값으로 설정합니다. */
+            --rot: calc(var(--active) * 120deg);
+            /* .carousel-item 클래스를 가진 요소의 사용자 정의 속성 --rot를 --active 속성의 값에 120도를 곱한 값으로 설정합니다. */
+            --opacity: calc(var(--zIndex) / var(--items) * 3 - 2);
+            /* .carousel-item 클래스를 가진 요소의 사용자 정의 속성 --opacity를 --zIndex 속성의 값을 --items 속성의 값으로 나눈 후 3을 곱하고 2를 뺀 값으로 설정합니다. */
+            overflow: hidden;
+            /* .carousel-item 클래스를 가진 요소의 스크롤을 숨깁니다. */
+            position: absolute;
+            /* .carousel-item 클래스를 가진 요소의 위치를 절대 위치로 설정합니다. */
+            z-index: var(--zIndex);
+            /* .carousel-item 클래스를 가진 요소의 z-index를 --zIndex 속성의 값으로 설정합니다. */
+            width: var(--width);
+            /* .carousel-item 클래스를 가진 요소의 너비를 --width 속성의 값으로 설정합니다. */
+            height: var(--height);
+            /* .carousel-item 클래스를 가진 요소의 높이를 --height 속성의 값으로 설정합니다. */
+            margin: calc(var(--height) * -0.5) 0 0 calc(var(--width) * -0.5);
+            /* .carousel-item 클래스를 가진 요소의 마진을 위아래는 --height 속성의 값의 절반을 음수로, 좌우는 --width 속성의 값의 절반을 음수로 설정합니다. */
+            border-radius: 10px;
+            /* .carousel-item 클래스를 가진 요소의 모서리를 둥글게 만듭니다. */
+            top: 50%;
+            /* .carousel-item 클래스를 가진 요소를 부모 요소의 상단에서 50% 위치에 배치합니다. */
+            left: 50%;
+            /* .carousel-item 클래스를 가진 요소를 부모 요소의 왼쪽에서 50% 위치에 배치합니다. */
+            -webkit-user-select: none;
+            /* .carousel-item 클래스를 가진 요소의 사용자 선택을 비활성화합니다. (웹킷 브라우저용) */
+            -moz-user-select: none;
+            /* .carousel-item 클래스를 가진 요소의 사용자 선택을 비활성화합니다. (모질라 브라우저용) */
+            -ms-user-select: none;
+            /* .carousel-item 클래스를 가진 요소의 사용자 선택을 비활성화합니다. (마이크로소프트 브라우저용) */
+            user-select: none;
+            /* .carousel-item 클래스를 가진 요소의 사용자 선택을 비활성화합니다. */
+            transform-origin: 0% 100%;
+            /* .carousel-item 클래스를 가진 요소의 변환 원점을 왼쪽 하단으로 설정합니다. */
+            box-shadow: 0 10px 50px 10px rgba(0, 0, 0, 0.5);
+            /* .carousel-item 클래스를 가진 요소에 그림자를 추가합니다. */
+            background: black;
+            /* .carousel-item 클래스를 가진 요소의 배경색을 검정색으로 설정합니다. */
+            pointer-events: all;
+            /* .carousel-item 클래스를 가진 요소에 대한 포인터 이벤트를 활성화합니다. */
+            transform: translate(var(--x), var(--y)) rotate(var(--rot));
+            /* .carousel-item 클래스를 가진 요소를 --x 속성의 값만큼 x축으로, --y 속성의 값만큼 y축으로 이동시키고, --rot 속성의 값만큼 회전시킵니다. */
+            transition: transform 0.8s cubic-bezier(0, 0.02, 0, 1);
+            /* .carousel-item 클래스를 가진 요소의 변환을 0.8초 동안 cubic-bezier(0, 0.02, 0, 1) 타이밍 함수를 사용하여 전환합니다. */
+        }
+
+        .carousel-item .carousel-box {
+            position: absolute;
+            /* .carousel-item 클래스 내의 .carousel-box 클래스를 가진 요소의 위치를 절대 위치로 설정합니다. */
+            z-index: 1;
+            /* .carousel-item 클래스 내의 .carousel-box 클래스를 가진 요소의 z-index를 1로 설정합니다. */
+            top: 0;
+            /* .carousel-item 클래스 내의 .carousel-box 클래스를 가진 요소를 부모 요소의 상단에 배치합니다. */
+            left: 0;
+            /* .carousel-item 클래스 내의 .carousel-box 클래스를 가진 요소를 부모 요소의 왼쪽에 배치합니다. */
+            width: 100%;
+            /* .carousel-item 클래스 내의 .carousel-box 클래스를 가진 요소의 너비를 부모 요소의 100%로 설정합니다. */
+            height: 100%;
+            /* .carousel-item 클래스 내의 .carousel-box 클래스를 가진 요소의 높이를 부모 요소의 100%로 설정합니다. */
+            transition: opacity 0.8s cubic-bezier(0, 0.02, 0, 1);
+            /* .carousel-item 클래스 내의 .carousel-box 클래스를 가진 요소의 투명도를 0.8초 동안 cubic-bezier(0, 0.02, 0, 1) 타이밍 함수를 사용하여 전환합니다. */
+            opacity: var(--opacity);
+            /* .carousel-item 클래스 내의 .carousel-box 클래스를 가진 요소의 투명도를 --opacity 속성의 값으로 설정합니다. */
+            font-family: serif;
+            /* .carousel-item 클래스 내의 .carousel-box 클래스를 가진 요소의 글꼴을 세리프로 설정합니다. */
+        }
+
+        .carousel-item .carousel-box:before {
+            content: "";
+            /* .carousel-item 클래스 내의 .carousel-box 클래스 내의 ::before 가상 요소의 내용을 빈 문자열로 설정합니다. */
+            position: absolute;
+            /* .carousel-item 클래스 내의 .carousel-box 클래스 내의 ::before 가상 요소의 위치를 절대 위치로 설정합니다. */
+            z-index: 1;
+            /* .carousel-item 클래스 내의 .carousel-box 클래스 내의 ::before 가상 요소의 z-index를 1로 설정합니다. */
+            top: 0;
+            /* .carousel-item 클래스 내의 .carousel-box 클래스 내의 ::before 가상 요소를 부모 요소의 상단에 배치합니다. */
+            left: 0;
+            /* .carousel-item 클래스 내의 .carousel-box 클래스 내의 ::before 가상 요소를 부모 요소의 왼쪽에 배치합니다. */
+            width: 100%;
+            /* .carousel-item 클래스 내의 .carousel-box 클래스 내의 ::before 가상 요소의 너비를 부모 요소의 100%로 설정합니다. */
+            height: 100%;
+            /* .carousel-item 클래스 내의 .carousel-box 클래스 내의 ::before 가상 요소의 높이를 부모 요소의 100%로 설정합니다. */
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0) 30%, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.5));
+            /* .carousel-item 클래스 내의 .carousel-box 클래스 내의 ::before 가상 요소의 배경을 아래로 향하는 선형 그라디언트로 설정합니다. */
+        }
+
+        .carousel-item .title {
+            position: absolute;
+            /* .carousel-item 클래스 내의 .title 클래스를 가진 요소의 위치를 절대 위치로 설정합니다. */
+            z-index: 1;
+            /* .carousel-item 클래스 내의 .title 클래스를 가진 요소의 z-index를 1로 설정합니다. */
+            color: #fff;
+            /* .carousel-item 클래스 내의 .title 클래스를 가진 요소의 텍스트 색상을 흰색으로 설정합니다. */
+            bottom: 20px;
+            /* .carousel-item 클래스 내의 .title 클래스를 가진 요소를 부모 요소의 하단에서 20px 위치에 배치합니다. */
+            left: 20px;
+            /* .carousel-item 클래스 내의 .title 클래스를 가진 요소를 부모 요소의 왼쪽에서 20px 위치에 배치합니다. */
+            transition: opacity 0.8s cubic-bezier(0, 0.02, 0, 1);
+            /* .carousel-item 클래스 내의 .title 클래스를 가진 요소의 투명도를 0.8초 동안 cubic-bezier(0, 0.02, 0, 1) 타이밍 함수를 사용하여 전환합니다. */
+            font-size: clamp(20px, 3vw, 30px);
+            /* .carousel-item 클래스 내의 .title 클래스를 가진 요소의 글꼴 크기를 최소 20px, 최대 30px, 그리고 그 사이에서는 뷰포트 너비의 3%로 설정합니다. */
+            text-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
+            /* .carousel-item 클래스 내의 .title 클래스를 가진 요소의 텍스트에 그림자를 추가합니다. */
+        }
+
+        .carousel-item .num {
+            position: absolute;
+            /* .carousel-item 클래스 내의 .num 클래스를 가진 요소의 위치를 절대 위치로 설정합니다. */
+            z-index: 1;
+            /* .carousel-item 클래스 내의 .num 클래스를 가진 요소의 z-index를 1로 설정합니다. */
+            color: #fff;
+            /* .carousel-item 클래스 내의 .num 클래스를 가진 요소의 텍스트 색상을 흰색으로 설정합니다. */
+            top: 10px;
+            /* .carousel-item 클래스 내의 .num 클래스를 가진 요소를 부모 요소의 상단에서 10px 위치에 배치합니다. */
+            left: 20px;
+            /* .carousel-item 클래스 내의 .num 클래스를 가진 요소를 부모 요소의 왼쪽에서 20px 위치에 배치합니다. */
+            transition: opacity 0.8s cubic-bezier(0, 0.02, 0, 1);
+            /* .carousel-item 클래스 내의 .num 클래스를 가진 요소의 투명도를 0.8초 동안 cubic-bezier(0, 0.02, 0, 1) 타이밍 함수를 사용하여 전환합니다. */
+            font-size: clamp(20px, 10vw, 80px);
+            /* .carousel-item 클래스 내의 .num 클래스를 가진 요소의 글꼴 크기를 최소 20px, 최대 80px, 그리고 그 사이에서는 뷰포트 너비의 10%로 설정합니다. */
+        }
+
+        .carousel-item img {
+            width: 100%;
+            /* .carousel-item 클래스 내의 img 요소의 너비를 부모 요소의 100%로 설정합니다. */
+            height: 100%;
+            /* .carousel-item 클래스 내의 img 요소의 높이를 부모 요소의 100%로 설정합니다. */
+            -o-object-fit: cover;
+            /* .carousel-item 클래스 내의 img 요소의 object-fit 속성을 cover로 설정합니다. (오페라 브라우저용) */
+            object-fit: cover;
+            /* .carousel-item 클래스 내의 img 요소의 object-fit 속성을 cover로 설정합니다. */
+            pointer-events: none;
+            /* .carousel-item 클래스 내의 img 요소에 대한 포인터 이벤트를 비활성화합니다. */
+        }
+
+        .layout {
+            position: absolute;
+            /* .layout 클래스를 가진 요소의 위치를 절대 위치로 설정합니다. */
+            z-index: 0;
+            /* .layout 클래스를 가진 요소의 z-index를 0으로 설정합니다. */
+            top: 0;
+            /* .layout 클래스를 가진 요소를 부모 요소의 상단에 배치합니다. */
+            left: 0;
+            /* .layout 클래스를 가진 요소를 부모 요소의 왼쪽에 배치합니다. */
+            width: 100%;
+            /* .layout 클래스를 가진 요소의 너비를 부모 요소의 100%로 설정합니다. */
+            height: 100%;
+            /* .layout 클래스를 가진 요소의 높이를 부모 요소의 100%로 설정합니다. */
+            pointer-events: none;
+            /* .layout 클래스를 가진 요소에 대한 포인터 이벤트를 비활성화합니다. */
+        }
+
+        .layout:before {
+            content: "";
+            /* .layout 클래스 내의 ::before 가상 요소의 내용을 빈 문자열로 설정합니다. */
+            position: absolute;
+            /* .layout 클래스 내의 ::before 가상 요소의 위치를 절대 위치로 설정합니다. */
+            z-index: 1;
+            /* .layout 클래스 내의 ::before 가상 요소의 z-index를 1로 설정합니다. */
+            top: 0;
+            /* .layout 클래스 내의 ::before 가상 요소를 부모 요소의 상단에 배치합니다. */
+            left: 90px;
+            /* .layout 클래스 내의 ::before 가상 요소를 부모 요소의 왼쪽에서 90px 위치에 배치합니다. */
+            width: 10px;
+            /* .layout 클래스 내의 ::before 가상 요소의 너비를 10px로 설정합니다. */
+            height: 100%;
+            /* .layout 클래스 내의 ::before 가상 요소의 높이를 부모 요소의 100%로 설정합니다. */
+            border: 1px solid #fff;
+            /* .layout 클래스 내의 ::before 가상 요소의 테두리를 1px 두께의 흰색 실선으로 설정합니다. */
+            border-top: none;
+            /* .layout 클래스 내의 ::before 가상 요소의 상단 테두리를 없앱니다. */
+            border-bottom: none;
+            /* .layout 클래스 내의 ::before 가상 요소의 하단 테두리를 없앱니다. */
+            opacity: 0.15;
+            /* .layout 클래스 내의 ::before 가상 요소의 투명도를 0.15로 설정합니다. */
+        }
+
+        .layout .box {
+            position: absolute;
+            /* .layout 클래스 내의 .box 클래스를 가진 요소의 위치를 절대 위치로 설정합니다. */
+            bottom: 0;
+            /* .layout 클래스 내의 .box 클래스를 가진 요소를 부모 요소의 하단에 배치합니다. */
+            left: 30px;
+            /* .layout 클래스 내의 .box 클래스를 가진 요소를 부모 요소의 왼쪽에서 30px 위치에 배치합니다. */
+            color: #fff;
+            /* .layout 클래스 내의 .box 클래스를 가진 요소의 텍스트 색상을 흰색으로 설정합니다. */
+            transform-origin: 0% 10%;
+            /* .layout 클래스 내의 .box 클래스를 가진 요소의 변환 원점을 왼쪽 0%, 상단 10% 위치로 설정합니다. */
+            transform: rotate(-90deg);
+            /* .layout 클래스 내의 .box 클래스를 가진 요소를 시계 반대 방향으로 90도 회전시킵니다. */
+            font-size: 9px;
+            /* .layout 클래스 내의 .box 클래스를 가진 요소의 글꼴 크기를 9px로 설정합니다. */
+            line-height: 1.4;
+            /* .layout 클래스 내의 .box 클래스를 가진 요소의 줄 높이를 1.4로 설정합니다. */
+            text-transform: uppercase;
+            /* .layout 클래스 내의 .box 클래스를 가진 요소의 텍스트를 대문자로 변환합니다. */
+            opacity: 0.4;
+            /* .layout 클래스 내의 .box 클래스를 가진 요소의 투명도를 0.4로 설정합니다. */
+        }
+
+        .logo {
+            position: absolute;
+            /* .logo 클래스를 가진 요소의 위치를 절대 위치로 설정합니다. */
+            z-index: 2;
+            /* .logo 클래스를 가진 요소의 z-index를 2로 설정합니다. */
+            top: 28px;
+            /* .logo 클래스를 가진 요소를 부모 요소의 상단에서 28px 위치에 배치합니다. */
+            right: 28px;
+            /* .logo 클래스를 가진 요소를 부모 요소의 오른쪽에서 28px 위치에 배치합니다. */
+            width: 30px;
+            /* .logo 클래스를 가진 요소의 너비를 30px로 설정합니다. */
+            height: 30px;
+            /* .logo 클래스를 가진 요소의 높이를 30px로 설정합니다. */
+            background: #fff;
+            /* .logo 클래스를 가진 요소의 배경색을 흰색으로 설정합니다. */
+            border-radius: 50%;
+            /* .logo 클래스를 가진 요소의 모서리를 둥글게 만듭니다. */
+            opacity: 0.5;
+            /* .logo 클래스를 가진 요소의 투명도를 0.5로 설정합니다. */
+            display: flex;
+            /* .logo 클래스를 가진 요소의 디스플레이 속성을 flex로 설정하여 flexbox 레이아웃을 사용합니다. */
+            justify-content: center;
+            /* .logo 클래스를 가진 요소의 자식 요소를 가로선 상의 중앙에 배치합니다. */
+            align-items: center;
+            /* .logo 클래스를 가진 요소의 자식 요소를 세로선 상의 중앙에 배치합니다. */
+            font-family: serif;
+            /* .logo 클래스를 가진 요소의 글꼴을 세리프로 설정합니다. */
+            pointer-events: all;
+            /* .logo 클래스를 가진 요소에 대한 포인터 이벤트를 활성화합니다. */
+            color: black;
+            /* .logo 클래스를 가진 요소의 텍스트 색상을 검정색으로 설정합니다. */
+            text-decoration: none;
+            /* .logo 클래스를 가진 요소의 텍스트 장식을 없앱니다. */
+            font-size: 20px;
+            /* .logo 클래스를 가진 요소의 글꼴 크기를 20px로 설정합니다. */
+            overflow: hidden;
+            /* .logo 클래스를 가진 요소의 스크롤을 숨깁니다. */
+            padding-bottom: 0.1em;
+            /* .logo 클래스를 가진 요소의 하단 패딩을 0.1em으로 설정합니다. */
+        }
+
+        .social {
+            position: absolute;
+            /* .social 클래스를 가진 요소의 위치를 절대 위치로 설정합니다. */
+            z-index: 10;
+            /* .social 클래스를 가진 요소의 z-index를 10으로 설정합니다. */
+            bottom: 20px;
+            /* .social 클래스를 가진 요소를 부모 요소의 하단에서 20px 위치에 배치합니다. */
+            right: 25px;
+            /* .social 클래스를 가진 요소를 부모 요소의 오른쪽에서 25px 위치에 배치합니다. */
+            color: #fff;
+            /* .social 클래스를 가진 요소의 텍스트 색상을 흰색으로 설정합니다. */
+            opacity: 0.4;
+            /* .social 클래스를 가진 요소의 투명도를 0.4로 설정합니다. */
+        }
+
+        .social a {
+            display: inline-block;
+            /* .social 클래스 내의 a 요소의 디스플레이 속성을 inline-block으로 설정합니다. */
+            margin-left: 3px;
+            /* .social 클래스 내의 a 요소의 왼쪽 마진을 3px로 설정합니다. */
+        }
+
+        .social svg {
+            --fill: #fff;
+            /* .social 클래스 내의 svg 요소의 사용자 정의 속성 --fill을 흰색으로 설정합니다. */
+            width: 35px;
+            /* .social 클래스 내의 svg 요소의 너비를 35px로 설정합니다. */
+            height: 35px;
+            /* .social 클래스 내의 svg 요소의 높이를 35px로 설정합니다. */
+        }
+
+        .cursor {
+            position: fixed;
+            /* .cursor 클래스를 가진 요소의 위치를 고정 위치로 설정합니다. */
+            z-index: 10;
+            /* .cursor 클래스를 가진 요소의 z-index를 10으로 설정합니다. */
+            top: 0;
+            /* .cursor 클래스를 가진 요소를 부모 요소의 상단에 배치합니다. */
+            left: 0;
+            /* .cursor 클래스를 가진 요소를 부모 요소의 왼쪽에 배치합니다. */
+            --size: 40px;
+            /* .cursor 클래스를 가진 요소의 사용자 정의 속성 --size를 40px로 설정합니다. */
+            width: var(--size);
+            /* .cursor 클래스를 가진 요소의 너비를 --size 속성의 값으로 설정합니다. */
+            height: var(--size);
+            /* .cursor 클래스를 가진 요소의 높이를 --size 속성의 값으로 설정합니다. */
+            border-radius: 50%;
+            /* .cursor 클래스를 가진 요소의 모서리를 둥글게 만듭니다. */
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            /* .cursor 클래스를 가진 요소의 테두리를 1px 두께의 흰색 반투명 실선으로 설정합니다. */
+            margin: calc(var(--size) * -0.5) 0 0 calc(var(--size) * -0.5);
+            /* .cursor 클래스를 가진 요소의 마진을 위아래는 --size 속성의 값의 절반을 음수로, 좌우는 --size 속성의 값의 절반을 음수로 설정합니다. */
+            transition: transform 0.85s cubic-bezier(0, 0.02, 0, 1);
+            /* .cursor 클래스를 가진 요소의 변환을 0.85초 동안 cubic-bezier(0, 0.02, 0, 1) 타이밍 함수를 사용하여 전환합니다. */
+            display: none;
+            /* .cursor 클래스를 가진 요소를 숨깁니다. */
+            pointer-events: none;
+            /* .cursor 클래스를 가진 요소에 대한 포인터 이벤트를 비활성화합니다. */
+        }
+
+        @media (pointer: fine) {
+            .cursor {
+                display: block;
+                /* (pointer: fine) 미디어 쿼리가 참일 때 .cursor 클래스를 가진 요소를 보이게 합니다. */
+            }
+        }
+
+        .cursor2 {
+            --size: 2px;
+            /* .cursor2 클래스를 가진 요소의 사용자 정의 속성 --size를 2px로 설정합니다. */
+            transition-duration: 0.7s;
+            /* .cursor2 클래스를 가진 요소의 변환을 0.7초 동안 전환합니다. */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="carousel">
+        <div class="carousel-item">
+            <div class="carousel-box">
+                <div class="title">Paris</div>
+                <div class="num">01</div>
+                <img src="./img/01_paris.jpg" />
+            </div>
+        </div>
+
+        <div class="carousel-item">
+            <div class="carousel-box">
+                <div class="title">Warsaw</div>
+                <div class="num">02</div>
+                <img src="./img/02_warsaw.jpg" />
+            </div>
+        </div>
+
+        <div class="carousel-item">
+            <div class="carousel-box">
+                <div class="title">Madrid</div>
+                <div class="num">03</div>
+                <img src="./img/03_madrid.jpg" />
+            </div>
+        </div>
+
+        <div class="carousel-item">
+            <div class="carousel-box">
+                <div class="title">Sydney</div>
+                <div class="num">04</div>
+                <img src="./img/04_sydney.jpg" />
+            </div>
+        </div>
+
+        <div class="carousel-item">
+            <div class="carousel-box">
+                <div class="title">Istanbul</div>
+                <div class="num">05</div>
+                <img src="./img/05_istanbul.jpg" />
+            </div>
+        </div>
+
+        <div class="carousel-item">
+            <div class="carousel-box">
+                <div class="title">Prague</div>
+                <div class="num">06</div>
+                <img src="./img/06_prague.jpg" />
+            </div>
+        </div>
+
+        <div class="carousel-item">
+            <div class="carousel-box">
+                <div class="title">Munich</div>
+                <div class="num">07</div>
+                <img src="./img/07_munich.jpg" />
+            </div>
+        </div>
+
+        <div class="carousel-item">
+            <div class="carousel-box">
+                <div class="title">Venice</div>
+                <div class="num">08</div>
+                <img src="./img/08_venice.jpg" />
+            </div>
+        </div>
+
+        <div class="carousel-item">
+            <div class="carousel-box">
+                <div class="title">Oslo</div>
+                <div class="num">09</div>
+                <img src="./img/09_oslo.jpg" />
+            </div>
+        </div>
+        <div class="carousel-item">
+            <div class="carousel-box">
+                <div class="title">London</div>
+                <div class="num">10</div>
+                <img src="./img/10_london.jpg" />
+            </div>
+        </div>
+    </div>
+
+    <div class="layout">
+        <div class="box">High-end, full-service<br />visual content creation<br />for lifestyle branding.</div>
+    </div>
+
+    <a href="#" target="_blank" class="logo">S</a>
+    <div class="social">
+        <a href="#" target="_blank"><svg>
+                <use xlink:href="#ico-linkedin"></use>
+            </svg></a>
+        <a href="#" target="_blank"><svg>
+                <use xlink:href="#ico-instagram"></use>
+            </svg></a>
+    </div>
+
+    <svg style="display: none">
+        <symbol id="ico-instagram" viewBox="0 0 35 35">
+            <circle opacity=".2" cx="17.5" cy="17.5" r="17" stroke="var(--fill)" fill="none"></circle>
+            <path fill-rule="evenodd" clip-rule="evenodd"
+                d="M24.944 20.476c.028-.457.042-1.282.042-2.476s-.014-2.019-.042-2.476c-.056-1.09-.378-1.93-.965-2.517s-1.422-.91-2.503-.965C21.018 12.014 20.194 12 19 12s-2.019.014-2.476.042c-1.081.047-1.92.368-2.517.965s-.918 1.436-.965 2.518C13.014 15.98 13 16.805 13 18c0 1.194.014 2.019.042 2.476.047 1.09.368 1.93.965 2.517s1.436.91 2.518.965c.466.028 1.29.042 2.475.042 1.184 0 2.01-.014 2.476-.042 1.072-.047 1.906-.368 2.503-.965.597-.597.918-1.436.965-2.517ZM19 13.075h-1.427c-.186 0-.438.01-.755.029a11.61 11.61 0 0 0-.797.07c-.215.028-.401.08-.56.154-.26.102-.489.251-.685.447-.196.196-.35.425-.461.685-.056.15-.103.336-.14.56a7.843 7.843 0 0 0-.084.811 7.113 7.113 0 0 0-.014.741c.01.178.01.453 0 .826-.01.373-.01.573 0 .601.01.028.01.228 0 .601s-.01.648 0 .826c.01.177.014.424.014.74 0 .318.028.588.084.812l.14.56c.112.26.265.489.461.685.196.196.425.345.685.447.15.056.336.108.56.154.224.047.49.07.797.07.308 0 .56.01.755.028.196.019.471.019.826 0 .354-.019.554-.019.601 0 .047.019.242.019.587 0s.62-.019.826 0c.205.019.456.01.755-.028.298-.037.569-.06.811-.07.242-.01.424-.06.546-.154.26-.102.494-.251.699-.447a1.75 1.75 0 0 0 .447-.686c.056-.149.103-.335.14-.559.038-.224.066-.494.084-.811.019-.317.023-.564.014-.741a11.82 11.82 0 0 1 0-.826c.01-.373.01-.573 0-.601-.01-.028-.01-.228 0-.601s.01-.648 0-.826c-.01-.177-.014-.424-.014-.74 0-.318-.028-.588-.084-.812l-.14-.56a1.956 1.956 0 0 0-1.147-1.133 3.979 3.979 0 0 0-.545-.153 3.915 3.915 0 0 0-.811-.07c-.326 0-.578-.01-.755-.028a5.916 5.916 0 0 0-.826 0c-.372.019-.568.019-.587 0Zm3.706 2.225c.14-.14.21-.308.21-.504a.57.57 0 0 0-.21-.503.767.767 0 0 0-.517-.21.718.718 0 0 0-.504.21.622.622 0 0 0-.21.503c.01.196.08.364.21.504s.299.21.504.21c.205 0 .377-.07.517-.21ZM22.063 18c0 .849-.298 1.576-.895 2.182a2.882 2.882 0 0 1-2.168.895 3.075 3.075 0 0 1-2.182-.895c-.606-.588-.904-1.315-.895-2.182.01-.867.308-1.594.895-2.182.588-.587 1.315-.886 2.182-.895.867-.01 1.59.29 2.168.895.578.606.876 1.333.895 2.182Zm-1.077 0a1.95 1.95 0 0 0-.573-1.413A1.897 1.897 0 0 0 19 16c-.56 0-1.03.196-1.413.587A2.001 2.001 0 0 0 17 18c-.01.55.186 1.021.587 1.413.401.391.872.587 1.413.587.54 0 1.012-.196 1.413-.587.4-.392.592-.863.573-1.413Z"
+                transform="translate(-1.5 -0.5)" fill="var(--fill)"></path>
+        </symbol>
+
+        <symbol id="ico-linkedin" viewBox="0 0 35 35">
+            <circle opacity=".2" cx="17.5" cy="17.5" r="17" stroke="var(--fill)" fill="none"></circle>
+            <path fill-rule="evenodd" clip-rule="evenodd"
+                d="M15.3025 14.0835C15.3025 14.3845 15.1934 14.6403 14.9752 14.851C14.757 15.0617 14.4786 15.167 14.14 15.167C13.8014 15.167 13.5267 15.0617 13.316 14.851C13.1053 14.6403 13 14.3807 13 14.0722C13 13.7637 13.1053 13.5079 13.316 13.3047C13.5267 13.1016 13.8051 13 14.1512 13C14.4974 13 14.772 13.1016 14.9752 13.3047C15.1783 13.5079 15.2874 13.7675 15.3025 14.0835ZM13.0677 23V16.0248H15.2348V23H13.0677ZM16.4763 16.0248C16.5064 16.8676 16.5214 17.6125 16.5214 18.2596V23H18.7111V18.9819C18.7111 18.7111 18.7336 18.5305 18.7788 18.4402C18.9895 17.8984 19.3582 17.6275 19.8849 17.6275C20.6223 17.6275 20.991 18.1317 20.991 19.14V23H23.158V18.8691C23.158 17.8758 22.9285 17.1272 22.4695 16.623C22.0105 16.1189 21.4048 15.8668 20.6524 15.8668C19.6742 15.8668 18.9594 16.243 18.5079 16.9955H18.4628L18.3499 16.0248H16.4763Z"
+                transform="translate(0 -1)" fill="var(--fill)"></path>
+        </symbol>
+    </svg>
+
+    <div class="cursor"></div>
+    <div class="cursor cursor2"></div>
+    <script>
+        /*--------------------
+        Vars
+        --------------------*/
+        let progress = 50 // 초기 진행률을 50으로 설정합니다.
+        let startX = 0 // 드래그 시작 위치를 0으로 설정합니다.
+        let active = 0 // 활성 아이템의 인덱스를 0으로 설정합니다.
+        let isDown = false // 마우스 또는 터치가 아래로 내려갔는지 여부를 false로 설정합니다.
+
+        /*--------------------
+        Contants
+        --------------------*/
+        const speedWheel = 0.02 // 휠 스크롤 속도를 0.02로 설정합니다.
+        const speedDrag = -0.1 // 드래그 속도를 -0.1로 설정합니다.
+
+        /*--------------------
+        Get Z
+        --------------------*/
+        const getZindex = (array, index) => (array.map((_, i) => (index === i) ? array.length : array.length - Math.abs(index - i))) // z-index를 계산하는 함수를 정의합니다. 배열과 인덱스를 입력받아, 해당 인덱스의 요소는 배열의 길이를, 그 외의 요소는 배열의 길이에서 인덱스 차이의 절댓값을 뺀 값을 반환합니다.
+
+        /*--------------------
+        Items
+        --------------------*/
+        const $items = document.querySelectorAll('.carousel-item') // .carousel-item 클래스를 가진 모든 요소를 선택하여 $items에 할당합니다.
+        const $cursors = document.querySelectorAll('.cursor') // .cursor 클래스를 가진 모든 요소를 선택하여 $cursors에 할당합니다.
+
+        const displayItems = (item, index, active) => {
+            const zIndex = getZindex([...$items], active)[index] // getZindex 함수를 사용하여 z-index를 계산합니다.
+            item.style.setProperty('--zIndex', zIndex) // --zIndex CSS 변수의 값을 계산된 z-index로 설정합니다.
+            item.style.setProperty('--active', (index - active) / $items.length) // --active CSS 변수의 값을 활성 아이템과의 인덱스 차이를 아이템의 총 개수로 나눈 값으로 설정합니다.
+        }
+
+        /*--------------------
+        Animate
+        --------------------*/
+        const animate = () => {
+            progress = Math.max(0, Math.min(progress, 100)) // progress 값을 0과 100 사이로 제한합니다.
+            active = Math.floor(progress / 100 * ($items.length - 1)) // active 값을 progress에 따라 계산합니다.
+
+            $items.forEach((item, index) => displayItems(item, index, active)) // 각 아이템에 대해 displayItems 함수를 호출하여 스타일을 업데이트합니다.
+        }
+        animate() // animate 함수를 호출하여 초기 스타일을 설정합니다.
+
+        /*--------------------
+        Click on Items
+        --------------------*/
+        $items.forEach((item, i) => {
+            item.addEventListener('click', () => {
+                progress = (i / $items.length) * 100 + 10 // 아이템을 클릭하면 progress 값을 해당 아이템의 비율에 따라 업데이트합니다.
+                animate() // animate 함수를 호출하여 스타일을 업데이트합니다.
+            })
+        })
+
+        /*--------------------
+        Handlers
+        --------------------*/
+        const handleWheel = e => {
+            const wheelProgress = e.deltaY * speedWheel // 휠 스크롤에 따른 progress 변화량을 계산합니다.
+            progress = progress + wheelProgress // progress 값을 업데이트합니다.
+            animate() // animate 함수를 호출하여 스타일을 업데이트합니다.
+        }
+
+        const handleMouseMove = (e) => {
+            if (e.type === 'mousemove') {
+                $cursors.forEach(($cursor) => {
+                    $cursor.style.transform = `translate(${e.clientX}px, ${e.clientY}px)` // 마우스 이동에 따라 커서의 위치를 업데이트합니다.
+                })
+            }
+            if (!isDown) return // 마우스 또는 터치가 아래로 내려가지 않았다면 함수를 종료합니다.
+            const x = e.clientX || (e.touches && e.touches[0].clientX) || 0 // 마우스 또는 터치의 x 좌표를 가져옵니다.
+            const mouseProgress = (x - startX) * speedDrag // 마우스 또는 터치 이동에 따른 progress 변화량을 계산합니다.
+            progress = progress + mouseProgress // progress 값을 업데이트합니다.
+            startX = x // startX 값을 업데이트합니다.
+            animate() // animate 함수를 호출하여 스타일을 업데이트합니다.
+        }
+
+        const handleMouseDown = e => {
+            isDown = true // 마우스 또는 터치가 아래로 내려갔음을 표시합니다.
+            startX = e.clientX || (e.touches && e.touches[0].clientX) || 0 // 드래그 시작 위치를 설정합니다.
+        }
+
+        const handleMouseUp = () => {
+            isDown = false // 마우스 또는 터치가 위로 올라갔음을 표시합니다.
+        }
+
+        /*--------------------
+        Listeners
+        --------------------*/
+        document.addEventListener('mousewheel', handleWheel) // mousewheel 이벤트에 대한 핸들러를 등록합니다.
+        document.addEventListener('mousedown', handleMouseDown) // mousedown 이벤트에 대한 핸들러를 등록합니다.
+        document.addEventListener('mousemove', handleMouseMove) // mousemove 이벤트에 대한 핸들러를 등록합니다.
+        document.addEventListener('mouseup', handleMouseUp) // mouseup 이벤트에 대한 핸들러를 등록합니다.
+        document.addEventListener('touchstart', handleMouseDown) // touchstart 이벤트에 대한 핸들러를 등록합니다.
+        document.addEventListener('touchmove', handleMouseMove) // touchmove 이벤트에 대한 핸들러를 등록합니다.
+        document.addEventListener('touchend', handleMouseUp) // touchend 이벤트에 대한 핸들러를 등록합니다.
+
+    </script>
+</body>
+
+</html>

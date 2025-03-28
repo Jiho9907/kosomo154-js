@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            background: linear-gradient(to right, #141e30, #243b55);
+            /* body 요소의 배경을 오른쪽으로 향하는 선형 그라디언트로 설정합니다. */
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        p {
+            color: #ffffff;
+            /* h1, h2, h3, h4, p 요소의 텍스트 색상을 흰색으로 설정합니다. */
+            font-family: Arial, sans-serif;
+            /* 이 요소들의 글꼴을 Arial로 설정하고, Arial이 사용할 수 없는 경우 산세리프 글꼴을 사용합니다. */
+        }
+
+        .header {
+            text-align: center;
+            /* .header 클래스를 가진 요소의 텍스트를 중앙에 배치합니다. */
+        }
+
+        .header span {
+            padding-right: 5px;
+            /* .header 내부의 span 요소의 오른쪽 패딩을 5px로 설정합니다. */
+        }
+
+        .cards-wrapper {
+            margin-top: 50px;
+            /* .cards-wrapper 클래스를 가진 요소의 상단 마진을 50px로 설정합니다. */
+        }
+
+        .card-container {
+            perspective: 1200px;
+            /* .card-container 클래스를 가진 요소에 대한 원근감을 설정합니다. 이는 3D 변환 요소의 거리 느낌을 제어합니다. */
+        }
+
+        .card {
+            margin: 0 auto;
+            /* .card 클래스를 가진 요소의 마진을 위아래는 0, 좌우는 자동으로 설정하여 가운데 정렬합니다. */
+            height: 500px;
+            /* 카드의 높이를 500px로 설정합니다. */
+            width: 500px;
+            /* 카드의 너비를 500px로 설정합니다. */
+            max-width: 80%;
+            /* 카드의 최대 너비를 부모 요소의 80%로 설정합니다. */
+            position: relative;
+            /* .card 요소의 위치를 상대 위치로 설정합니다. 이는 후손 요소가 .card를 기준으로 위치를 잡을 수 있게 합니다. */
+            border-radius: 25px;
+            /* 카드의 모서리를 둥글게 만듭니다. */
+            transition: all 1s ease;
+            /* 모든 속성의 변화를 1초 동안 부드럽게 전환합니다. */
+            transform-style: preserve-3d;
+            /* 3D 변환된 자식 요소의 3D 변환을 유지합니다. */
+            box-shadow: 1px 3px 3px rgba(0, 0, 0, 0.2);
+            /* 카드에 약간의 그림자를 추가합니다. */
+        }
+
+        .rotated {
+            transform: rotateY(-180deg);
+            /* .rotated 클래스를 가진 요소를 Y축을 중심으로 -180도 회전시킵니다. */
+        }
+
+        .card-contents {
+            width: 100%;
+            /* .card-contents 클래스를 가진 요소의 너비를 부모 요소의 100%로 설정합니다. */
+            height: 100%;
+            /* .card-contents 클래스를 가진 요소의 높이를 부모 요소의 100%로 설정합니다. */
+            border-radius: 25px;
+            /* .card-contents 요소의 모서리를 둥글게 만듭니다. */
+            display: flex;
+            /* .card-contents 요소의 디스플레이 속성을 flex로 설정하여 flexbox 레이아웃을 사용합니다. */
+            justify-content: center;
+            /* .card-contents 요소의 자식 요소를 가로선 상의 중앙에 배치합니다. */
+            align-items: center;
+            /* .card-contents 요소의 자식 요소를 세로선 상의 중앙에 배치합니다. */
+            flex-direction: column;
+            /* .card-contents 요소의 자식 요소를 세로 방향으로 배치합니다. */
+            text-align: center;
+            /* .card-contents 요소의 텍스트를 중앙에 배치합니다. */
+            position: absolute;
+            /* .card-contents 요소의 위치를 절대 위치로 설정합니다. 이는 부모 요소를 기준으로 위치를 잡습니다. */
+            top: 0;
+            /* .card-contents 요소를 부모 요소의 상단에 배치합니다. */
+            left: 0;
+            /* .card-contents 요소를 부모 요소의 왼쪽에 배치합니다. */
+            -webkit-backface-visibility: hidden;
+            /* .card-contents 요소의 뒷면이 보이지 않도록 합니다. (웹킷 브라우저용) */
+            backface-visibility: hidden;
+            /* .card-contents 요소의 뒷면이 보이지 않도록 합니다. */
+        }
+
+        .card-contents h2,
+        .card-contents p {
+            text-shadow: 1px 2px 2px rgba(0, 0, 0, 0.2);
+            /* .card-contents 요소 내의 h2와 p 요소에 텍스트 그림자를 추가합니다. */
+        }
+
+        .card-contents h2 {
+            font-size: 3em;
+            /* .card-contents 요소 내의 h2 요소의 글꼴 크기를 3em으로 설정합니다. */
+            margin: 0 auto;
+            /* .card-contents 요소 내의 h2 요소의 마진을 위아래는 0, 좌우는 자동으로 설정하여 가운데 정렬합니다. */
+        }
+
+        .card-contents hr {
+            width: 50%;
+            /* .card-contents 요소 내의 hr 요소의 너비를 부모 요소의 50%로 설정합니다. */
+            margin: 20px auto;
+            /* .card-contents 요소 내의 hr 요소의 마진을 위아래는 20px, 좌우는 자동으로 설정하여 가운데 정렬합니다. */
+        }
+
+        .card-contents p {
+            margin: 0 auto;
+            /* .card-contents 요소 내의 p 요소의 마진을 위아래는 0, 좌우는 자동으로 설정하여 가운데 정렬합니다. */
+        }
+
+        .card-depth {
+            transform: translateZ(100px) scale(0.98);
+            /* .card-depth 클래스를 가진 요소를 Z축으로 100px만큼 이동시키고, 크기를 0.98배로 축소합니다. */
+            perspective: inherit;
+            /* .card-depth 클래스를 가진 요소의 원근감을 부모 요소로부터 상속받습니다. */
+        }
+
+        .card-front {
+            background: linear-gradient(to top left, #3a6186, #89253e);
+            /* .card-front 클래스를 가진 요소의 배경을 왼쪽 상단으로 향하는 선형 그라디언트로 설정합니다. */
+            transform-style: preserve-3d;
+            /* 3D 변환된 자식 요소의 3D 변환을 유지합니다. */
+        }
+
+        .card-back {
+            transform: rotateY(180deg);
+            /* .card-back 클래스를 가진 요소를 Y축을 중심으로 180도 회전시킵니다. */
+            background: linear-gradient(to top left, #ffa17f, #00223e);
+            /* .card-back 클래스를 가진 요소의 배경을 왼쪽 상단으로 향하는 선형 그라디언트로 설정합니다. */
+            transform-style: preserve-3d;
+            /* 3D 변환된 자식 요소의 3D 변환을 유지합니다. */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <h1>3D Rotation</h1>
+        <p>Click the card to see rotation</p>
+    </div>
+    <div class="cards-wrapper">
+        <div class="card-container">
+            <div class="card">
+                <div class="card-contents card-front">
+                    <div class="card-depth">
+                        <h2>Click card</h2>
+                        <hr>
+                        <p>For 3D rotation</p>
+                    </div>
+                </div>
+                <div class="card-contents card-back">
+                    <div class="card-depth">
+                        <h2>Click card again</h2>
+                        <hr>
+                        <p>To turn back</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        const card = document.querySelector('.card'); // .card 클래스를 가진 요소를 선택하여 card라는 상수에 할당합니다.
+
+        function clickRotate() { // clickRotate라는 함수를 정의합니다.
+            card.classList.toggle('rotated'); // card 요소의 클래스 리스트에서 'rotated' 클래스를 토글합니다. 즉, 'rotated' 클래스가 있으면 제거하고, 없으면 추가합니다.
+        }
+        card.addEventListener('click', clickRotate); // card 요소에 클릭 이벤트 리스너를 추가합니다. card 요소가 클릭되면 clickRotate 함수가 실행됩니다.
+
+    </script>
+</body>
+
+</html>

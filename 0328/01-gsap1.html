@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            width: 100px;
+            height: 100px;
+            background-color: cornflowerblue;
+            margin: 100px;
+        }
+    </style>
+</head>
+<body>
+    <div class="box"></div>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js"></script>
+    <script>
+        // gsap.to() : 요소를 움직일 애니메이션 위치를 지정, 즉 도달하고자하는 state
+        gsap.to(".box",{
+            duration : 2, // 애니메이션 시간 :2초
+            x : 500, // 현재 위치에서 x축으로 500px 오른쪽으로 이동
+            rotation : 360, // 요소를 360도 회전
+            ease : "bounce.out" // bounce easing 효과 적용
+        })
+    </script>
+</body>
+</html>

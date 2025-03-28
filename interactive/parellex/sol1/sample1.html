@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container {
+            max-width: 960px; /* 컨테이너의 최대 너비를 960px로 설정 */
+            margin: 0 auto; /* 컨테이너를 수평 중앙에 배치 */
+        }
+
+        section.module:last-child {
+            margin-bottom: 0; /* 마지막 모듈 섹션의 하단 마진을 0으로 설정 */
+        }
+
+        section.module h2 {
+            margin-bottom: 40px; /* h2 태그의 하단 마진을 40px로 설정 */
+            font-family: "Roboto Slab", serif; /* h2 태그의 글꼴을 'Roboto Slab', serif로 설정 */
+            font-size: 30px; /* h2 태그의 글자 크기를 30px로 설정 */
+        }
+
+        section.module p {
+            margin-bottom: 40px; /* p 태그의 하단 마진을 40px로 설정 */
+            font-size: 16px; /* p 태그의 글자 크기를 16px로 설정 */
+            font-weight: 300; /* p 태그의 글자 두께를 300으로 설정 */
+        }
+
+        section.module p:last-child {
+            margin-bottom: 0; /* 마지막 p 태그의 하단 마진을 0으로 설정 */
+        }
+
+        section.module.content {
+            padding: 40px 0; /* content 클래스를 가진 섹션의 패딩을 상하 40px, 좌우 0으로 설정 */
+        }
+
+        section.module.parallax {
+            height: 600px; /* parallax 클래스를 가진 섹션의 높이를 600px로 설정 */
+            background-position: 50% 50%; /* 배경 이미지의 위치를 가운데로 설정 */
+            background-repeat: no-repeat; /* 배경 이미지가 반복되지 않도록 설정 */
+            background-attachment: fixed; /* 배경 이미지가 스크롤에 따라 움직이지 않도록 설정 */
+            background-size: cover; /* 배경 이미지가 섹션을 완전히 덮도록 설정 */
+        }
+
+        section.module.parallax h1 {
+            color: rgba(255, 255, 255, 0.8); /* h1 태그의 색상을 rgba(255, 255, 255, 0.8)로 설정 */
+            font-size: 48px; /* h1 태그의 글자 크기를 48px로 설정 */
+            line-height: 600px; /* h1 태그의 줄 높이를 600px로 설정 */
+            font-weight: 700; /* h1 태그의 글자 두께를 700으로 설정 */
+            text-align: center; /* h1 태그의 텍스트를 중앙 정렬 */
+            text-transform: uppercase; /* h1 태그의 텍스트를 대문자로 변환 */
+            text-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* h1 태그의 텍스트에 그림자 효과 적용 */
+        }
+
+        section.module.parallax-1 {
+            background-image: url("./img/img1.jpg"); /* parallax-1 클래스를 가진 섹션의 배경 이미지 설정 */
+        }
+
+        section.module.parallax-2 {
+            background-image: url("./img/img2.jpg"); /* parallax-2 클래스를 가진 섹션의 배경 이미지 설정 */
+        }
+
+        section.module.parallax-3 {
+            background-image: url("./img/img3.jpg"); /* parallax-3 클래스를 가진 섹션의 배경 이미지 설정 */
+        }
+
+        @media all and (min-width: 600px) {
+            section.module h2 {
+                font-size: 42px; /* 뷰포트 너비가 600px 이상일 때 h2 태그의 글자 크기를 42px로 설정 */
+            }
+
+            section.module p {
+                font-size: 20px; /* 뷰포트 너비가 600px 이상일 때 p 태그의 글자 크기를 20px로 설정 */
+            }
+
+            section.module.parallax h1 {
+                font-size: 96px; /* 뷰포트 너비가 600px 이상일 때 parallax 클래스를 가진 섹션의 h1 태그의 글자 크기를 96px로 설정 */
+            }
+        }
+
+        @media all and (min-width: 960px) {
+            section.module.parallax h1 {
+                font-size: 160px; /* 뷰포트 너비가 960px 이상일 때 parallax 클래스를 가진 섹션의 h1 태그의 글자 크기를 160px로 설정 */
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+    <section class="module parallax parallax-1">
+        <div class="container">
+            <h1>Serene</h1>
+        </div>
+    </section>
+
+    <section class="module content">
+        <div class="container">
+            <h2>Lorem Ipsum Dolor</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
+        </div>
+    </section>
+
+    <section class="module parallax parallax-2">
+        <div class="container">
+            <h1>Rise</h1>
+        </div>
+    </section>
+
+    <section class="module content">
+        <div class="container">
+            <h2>Lorem Ipsum Dolor</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
+        </div>
+    </section>
+
+    <section class="module parallax parallax-3">
+        <div class="container">
+            <h1>Calm</h1>
+        </div>
+    </section>
+
+    <section class="module content">
+        <div class="container">
+            <h2>Lorem Ipsum Dolor</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
+        </div>
+    </section>
+</body>
+
+</html>

@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>페이징 나이키</title>
+  <style>
+    body {
+      overflow-x: hidden;
+      /* 가로 스크롤바를 숨깁니다. */
+      background-color: #fff;
+      /* 배경색을 흰색으로 설정합니다. */
+    }
+
+    section {
+      position: relative;
+      /* 섹션의 위치를 상대 위치로 설정합니다. */
+      height: 100vh;
+      /* 섹션의 높이를 뷰포트 높이의 100%로 설정합니다. */
+      width: 100vw;
+      /* 섹션의 너비를 뷰포트 너비의 100%로 설정합니다. */
+    }
+
+    section.active .imageWrap img {
+      opacity: 1;
+      /* 활성 섹션의 이미지의 투명도를 1로 설정합니다. */
+      visibility: visible;
+      /* 활성 섹션의 이미지를 보이게 합니다. */
+      transform: translate(0, 0);
+      /* 활성 섹션의 이미지 위치를 초기 위치로 설정합니다. */
+    }
+
+    .innerWrap {
+      position: relative;
+      /* 내부 래퍼의 위치를 상대 위치로 설정합니다. */
+      z-index: 100;
+      /* 내부 래퍼의 z-index를 100으로 설정하여 다른 요소 위에 표시되도록 합니다. */
+      padding: 60px;
+      /* 내부 래퍼의 패딩을 60px로 설정합니다. */
+      width: 340px;
+      /* 내부 래퍼의 너비를 340px로 설정합니다. */
+      margin-top: 50px;
+      /* 내부 래퍼의 상단 마진을 50px로 설정합니다. */
+      z-index: 50;
+      /* 내부 래퍼의 z-index를 50으로 설정하여 다른 요소 위에 표시되도록 합니다. */
+      background-color: rgba(255, 255, 255, .7);
+      /* 내부 래퍼의 배경색을 rgba(255,255,255,.7)로 설정합니다. */
+    }
+
+    .imageWrap {
+      position: fixed;
+      /* 이미지 래퍼의 위치를 고정 위치로 설정합니다. */
+      width: 70%;
+      /* 이미지 래퍼의 너비를 70%로 설정합니다. */
+      right: 5%;
+      /* 이미지 래퍼를 오른쪽에서 5% 떨어진 위치에 배치합니다. */
+      top: 35%;
+      /* 이미지 래퍼를 상단에서 35% 떨어진 위치에 배치합니다. */
+    }
+
+    /* 왼쪽 신발 */
+    .imageWrap img {
+      position: absolute;
+      /* 이미지의 위치를 절대 위치로 설정합니다. */
+      width: 400px;
+      /* 이미지의 너비를 400px로 설정합니다. */
+      transition: all 1s ease-in-out;
+      /* 모든 속성에 대해 1초 동안 ease-in-out 함수를 사용하여 전환 효과를 적용합니다. */
+      visibility: hidden;
+      /* 이미지를 기본적으로 숨깁니다. */
+      opacity: 0;
+      /* 이미지의 투명도를 0으로 설정합니다. */
+      transform: translate(-100px, -150px) rotate(-10deg);
+      /* 이미지의 위치를 (-100px, -150px)만큼 이동하고 -10도 회전시킵니다. */
+    }
+
+    /* 오른쪽 신발 */
+    .imageWrap img:nth-child(2) {
+      left: 400px;
+      /* 두 번째 이미지를 왼쪽에서 400px 떨어진 위치에 배치합니다. */
+      top: 100px;
+      /* 두 번째 이미지를 상단에서 100px 떨어진 위치에 배치합니다. */
+      transition-delay: .2s;
+      /* 전환 효과의 시작을 0.2초 지연시킵니다. */
+      transform: translate(100px, 150px) rotate(-10deg);
+      /* 두 번째 이미지의 위치를 (100px, 150px)만큼 이동하고 -10도 회전시킵니다. */
+    }
+
+    h1 {
+      color: #000;
+      /* h1 요소의 색상을 검은색으로 설정합니다. */
+      text-align: center;
+      /* h1 요소의 텍스트를 중앙 정렬합니다. */
+      padding-top: 40vh;
+      /* h1 요소의 상단 패딩을 뷰포트 높이의 40%로 설정합니다. */
+      font-size: 60px;
+      /* h1 요소의 글꼴 크기를 60px로 설정합니다. */
+    }
+
+    h2 {
+      color: #333;
+      /* h2 요소의 색상을 #333으로 설정합니다. */
+    }
+
+    p {
+      color: #000;
+      /* p 요소의 색상을 검은색으로 설정합니다. */
+      font-size: 16px;
+      /* p 요소의 글꼴 크기를 16px로 설정합니다. */
+      line-height: 24px;
+      /* p 요소의 줄 간격을 24px로 설정합니다. */
+    }
+
+    .pointWrap {
+      position: fixed;
+      /* 포인트 래퍼의 위치를 고정 위치로 설정합니다. */
+      right: 3vw;
+      /* 포인트 래퍼를 오른쪽에서 3vw 떨어진 위치에 배치합니다. */
+      top: 40%;
+      /* 포인트 래퍼를 상단에서 40% 떨어진 위치에 배치합니다. */
+      z-index: 100;
+      /* 포인트 래퍼의 z-index를 100으로 설정하여 다른 요소 위에 표시되도록 합니다. */
+    }
+
+    .pointWrap li {
+      list-style: none;
+      /* li 요소의 목록 스타일을 없앱니다. */
+      width: 12px;
+      /* li 요소의 너비를 12px로 설정합니다. */
+      height: 12px;
+      /* li 요소의 높이를 12px로 설정합니다. */
+      margin-top: 15px;
+      /* li 요소의 상단 마진을 15px로 설정합니다. */
+      cursor: pointer;
+      /* li 요소의 커서를 포인터로 설정합니다. */
+      background-color: #999;
+      /* li 요소의 배경색을 #999로 설정합니다. */
+      border-radius: 50%;
+      /* li 요소를 원형으로 만듭니다. */
+      transition: background .3s ease-out;
+      /* 배경색에 대해 0.3초 동안 ease-out 함수를 사용하여 전환 효과를 적용합니다. */
+    }
+
+    .pointWrap li.active {
+      background-color: #000;
+      /* 활성 li 요소의 배경색을 검은색으로 설정합니다. */
+    }
+  </style>
+
+  </style>
+  <script>
+    window.onload = function () {
+      var section = document.getElementsByTagName("section"); // 섹션 요소를 모두 선택합니다.
+      var pointBtn = document.querySelectorAll(".pointWrap li"); // .pointWrap li 요소를 모두 선택합니다.
+      var pageNum = 0; // 현재 페이지 번호를 저장하는 변수를 선언하고 0으로 초기화합니다.
+      var totalNum = section.length; // 전체 페이지 수를 저장하는 변수를 선언하고 섹션의 수로 초기화합니다.
+
+      for (var i = 0; i < pointBtn.length; i++) {
+        (function (idx) {
+          pointBtn[idx].onclick = function () {
+            // 각 포인트 버튼을 클릭하면 실행되는 함수입니다.
+            pageNum = idx; // 클릭한 버튼의 인덱스를 pageNum 변수에 저장합니다.
+            pageChangeFunc(); // 페이지 변경 함수를 호출합니다.
+
+            window.scrollTo({
+              top: section[pageNum].offsetTop, // 클릭한 버튼에 해당하는 섹션의 상단으로 스크롤합니다.
+              behavior: 'smooth', // 스크롤 행동을 부드럽게 설정합니다.
+            })
+          }
+        })(i);
+      }
+
+      //스크롤 이벤트
+      window.addEventListener("scroll", function (event) {
+        var scroll = this.scrollY; // 현재 스크롤 위치를 저장하는 변수를 선언하고 window.scrollY로 초기화합니다.
+
+        for (var i = 0; i < totalNum; i++) {
+          if (scroll > section[i].offsetTop - window.outerHeight / 1.5 && scroll < section[i].offsetTop - window.outerHeight / 1.5 + section[i].offsetHeight) {
+            pageNum = i; // 스크롤 위치가 현재 섹션 내에 있으면 pageNum 변수를 해당 섹션의 인덱스로 업데이트합니다.
+            break;
+          }
+        }
+        pageChangeFunc(); // 페이지 변경 함수를 호출합니다.
+      });
+
+      //페이지 변경
+      function pageChangeFunc() {
+        for (var i = 0; i < totalNum; i++) {
+          section[i].classList.remove("active"); // 모든 섹션에서 "active" 클래스를 제거합니다.
+          pointBtn[i].classList.remove("active"); // 모든 포인트 버튼에서 "active" 클래스를 제거합니다.
+        }
+        section[pageNum].classList.add("active"); // 현재 페이지에 해당하는 섹션에 "active" 클래스를 추가합니다.
+        pointBtn[pageNum].classList.add("active"); // 현재 페이지에 해당하는 포인트 버튼에 "active" 클래스를 추가합니다.
+      }
+
+      //페이지 로드되면 바로 실행
+      pageChangeFunc(); // 페이지가 로드되면 페이지 변경 함수를 호출합니다.
+    }
+
+
+  </script>
+</head>
+
+<body>
+  <ul class="pointWrap">
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+  </ul>
+
+  <section>
+    <h1>NIKE 스니커즈</h1>
+  </section>
+
+  <section>
+    <div class="innerWrap">
+      <h2>블레이저 미드 '77 빈티지</h2>
+      <p>나이키 블레이저 미드 '77 빈티지는 빈티지한 중창 마감 처리로 나이키 올드 스쿨 농구화의 느낌을 살렸으며, 마치 수년간 보관해온 듯한 룩을 연출합니다.</p>
+    </div>
+    <div class="imageWrap">
+      <img src="./image/nike_1_1.JPG" alt="블레이저 미드">
+      <img src="./image/nike_1_2.JPG" alt="블레이저 미드">
+    </div>
+  </section>
+
+  <section>
+    <div class="innerWrap">
+      <h2>에어맥스 95</h2>
+      <p>나이키 에어맥스 95에는 놀랄만큼 편안한 착화감과 편안함과 시선을 사로 잡는 스타일, 그리고 재생 소재가 어우러져 있습니다. 펠트,메쉬 그리고 인조 가죽의 풍부한 텍스처를 선보이며 클래식 러닝
+        DNA에 새로운 디자인을 선사합니다. 적당히 두툼한 디자인과 부드러운 에어 쿠셔닝, 그리고 나이키 그라인드 고무 밑창으로 트렌드를 선도합니다. 이 제품은 중량 기준 20% 이상 재생 소재로
+        제작했습니다.</p>
+    </div>
+    <div class="imageWrap">
+      <img src="./image/nike_2_1.JPG" alt="에어맥스 95">
+      <img src="./image/nike_2_2.JPG" alt="에어맥스 95">
+    </div>
+  </section>
+
+  <section>
+    <div class="innerWrap">
+      <h2>리액트 비전 3M</h2>
+      <p>나이키 리액트 비전은 나이키 리액트 기술과 더없이 폭신한 설포로 차원이 다른 편안함을 제공합니다. 다양한 텍스처와 과장된 비율이 3M™ 디테일과 결합되어 초현실적인 독특한 감각을 더해 줍니다.</p>
+    </div>
+    <div class="imageWrap">
+      <img src="./image/nike_3_1.JPG" alt="리액트 비전 3M">
+      <img src="./image/nike_3_2.JPG" alt="리액트 비전 3M">
+    </div>
+  </section>
+
+</body>
+
+</html>

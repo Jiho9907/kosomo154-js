@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>문서</title>
+    <style>
+        .container {
+            position: fixed;
+            /* 컨테이너를 화면에 고정합니다. */
+            top: -30px;
+            /* 컨테이너의 상단을 화면 상단에서 -30px 위치에 둡니다. */
+            left: 0;
+            /* 컨테이너의 왼쪽을 화면 왼쪽 끝에 둡니다. */
+            width: 100vh;
+            /* 컨테이너의 너비를 뷰포트 높이의 100%로 설정합니다. */
+            height: calc(100vw);
+            /* 컨테이너의 높이를 뷰포트 너비의 100%로 설정합니다. */
+
+            overflow: scroll;
+            /* 컨테이너의 내용이 너무 많아서 넘치면 스크롤바를 표시합니다. */
+            transform: rotate(-90deg);
+            /* 컨테이너를 -90도 회전시킵니다. */
+            transform-origin: center calc(50vh);
+            /* 회전의 기준점을 설정합니다. */
+        }
+
+        .child {
+            display: flex;
+            /* 자식 요소들을 플렉스 박스로 만듭니다. */
+            flex-direction: column;
+            /* 플렉스 아이템들을 수직 방향으로 배열합니다. */
+            justify-content: center;
+            /* 플렉스 아이템들을 주 축(center)에 맞춰 정렬합니다. */
+            align-items: center;
+            /* 플렉스 아이템들을 교차 축(center)에 맞춰 정렬합니다. */
+
+            margin: 1em auto;
+            /* 요소의 마진을 설정합니다. */
+            padding: 2em;
+            /* 요소의 패딩을 설정합니다. */
+            width: 500px;
+            /* 요소의 너비를 설정합니다. */
+            height: 500px;
+            /* 요소의 높이를 설정합니다. */
+
+            transform: rotate(90deg);
+            /* 요소를 90도 회전시킵니다. */
+
+            border: 1px solid #333;
+            /* 요소의 테두리를 설정합니다. */
+            box-shadow: 3px 3px 6px rgba(#333, .3);
+            /* 요소의 그림자를 설정합니다. */
+
+            text-align: center;
+            /* 텍스트를 중앙에 정렬합니다. */
+        }
+
+        .child p {
+            line-height: 1.5;
+            /* 텍스트의 줄 간격을 설정합니다. */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+
+        <div class="content-wrapper">
+
+            <div class="child">
+                <h1>CSS만으로 수평 스크롤 시도</h1>
+                <p>수평 스크롤 레이아웃을 만들고 사용자가 마우스로 위/아래로 스크롤하여 왼쪽/오른쪽으로 스크롤할 수 있게 하는 것이 목표입니다.</p>
+                <p>그러니까… 마우스로 <strong>아래로</strong> 스크롤해 주세요.</p>
+            </div>
+
+            <div class="child">
+                <h2>비결</h2>
+                <p>컨테이너를 -90도 회전시키고, 자식 블록들을 90도 회전시킵니다.</p>
+                <p>컨테이너와 자식들의 크기를 고정해야 합니다. :(</p>
+                <p>CSS를 보시면 비교적 올바른 위치 설정을 볼 수 있습니다.</p>
+            </div>
+
+            <div class="child">
+                <h2>데스크탑 브라우저</h2>
+                <p>수직 스크롤… 스크롤됩니다. :)</p>
+                <p>하지만 수평 스크롤(예: 트랙패드로)은 안 됩니다. :(</p>
+            </div>
+
+            <div class="child">
+                <h2>모바일 브라우저</h2>
+                <p>크롬에서는 수평 터치 이동만 작동합니다. :)</p>
+                <p>사파리와 파이어폭스에서는 수직 터치 이동만 작동합니다. :(</p>
+            </div>
+
+
+            <div class="child">
+                <h2>결론</h2>
+                <p>자바스크립트 없이는 좋은 아이디어가 없습니다.</p>
+            </div>
+
+        </div>
+
+    </div>
+</body>
+
+</html>

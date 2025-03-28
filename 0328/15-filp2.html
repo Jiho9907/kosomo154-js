@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ko">
+ 
+<head>
+    <meta charset="UTF-8">
+    <title>Flip 플러그인 추가 기능 예제</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            padding: 40px;
+        }
+ 
+        .container {
+            width: 400px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+ 
+        .container .box {
+            width: 80px;
+            height: 80px;
+            background: #3498db;
+            color: #fff;
+            line-height: 80px;
+            border-radius: 10px;
+            margin: 5px;
+        }
+ 
+        /* alt 클래스에 배경색 변경과 함께
+         flex 방향 반전을 추가 */
+        .container.alt {
+            background: #ecf0f1;
+            flex-direction: row-reverse;
+        }
+    </style>
+</head>
+ 
+<body>
+    <h2>Flip 플러그인 추가 기능 예제</h2>
+    <div class="container" id="flipAdvanced">
+        <div class="box">1</div>
+        <div class="box">2</div>
+        <div class="box">3</div>
+        <div class="box">4</div>
+    </div>
+    <button id="advanceBtn">Toggle Layout</button>
+ 
+    <!-- GSAP 및 Flip 플러그인 로드 -->
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js"></script>
+    <!-- 만약 GSAP 버전에 따라 Flip 플러그인이 코어에 이미 포함되어 있다면 별도 로드는 필요없습니다. -->
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/Flip.min.js"></script>
+    <script>
+        gsap.registerPlugin(Flip);
+        const btnAdv = document.getElementById("advanceBtn");
+        const containerAdv = document.getElementById("flipAdvanced");
+ 
+        btnAdv.addEventListener("click", () => {
+            // 여러 옵션 사용: 특정 속성(props), nested 옵션, absolute 적용
+            const state = Flip.getState(".box",
+            { props: "x,y,rotation,scale", nested: true, absolute: true });
+            // container 클래스 토글: 레이아웃 변경 (박스 순서 변경 + 배경색 및 flex 방향 변경)
+            containerAdv.classList.toggle("alt");
+ 
+            // Flip.from() 실행 시 stagger와 fade 옵션 적용
+            Flip.from(state, {
+                duration: 1.2,
+                ease: "power2.inOut",
+                stagger: 0.1,         // 각 요소 간 0.1초 지연
+                fade: true,           // 요소들이 서서히 페이드 인/아웃
+                toggleClass: "active" // (옵션) 애니메이션 중 "active" 클래스를 토글 (추가 스타일 적용 가능)
+            });
+        });
+    </script>
+</body>
+ 
+</html>

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <!-- 뷰포트 설정. 기기의 화면 크기에 따라 콘텐츠가 적절하게 조정됩니다. -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>페이징</title>
+  <style>
+    /* body 태그에 대한 스타일 설정. 모든 속성 변경 시 2.5초 동안 부드럽게 전환되며, cubic-bezier 함수를 사용하여 전환 효과를 제어합니다. */
+    body {
+      transition: all 2.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+      overflow-x: hidden;
+      /* 수평 스크롤을 숨깁니다. */
+    }
+
+    /* .navi 클래스에 대한 스타일 설정. 고정 위치를 가지며, 화면 중앙에 배치됩니다. */
+    .navi {
+      position: fixed;
+      left: 50%;
+      top: 46%;
+      transform: translate(-50%, -50%);
+    }
+
+    /* h1 태그에 대한 스타일 설정. 글자 크기는 30px, 글자 굵기는 bold, 텍스트는 중앙 정렬입니다. */
+    h1 {
+      font-size: 30px;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    /* button 태그에 대한 스타일 설정. 글자 크기는 20px, 패딩은 10px 30px, 마우스를 올리면 포인터로 변경됩니다. */
+    button {
+      font-size: 20px;
+      padding: 10px 30px;
+      cursor: pointer;
+    }
+
+    /* section 태그에 대한 스타일 설정. 높이는 뷰포트 높이의 100%, 너비는 뷰포트 너비의 100%, 상단에는 점선 테두리가 있습니다. */
+    section {
+      height: 100vh;
+      width: 100vw;
+      border-top: 2px dashed rgba(0, 0, 0, .5);
+    }
+  </style>
+  <script>
+    // 페이지가 로드되면 실행되는 함수
+    window.onload = function () {
+      // 이전 버튼과 다음 버튼, 그리고 h1 요소를 선택합니다.
+      var prevBtn = document.querySelector(".prevBtn");
+      var nextBtn = document.querySelector(".nextBtn");
+      var h1 = document.getElementsByTagName("h1")[0];
+      // 배경색 배열을 정의합니다.
+      var bgColorArr = ["#85FFBD", "#FFFB7D", "#E0C3FC", "#00DBDE"];
+      // section 요소를 모두 선택합니다.
+      var section = document.getElementsByTagName("section");
+      // 페이지 번호를 0으로 설정합니다.
+      var pageNum = 0;
+      // section 요소의 개수를 저장합니다.
+      var totalNum = section.length;
+      // 이전 버튼을 클릭하면 실행되는 이벤트 리스너를 추가합니다.
+      prevBtn.addEventListener("click", function () {
+        if (pageNum > 0) {
+          pageNum--;
+        }
+        pageChangeFunc();
+        // 페이지 변경 후 해당 위치로 부드럽게 스크롤합니다.
+        window.scrollTo({
+          top: section[pageNum].offsetTop,
+          behavior: 'smooth',
+        })
+      })
+      // 다음 버튼을 클릭하면 실행되는 이벤트 리스너를 추가합니다.
+      nextBtn.addEventListener("click", function () {
+        if (pageNum < totalNum - 1) {
+          pageNum++;
+        }
+        pageChangeFunc();
+        // 페이지 변경 후 해당 위치로 부드럽게 스크롤합니다.
+        window.scrollTo({
+          top: section[pageNum].offsetTop,
+          behavior: 'smooth',
+        })
+      })
+      // 페이지를 변경하는 함수를 정의합니다.
+      function pageChangeFunc() {
+        // h1 요소의 내용을 현재 페이지 번호로 설정합니다.
+        h1.innerHTML = (pageNum + 1) + " 페이지 입니다.";
+        // body 요소의 배경색을 현재 페이지 번호에 해당하는 색상으로 변경합니다.
+        document.getElementsByTagName("body")[0].style.background = bgColorArr[pageNum];
+      }
+      // 페이지 로드되면 바로 실행
+      pageChangeFunc();
+      // 'scroll' 이벤트 리스너를 window 객체에 추가합니다. 이 함수는 사용자가 스크롤할 때마다 호출됩니다.
+      window.addEventListener("scroll", function (event) {
+        // 현재 스크롤 위치를 가져옵니다. scrollY는 페이지의 상단에서 현재 보이는 부분까지의 거리를 픽셀 단위로 반환합니다.
+        var scroll = this.scrollY;
+        // 스크롤 위치에 따라 페이지 번호를 변경합니다. 각 섹션의 위치를 확인하여 현재 스크롤 위치가 어느 섹션에 있는지 결정합니다.
+        for (var i = 0; i < totalNum; i++) {
+          // 현재 스크롤 위치가 섹션의 상단 경계보다 아래이고, 섹션의 하단 경계보다 위인지 확인합니다.
+          // 여기서 window.outerHeight/3은 섹션의 일부가 화면에 보이는 경우를 처리하기 위한 값입니다.
+          if (scroll > section[i].offsetTop - window.outerHeight / 3 && scroll < section[i].offsetTop - window.outerHeight / 3 + section[i].offsetHeight) {
+            // 현재 스크롤 위치가 해당 섹션 내에 있으면 페이지 번호를 해당 섹션의 인덱스로 설정합니다.
+            pageNum = i;
+            // 적절한 섹션을 찾았으므로 더 이상 반복문을 실행할 필요가 없으므로 break를 사용하여 반복문을 종료합니다.
+            break;
+          }
+        }
+        // 페이지 번호가 변경되면 페이지를 변경하는 함수를 호출합니다. 이 함수는 새로운 페이지 번호에 따라 배경색을 변경하고, 페이지 번호를 화면에 표시합니다.
+        pageChangeFunc();
+      });
+
+    }
+  </script>
+</head>
+
+<body>
+  <!-- 네비게이션 요소. 이전 버튼, 다음 버튼, 그리고 페이지 번호를 표시하는 h1 요소가 포함되어 있습니다. -->
+  <div class="navi">
+    <button type="button" class="prevBtn">PREV</button>
+    <button type="button" class="nextBtn">NEXT</button>
+    <h1></h1>
+  </div>
+  <!-- 각 섹션 요소. 각 페이지를 나타냅니다. -->
+  <section>
+    <h2>page 1</h2>
+  </section>
+  <section>
+    <h2>page 2</h2>
+  </section>
+  <section>
+    <h2>page 3</h2>
+  </section>
+  <section>
+    <h2>page 4</h2>
+  </section>
+</body>
+
+</html>

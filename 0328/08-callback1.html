@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko">
+ 
+<head>
+    <meta charset="UTF-8">
+    <title>콜백 함수 예제</title>
+    <style>
+        .box {
+            width: 100px;
+            height: 100px;
+            background: #8e44ad;
+            margin: 50px auto;
+            text-align: center;
+            line-height: 100px;
+            color: #fff;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+ 
+<body>
+    <h2>콜백 함수 예제</h2>
+    <div class="box" id="callbackBox">Callback</div>
+ 
+    <!-- 최신 GSAP 라이브러리 로드 (버전 3.12.7) -->
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js"></script>
+    <script>
+        gsap.to("#callbackBox", {
+            duration: 3,
+            x: 300,
+            backgroundColor: "#e74c3c",
+            onStart: function () {
+                document.getElementById("callbackBox").textContent = "시작";
+            },
+            onUpdate: function () {
+                // 진행 정도(0 ~ 1)를 백분율로 표시
+                var progress = Math.round(this.progress() * 100);
+                document.getElementById("callbackBox").textContent = progress + "%";
+            },
+            onComplete: function () {
+                document.getElementById("callbackBox").textContent = "완료";
+            }
+        });
+    </script>
+</body>
+ 
+</html>

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0; /* 모든 요소의 마진을 0으로 설정 */
+            padding: 0; /* 모든 요소의 패딩을 0으로 설정 */
+            font-family: 'Poppins', sans-serif; /* 모든 요소의 글꼴을 'Poppins', sans-serif로 설정 */
+        }
+
+        body {
+            background: #0a2a43; /* body의 배경색을 #0a2a43으로 설정 */
+            min-height: 1500px; /* body의 최소 높이를 1500px로 설정 */
+            overflow-x: hidden; /* body의 가로 스크롤을 숨김 */
+        }
+
+        section:before {
+            content: ''; /* 가상 요소의 내용을 빈 문자열로 설정 */
+            position: absolute; /* 가상 요소의 위치를 절대 위치로 설정 */
+            bottom: 0; /* 가상 요소의 하단 위치를 0으로 설정 */
+            width: 100%; /* 가상 요소의 너비를 100%로 설정 */
+            height: 100px; /* 가상 요소의 높이를 100px로 설정 */
+            background: linear-gradient(to top, #0a2a43, transparent); /* 가상 요소의 배경을 선형 그라디언트로 설정 */
+            z-index: 999; /* 가상 요소의 z-index를 999로 설정 */
+        }
+
+        section:after {
+            content: ''; /* 가상 요소의 내용을 빈 문자열로 설정 */
+            position: absolute; /* 가상 요소의 위치를 절대 위치로 설정 */
+            top: 0; /* 가상 요소의 상단 위치를 0으로 설정 */
+            left: 0; /* 가상 요소의 왼쪽 위치를 0으로 설정 */
+            width: 100%; /* 가상 요소의 너비를 100%로 설정 */
+            height: 100%; /* 가상 요소의 높이를 100%로 설정 */
+            background: #0a2a43; /* 가상 요소의 배경색을 #0a2a43으로 설정 */
+            z-index: 999; /* 가상 요소의 z-index를 999로 설정 */
+            mix-blend-mode: color; /* 가상 요소의 배경색과 이미지의 색상을 혼합하는 방식을 설정 */
+        }
+
+        section {
+            position: relative; /* 섹션의 위치를 상대 위치로 설정 */
+            width: 100%; /* 섹션의 너비를 100%로 설정 */
+            height: 100vh; /* 섹션의 높이를 뷰포트 높이의 100%로 설정 */
+            overflow: hidden; /* 섹션의 스크롤을 숨김 */
+            display: flex; /* 섹션의 디스플레이 속성을 flex로 설정 */
+            justify-content: center; /* 섹션의 가로축 정렬을 중앙으로 설정 */
+            align-items: center; /* 섹션의 세로축 정렬을 중앙으로 설정 */
+        }
+
+        section img {
+            position: absolute; /* 이미지의 위치를 절대 위치로 설정 */
+            top: 0; /* 이미지의 상단 위치를 0으로 설정 */
+            left: 0; /* 이미지의 왼쪽 위치를 0으로 설정 */
+            width: 100%; /* 이미지의 너비를 100%로 설정 */
+            height: 100%; /* 이미지의 높이를 100%로 설정 */
+            object-fit: cover; /* 이미지의 크기와 위치를 조절하여 요소의 콘텐츠 상자를 채우도록 설정 */
+            pointer-events: none; /* 이미지에 대한 포인터 이벤트를 비활성화 */
+        }
+
+        #text {
+            position: relative; /* 텍스트의 위치를 상대 위치로 설정 */
+            color: #fff; /* 텍스트의 색상을 #fff로 설정 */
+            font-size: 80px; /* 텍스트의 글자 크기를 80px로 설정 */
+            z-index: 1; /* 텍스트의 z-index를 1로 설정 */
+        }
+
+        #road {
+            z-index: 2; /* road의 z-index를 2로 설정 */
+        }
+
+        .content {
+            padding: 20px 54px; /* content의 패딩을 상하 20px, 좌우 54px로 설정 */
+        }
+
+        .content h3 {
+            color: #fff; /* h3 태그의 색상을 #fff로 설정 */
+            padding-bottom: 10px; /* h3 태그의 하단 패딩을 10px로 설정 */
+            letter-spacing: 10px; /* h3 태그의 글자 간격을 10px로 설정 */
+        }
+
+        .content h3 span {
+            color: brown; /* span 태그의 색상을 brown으로 설정 */
+            text-transform: uppercase; /* span 태그의 텍스트를 대문자로 변환 */
+            font-size: 14px; /* span 태그의 글자 크기를 14px로 설정 */
+        }
+
+        .content p {
+            color: aqua; /* p 태그의 색상을 aqua로 설정 */
+            line-height: 30px; /* p 태그의 줄 높이를 30px로 설정 */
+            letter-spacing: 1px; /* p 태그의 글자 간격을 1px로 설정 */
+        }
+
+        footer {
+            position: relative; /* footer의 위치를 상대 위치로 설정 */
+            bottom: 0; /* footer의 하단 위치를 0으로 설정 */
+            left: 0; /* footer의 왼쪽 위치를 0으로 설정 */
+            width: 100%; /* footer의 너비를 100%로 설정 */
+            padding: 20px 54px; /* footer의 패딩을 상하 20px, 좌우 54px로 설정 */
+            display: flex; /* footer의 디스플레이 속성을 flex로 설정 */
+            justify-content: start; /* footer의 가로축 정렬을 시작점으로 설정 */
+            align-items: flex-start; /* footer의 세로축 정렬을 시작점으로 설정 */
+        }
+
+        footer h4 {
+            color: #fff; /* h4 태그의 색상을 #fff로 설정 */
+            font-size: 23px; /* h4 태그의 글자 크기를 23px로 설정 */
+        }
+
+        footer h4 span {
+            color: black; /* span 태그의 색상을 black으로 설정 */
+            font-size: 23px; /* span 태그의 글자 크기를 23px로 설정 */
+        }
+    </style>
+</head>
+
+<body>
+    <section>
+        <img src="./img/bg.jpg" id="bg">
+        <img src="./img/moon.png" id="moon">
+        <img src="./img/mountain.png" id="mountain">
+        <img src="./img/road.png" id="road">
+        <h2 id="text">야간 여행</h2>
+    </section>
+    <div class="content">
+        <h3>Parllex | <span>Scroll</span> </h3>
+        <p>페이지의 레이아웃을 보면서 읽을 수 있는 콘텐츠에 독자가 쉽게 방해받는다는 것은 오래된 사실입니다. Lorem Ipsum을 사용하는 이유는 '여기에 내용을 입력하세요, 여기에 내용을 입력하세요’를 사용하는 것과 달리, 어느 정도 정규 분포를 가진 글자를 가지고 있어서 영어를 읽는 것처럼 보이게 만들기 때문입니다. 많은 데스크톱 출판 패키지와 웹 페이지 편집기는 이제 Lorem Ipsum을 기본 모델 텍스트로 사용하며, 'lorem ipsum’을 검색하면 아직 초기 단계에 있는 많은 웹사이트를 찾아낼 수 있습니다. 여러 버전이 시간이 지남에 따라 발전해 왔는데, 때때로는 우연히, 때때로는 고의적으로 (유머를 주입하는 등) 변화가 일어났습니다.</p>
+    </div>
+
+    <footer>
+        <h4><span> >_ </span>oklinekgh</h4>
+    </footer>
+    <script>
+        let bg = document.getElementById('bg'); // 'bg'라는 id를 가진 요소를 bg 변수에 할당
+        let moon = document.getElementById('moon'); // 'moon'이라는 id를 가진 요소를 moon 변수에 할당
+        let mountain = document.getElementById('mountain'); // 'mountain'이라는 id를 가진 요소를 mountain 변수에 할당
+        let road = document.getElementById('road'); // 'road'라는 id를 가진 요소를 road 변수에 할당
+        let text = document.getElementById('text'); // 'text'라는 id를 가진 요소를 text 변수에 할당
+
+        window.addEventListener('scroll', function () { // 스크롤 이벤트 리스너를 추가
+            var value = window.scrollY; // 스크롤된 픽셀 수를 value 변수에 할당
+            bg.style.top = value * 0.5 + 'px'; // bg 요소의 top 스타일을 스크롤된 픽셀 수의 0.5배로 설정
+            moon.style.left = -value * 0.5 + 'px'; // moon 요소의 left 스타일을 스크롤된 픽셀 수의 -0.5배로 설정
+            mountain.style.top = -value * 0.15 + 'px'; // mountain 요소의 top 스타일을 스크롤된 픽셀 수의 -0.15배로 설정
+            road.style.top = value * 0.15 + 'px'; // road 요소의 top 스타일을 스크롤된 픽셀 수의 0.15배로 설정
+            text.style.top = value * 1 + 'px'; // text 요소의 top 스타일을 스크롤된 픽셀 수의 1배로 설정
+        });
+    </script>
+</body>
+
+</html>
